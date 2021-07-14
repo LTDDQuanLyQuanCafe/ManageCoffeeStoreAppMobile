@@ -1,0 +1,90 @@
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.csprojAssemblyReference.cache
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.GeneratedMSBuildEditorConfig.editorconfig
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.AssemblyInfoInputs.cache
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.AssemblyInfo.cs
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.csproj.CoreCompileInputs.cache
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.MvcApplicationPartsAssemblyInfo.cs
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.MvcApplicationPartsAssemblyInfo.cache
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\appsettings.Development.json
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\appsettings.json
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.exe
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.deps.json
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.runtimeconfig.json
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.runtimeconfig.dev.json
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\ref\AspNetCore_WebQuanLyQuanCafe.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.pdb
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\DevExpress.Data.v19.2.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\DevExpress.Xpo.v19.2.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Microsoft.Extensions.PlatformAbstractions.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Microsoft.OpenApi.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\System.Data.SqlClient.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\System.Net.Http.WinHttpHandler.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\System.ServiceModel.Http.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\System.ServiceModel.Primitives.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Net.Http.WinHttpHandler.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\unix\lib\netstandard2.0\System.Private.ServiceModel.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win7\lib\netstandard2.0\System.Private.ServiceModel.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\staticwebassets\AspNetCore_WebQuanLyQuanCafe.StaticWebAssets.Manifest.cache
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\staticwebassets\AspNetCore_WebQuanLyQuanCafe.StaticWebAssets.xml
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\scopedcss\bundle\AspNetCore_WebQuanLyQuanCafe.styles.css
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.RazorTargetAssemblyInfo.cache
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.csproj.CopyComplete
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\ref\AspNetCore_WebQuanLyQuanCafe.dll
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.pdb
+D:\Lap trinh di dong\1_BaiTapLon\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.genruntimeconfig.cache
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\appsettings.json
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.exe
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.deps.json
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.runtimeconfig.json
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.runtimeconfig.dev.json
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\ref\AspNetCore_WebQuanLyQuanCafe.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.pdb
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\DevExpress.Data.v19.2.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\DevExpress.Xpo.v19.2.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Microsoft.Extensions.PlatformAbstractions.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\System.Data.SqlClient.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\System.Net.Http.WinHttpHandler.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\System.ServiceModel.Http.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\System.ServiceModel.Primitives.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Net.Http.WinHttpHandler.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\unix\lib\netstandard2.0\System.Private.ServiceModel.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win7\lib\netstandard2.0\System.Private.ServiceModel.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.csprojAssemblyReference.cache
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.AssemblyInfoInputs.cache
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.AssemblyInfo.cs
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.csproj.CoreCompileInputs.cache
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\staticwebassets\AspNetCore_WebQuanLyQuanCafe.StaticWebAssets.Manifest.cache
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\staticwebassets\AspNetCore_WebQuanLyQuanCafe.StaticWebAssets.xml
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\scopedcss\bundle\AspNetCore_WebQuanLyQuanCafe.styles.css
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.RazorTargetAssemblyInfo.cache
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.csproj.CopyComplete
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\ref\AspNetCore_WebQuanLyQuanCafe.dll
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.pdb
+C:\Users\TaiThanhTuan\BaiTapLon_LTDD_ST2_ThayAi\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.genruntimeconfig.cache

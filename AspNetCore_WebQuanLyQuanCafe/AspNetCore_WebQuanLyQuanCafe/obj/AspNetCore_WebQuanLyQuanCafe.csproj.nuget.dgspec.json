@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\TaiThanhTuan\\BaiTapLon_LTDD_ST2_ThayAi\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe.csproj": {}
+    "C:\\Users\\TaiThanhTuan\\ManageCoffeeStoreAppMobile\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe.csproj": {}
   },
   "projects": {
-    "C:\\Users\\TaiThanhTuan\\BaiTapLon_LTDD_ST2_ThayAi\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe.csproj": {
+    "C:\\Users\\TaiThanhTuan\\ManageCoffeeStoreAppMobile\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\TaiThanhTuan\\BaiTapLon_LTDD_ST2_ThayAi\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe.csproj",
+        "projectUniqueName": "C:\\Users\\TaiThanhTuan\\ManageCoffeeStoreAppMobile\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe.csproj",
         "projectName": "AspNetCore_WebQuanLyQuanCafe",
-        "projectPath": "C:\\Users\\TaiThanhTuan\\BaiTapLon_LTDD_ST2_ThayAi\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe.csproj",
+        "projectPath": "C:\\Users\\TaiThanhTuan\\ManageCoffeeStoreAppMobile\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe.csproj",
         "packagesPath": "C:\\Users\\TaiThanhTuan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\TaiThanhTuan\\BaiTapLon_LTDD_ST2_ThayAi\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe\\obj\\",
+        "outputPath": "C:\\Users\\TaiThanhTuan\\ManageCoffeeStoreAppMobile\\AspNetCore_WebQuanLyQuanCafe\\AspNetCore_WebQuanLyQuanCafe\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\TaiThanhTuan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,13 +42,13 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "DevExpress.Xpo": {
-              "target": "Package",
-              "version": "[19.2.6-pre-20006, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[5.6.3, )"
+              "version": "[6.1.4, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
             }
           },
           "imports": [
@@ -69,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

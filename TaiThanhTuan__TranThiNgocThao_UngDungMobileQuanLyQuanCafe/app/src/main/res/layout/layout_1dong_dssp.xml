@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="10">
+
+
+    <LinearLayout
+        android:layout_weight="8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/lst_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="asfsaf"
+            android:fontFamily="@font/open_sans_bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/lst_item_text"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_weight="5"
+            android:text="asfsaf"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textSize="15sp" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                app:srcCompat="@drawable/ic_mdi_star_rate"
+                tools:layout_editor_absoluteX="102dp" />
+
+            <TextView
+                android:id="@+id/all_menu_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="3.9" />
+
+            <TextView
+                android:id="@+id/all_menu_deliverytime"
+                android:layout_width="40dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/time_bg"
+                android:gravity="center"
+                android:text="45 mins"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="8sp" />
+
+            <TextView
+                android:id="@+id/all_menu_delivery_charge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Free Delivery" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="2"
+        android:scaleType="fitXY"
+        tools:srcCompat="@tools:sample/avatars"
+        android:background="@drawable/decorate_image" />
+</LinearLayout>

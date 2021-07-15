@@ -1,7 +1,5 @@
 ﻿using AspNetCore_WebQuanLyQuanCafe.Models.Domain;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
@@ -13,5 +11,19 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
         /// </summary>
         /// <returns><br/></returns>
         Task<IList<ThucDon>> GetAllThucDon();
+
+        /// <summary>
+        /// Gets List Thuc Dons follow Loai Thuc Don
+        /// </summary>
+        /// <param name="maLoaiThucDon"></param>
+        /// <returns></returns>
+        Task<IList<ThucDon>> GetThucDonFollowLoaiTD(string maLoaiThucDon);
+
+        /// <summary>
+        /// Gets List Thuc Don detail
+        /// </summary>
+        /// <param name="maThucDon"></param>
+        /// <returns></returns>
+        Task<ThucDon> GetThucDonDetail(string maThucDon);
     }
 }

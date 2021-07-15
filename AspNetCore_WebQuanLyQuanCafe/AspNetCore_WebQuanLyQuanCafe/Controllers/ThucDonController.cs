@@ -28,5 +28,22 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             return Ok(listThucDon.Result);
         }
 
+        // GET: api/get/category
+        [HttpGet]
+        [Route("get/category/{idCategory}")]
+        public IActionResult GetThucDonsFollowCategory(string idCategory)
+        {
+            var listThucDon = _thucDonServices.GetThucDonFollowLoaiTD(idCategory);
+            return Ok(listThucDon.Result);
+        }
+
+        // GET: api/get/id
+        [HttpGet]
+        [Route("get/{id}")]
+        public IActionResult GetThucDonDetail(string id)
+        {
+            var listThucDon = _thucDonServices.GetThucDonDetail(id);
+            return Ok(listThucDon.Result);
+        }
     }
 }

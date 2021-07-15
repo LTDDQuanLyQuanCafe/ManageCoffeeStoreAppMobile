@@ -1,5 +1,6 @@
 package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
@@ -7,6 +8,7 @@ import android.widget.ViewFlipper;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -118,5 +120,25 @@ public class TrangChuActivity extends AppCompatActivity {
         viewFlipper.setFlipInterval(2000);
         viewFlipper.startFlipping();
     }
+
+
+    //dieu huong navigation
+    private void navigation(int mSelectedId) {
+        Intent intent = null;
+        if (mSelectedId == R.id.mnu_user) {
+            intent = new Intent(TrangChuActivity.this, InfoKhachHangActivity.class);
+            startActivity(intent);
+
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        if (mSelectedId == R.id.mnu_cart) {
+            intent = new Intent(TrangChuActivity.this, GioHangActivity.class);
+            startActivity(intent);
+
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+
+
 
 }

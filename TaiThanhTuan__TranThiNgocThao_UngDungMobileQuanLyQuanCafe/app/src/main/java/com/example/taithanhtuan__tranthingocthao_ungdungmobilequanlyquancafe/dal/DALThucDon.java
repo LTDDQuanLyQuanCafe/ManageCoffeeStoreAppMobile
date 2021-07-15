@@ -10,11 +10,11 @@ import java.io.InputStream;
 
 public class DALThucDon {
 
-    public int getMaThucDon() {
+    public String getMaThucDon() {
         return MaThucDon;
     }
 
-    public void setMaThucDon(int maThucDon) {
+    public void setMaThucDon(String maThucDon) {
         MaThucDon = maThucDon;
     }
 
@@ -26,11 +26,11 @@ public class DALThucDon {
         TenMon = tenMon;
     }
 
-    public double getDonGia() {
+    public String getDonGia() {
         return DonGia;
     }
 
-    public void setDonGia(double donGia) {
+    public void setDonGia(String donGia) {
         DonGia = donGia;
     }
 
@@ -66,11 +66,26 @@ public class DALThucDon {
         MaLoaiTD = maLoaiTD;
     }
 
-    int MaThucDon ;
+    public DALThucDon() {
+    }
+
+    public DALThucDon(String maThucDon, String tenMon, String donGia, String DVT, String hinhAnh, String moTa, String maLoaiTD) {
+        MaThucDon = maThucDon;
+        TenMon = tenMon;
+        DonGia = donGia;
+        this.DVT = DVT;
+        HinhAnh = hinhAnh;
+        MoTa = moTa;
+        MaLoaiTD = maLoaiTD;
+    }
+
+    String MaThucDon ;
 
     String TenMon ;
 
-    double DonGia ;
+
+
+    String DonGia ;
 
     String DVT ;
 

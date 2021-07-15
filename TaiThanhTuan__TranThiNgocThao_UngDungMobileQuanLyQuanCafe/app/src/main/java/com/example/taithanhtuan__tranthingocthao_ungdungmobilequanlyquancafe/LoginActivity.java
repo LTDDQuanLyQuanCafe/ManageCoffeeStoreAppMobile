@@ -20,6 +20,7 @@ import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.pro
 
 public class LoginActivity extends AppCompatActivity {
 
+    static String url = "https://192.168.1.9:5566/";
     EditText edtName,edtPass;
     TextView linkSU;
     Button btnLogin;
@@ -69,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                         _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
                         String userName = edtName.getText().toString();
                         String password = edtPass.getText().toString();
-                        String url = String.format("https://192.168.1.9:5566/api/TaiKhoanKhachHang/login?tenTaiKhoan=%s&matKhau=%s",userName,password);
+                        String url = String.format(LoginActivity.url+"api/TaiKhoanKhachHang/login?tenTaiKhoan=%s&matKhau=%s",userName,password);
                         String p = parseJson.readStringFileContent(url);
                         if(p.equals("true")){
                             Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, SignupActivity.class);

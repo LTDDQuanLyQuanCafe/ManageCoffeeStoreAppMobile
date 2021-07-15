@@ -6,22 +6,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".SearchActivity">
-    <RelativeLayout
-        android:id="@+id/relative"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_light"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
+        android:background="@color/white"
+        android:isScrollContainer="false"
+        android:padding="5dp">
+
         <SearchView
+            android:id="@+id/searchview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="16dp"
-            android:id="@+id/search_view"
-            android:queryHint="Name, description"
-            android:background="@android:color/white"/>
-    </RelativeLayout>
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/decorate_text_login"
+            android:backgroundTint="#E3E3E3"
+            android:drawablePadding="10dp"
+            android:queryHint="Cafe sữa đá đặc biệt thơm ngon..."
+            android:searchIcon="@drawable/ic_baseline_search_24" />
+
+    </androidx.appcompat.widget.Toolbar>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -47,16 +54,48 @@
                 style="@style/TagGroup" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <ListView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listView"
-        android:visibility="gone"/>
-    <TextView
+        android:layout_height="match_parent">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listView"
+            android:visibility="gone"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textView"
+            android:text="No result"
+            android:textSize="24sp"
+            android:gravity="center"/>
+    </ScrollView>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/textView"
-        android:text="No result"
-        android:textSize="24sp"
-        android:gravity="center"/>
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:menu="@menu/bottom_menu"
+            app:navigationIcon="@drawable/ic_cart_black" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:backgroundTint="#EB7F24"
+            app:layout_anchor="@id/bottomAppBar2"
+            app:srcCompat="@drawable/ic_location" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

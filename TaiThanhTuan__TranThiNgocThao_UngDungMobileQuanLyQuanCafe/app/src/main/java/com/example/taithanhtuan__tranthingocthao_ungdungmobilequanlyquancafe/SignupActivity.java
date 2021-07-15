@@ -8,14 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.login.widget.LoginButton;
+
 public class SignupActivity extends AppCompatActivity {
 
     TextView linkReLI;
-
+    LoginButton btnLoginFb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        btnLoginFb = findViewById(R.id.btnFacebook);
         linkReLI = findViewById(R.id.linkReturnLogIn);
         linkReLI.setTextColor(Color.BLUE);
         linkReLI.setOnClickListener(new View.OnClickListener() {

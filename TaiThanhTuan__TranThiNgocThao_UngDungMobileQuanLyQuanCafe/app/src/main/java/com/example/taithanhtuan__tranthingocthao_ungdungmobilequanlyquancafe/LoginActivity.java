@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "======Facebook login success======");
                 Log.d(TAG, "Facebook Access Token: " + loginResult.getAccessToken().getToken());
                 Toast.makeText(LoginActivity.this, "Login Facebook success.", Toast.LENGTH_SHORT).show();
-                getFbInfomation();
+                    getFbInfomation();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

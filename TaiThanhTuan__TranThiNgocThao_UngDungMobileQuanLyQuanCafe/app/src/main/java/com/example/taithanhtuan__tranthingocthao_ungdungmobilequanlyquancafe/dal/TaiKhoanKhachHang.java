@@ -4,18 +4,18 @@ public class TaiKhoanKhachHang {
     public  TaiKhoanKhachHang(){
 
     }
-    public String MaKH;
-    public String TenTaiKhoan;
-    public String MatKhau;
-    public String NgayTao;
-    public String MaKhachHang;
-    public String HoTen;
-    public String NgaySinh;
-    public String GioiTinh;
-    public String Email;
-    public String DienThoai;
-    public String DiaChi;
-    public int DiemTL;
+    String MaKH;
+    String TenTaiKhoan;
+    String MatKhau;
+    String NgayTao;
+    String MaKhachHang;
+    String HoTen;
+    String NgaySinh;
+    String GioiTinh;
+    String Email;
+    String DienThoai;
+    String DiaChi;
+    int DiemTL;
 
     public String getMaKH() {
         return MaKH;

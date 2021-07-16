@@ -14,7 +14,6 @@ import javax.net.ssl.X509TrustManager;
 
 public class _HttpsTrustManager {
     public static class HttpsTrustManager implements X509TrustManager {
-
         private static TrustManager[] trustManagers;
         private static final X509Certificate[] _AcceptedIssuers = new X509Certificate[]{};
 

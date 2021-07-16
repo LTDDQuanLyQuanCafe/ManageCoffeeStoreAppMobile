@@ -38,11 +38,12 @@
         </androidx.appcompat.widget.Toolbar>
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@id/relative"
-        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="560dp"
-        />
+        android:layout_height="550dp"
+        android:layout_below="@id/relative"
+        android:id="@+id/listView">
+
+    </androidx.recyclerview.widget.RecyclerView>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                app:backgroundTint="#EB7F24"
+                app:backgroundTint="@color/orange"
                 app:layout_anchor="@id/bottomAppBar2"
                 app:srcCompat="@drawable/ic_location" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

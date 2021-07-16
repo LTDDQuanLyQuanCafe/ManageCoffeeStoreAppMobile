@@ -37,18 +37,31 @@ import java.util.List;
 
 public class DSThucDonActivity extends AppCompatActivity {
 
-    String ip = "192.168.43.90";
-    ArrayList<DALThucDon> data = new ArrayList<>();
+    String ip = "192.168.1.2";
+    ArrayList<DALThucDon> data;
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
-    String url = "https://" + ip +":5566/api/";
+    String url = "https://" + ip +":5566/api/ThucDon/all";
     String url2 = "https://" + ip + ":5566/api/ThucDon/all";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ds_thuc_don);
+        data = new ArrayList<>();
+
+//        ArrayList<DALThucDon> loaiTDArrayList = new ArrayList<>();
+//        DALThucDon da = new DALThucDon("001","Trà", "1000", "Cốc","login.jpg","Hahahha", "01");
+//        loaiTDArrayList.add(da);
+////        loaiTDArrayList.add(da);
+////        loaiTDArrayList.add(da);
+////        loaiTDArrayList.add(da);
+//        getThucDonData(loaiTDArrayList);
+        try {
+            data = LayDanhMucSP();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         getThucDonData(data);
-        LayDanhMucSP();
     }
 //    private void  getThucDonData(List<DALThucDon> dalThucDonList){
 //
@@ -62,7 +75,33 @@ public class DSThucDonActivity extends AppCompatActivity {
 //
 //    }
 
-    public void LayDanhMucSP() {
+    public ArrayList<DALThucDon> LayDanhMucSP() throws JSONException {
+        _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                ParseJson parseJson = new ParseJson();
+                String p = parseJson.readStringFileContent(url);
+                JSONArray response = null;
+                try {
+                    response = new JSONArray(p);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject jsonObject = response.getJSONObject(i);
+                        data.add(new DALThucDon(jsonObject.getString("maThucDon"), jsonObject.getString("tenMon"), jsonObject.getString("donGia"), jsonObject.getString("dvt"), jsonObject.getString("hinhAnh"), jsonObject.getString("moTa"), jsonObject.getString("maLoaiTD")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+        return data;
+    }
 //        RequestQueue requestQueue = Volley.newRequestQueue(this);
 //
 //        Response.Listener<JSONArray> thanhcong = new Response.Listener<JSONArray>() {
@@ -92,28 +131,28 @@ public class DSThucDonActivity extends AppCompatActivity {
 //        requestQueue.add(jsonArrayRequest);
 
 
-        ParseJson parseJson = new ParseJson();
-        String url = Common.preUrl+"ThucDon/All";
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
-                    String p = parseJson.readStringFileContent(url);
-                    JSONObject jsonObject = new JSONObject(p);
-                    JSONArray arrayMa = jsonObject.getJSONArray("MaThucDon");
-                    for(int i =0 ; i<arrayMa.length();i++){
-                        DALThucDon thucDon = new DALThucDon();
-//                        data.add(new DALThucDon(jsonObject.getString("MATHUCDON"), jsonObject.getString("TENMON"), jsonObject.getString("DONGIA"),jsonObject.getString("DVT"), jsonObject.getString("HINHANH"),jsonObject.getString("MOTA"),jsonObject.getString("MALOAITD")));
-                        thucDon.setMaThucDon(arrayMa.get(i).toString());
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+//        ParseJson parseJson = new ParseJson();
+//        String url = Common.preUrl+"ThucDon/All";
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
+//                    String p = parseJson.readStringFileContent(url);
+//                    JSONObject jsonObject = new JSONObject(p);
+//                    JSONArray arrayMa = jsonObject.getJSONArray("MaThucDon");
+//                    for(int i =0 ; i<arrayMa.length();i++){
+//                        DALThucDon thucDon = new DALThucDon();
+////                        data.add(new DALThucDon(jsonObject.getString("MATHUCDON"), jsonObject.getString("TENMON"), jsonObject.getString("DONGIA"),jsonObject.getString("DVT"), jsonObject.getString("HINHANH"),jsonObject.getString("MOTA"),jsonObject.getString("MALOAITD")));
+//                        thucDon.setMaThucDon(arrayMa.get(i).toString());
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
 
-    }
+//    }
 
     private void  getThucDonData(List<DALThucDon> dalThucDonList){
         recyclerView = findViewById(R.id.listView);

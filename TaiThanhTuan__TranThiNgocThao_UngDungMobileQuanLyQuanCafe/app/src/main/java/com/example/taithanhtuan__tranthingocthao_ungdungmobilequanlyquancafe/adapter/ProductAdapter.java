@@ -24,66 +24,52 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.PopularViewHolder> {
     private Context context;
+    private List<DALThucDon> popularList;
 
     public ProductAdapter(Context context, List<DALThucDon> popularList) {
         this.context = context;
         this.popularList = popularList;
     }
 
-    private List<DALThucDon> popularList;
 
     @NonNull
     @Override
-    public ProductAdapter.PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_1dong_dssp, parent, false);
-        // here we need to create a layout for recyclerview cell items.
-
-
+    public PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_1dong_dssp, null);
         return new PopularViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductAdapter.PopularViewHolder holder, int position) {
-        holder.LbTitle.setText(popularList.get(position).getTenMon());
-        holder.LbContent.setText(popularList.get(position).getMoTa());
+    public void onBindViewHolder(@NonNull PopularViewHolder holder, int position) {
+        DALThucDon dalThucDon = popularList.get(position);
+        holder.LbTitle.setText(dalThucDon.getTenMon());
+        holder.LbContent.setText(dalThucDon.getMoTa());
         // for image we add Glide library dependency for image fetching from server
-        holder.Img.setImageBitmap(this.converStringToBitmapFromAccess(popularList.get(position).getHinhAnh()+".jpg"));
+        holder.Img.setImageBitmap(this.converStringToBitmapFromAccess(dalThucDon.getHinhAnh()+".jpg"));
         holder.Img.setScaleType(ImageView.ScaleType.FIT_CENTER);
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context, ChiTietThucDonActivity.class);
-                i.putExtra("name", popularList.get(position).getTenMon());
-                i.putExtra("price", popularList.get(position).getDonGia());
-                i.putExtra("decs", popularList.get(position).getMoTa());
-                i.putExtra("image", popularList.get(position).getHinhAnh());
-
-                context.startActivity(i);
-            }
-        });
+        holder.dalThucDon = popularList.get(position);
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(context, ChiTietThucDonActivity.class);
+//                i.putExtra("name", popularList.get(position).getTenMon());
+//                i.putExtra("price", popularList.get(position).getDonGia());
+//                i.putExtra("decs", popularList.get(position).getMoTa());
+//                i.putExtra("image", popularList.get(position).getHinhAnh());
+//
+//                context.startActivity(i);
+//            }
+//        });
     }
+
 
     @Override
     public int getItemCount() {
-        return 0;
+        return popularList.size();
     }
-    public  static class PopularViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView Img;
-        TextView LbTitle;
-        TextView LbContent;
 
-        public PopularViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            Img=itemView.findViewById(R.id.imageView);
-            LbTitle=itemView.findViewById(R.id.lst_item_title);
-            LbContent=itemView.findViewById(R.id.lst_item_text);
-
-        }
-    }
-//    private List<DALThucDon> listData;
+    //    private List<DALThucDon> listData;
 //    private LayoutInflater layoutInflater;
 //    private Context context;
 //
@@ -133,4 +119,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.PopularV
         }
         return null;
     }
+
+    public  static class PopularViewHolder extends RecyclerView.ViewHolder{
+
+        public DALThucDon dalThucDon;
+        public ImageView Img;
+        public TextView LbTitle;
+        public TextView LbContent;
+        public PopularViewHolder(View itemView) {
+            super(itemView);
+
+            Img=itemView.findViewById(R.id.imageView);
+            LbTitle=itemView.findViewById(R.id.lst_item_title);
+            LbContent=itemView.findViewById(R.id.lst_item_text);
+
+
+        }
+    }
 }
+
+

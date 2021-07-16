@@ -11,10 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaiThanhTuan__TranThiNgocThao_UngDungMobileQuanLyQuanCafe">
-        <activity android:name=".GioHangActivity"></activity>
-        <activity android:name=".SearchActivity">
-        </activity>
 
+        <activity android:name=".GioHangActivity" />
+        <activity android:name=".SearchActivity"></activity>
         <activity android:name=".DSThucDonActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,11 +28,7 @@
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".TrangChuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".WelcomeActivity" />
 

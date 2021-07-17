@@ -23,7 +23,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             _khachHangServices = khachHangServices;
         }
 
-        // GET: api/<TaiKhoanKhachHangController>
+        // GET: api/<KhachHangController>
         [HttpGet]
         [Route("all")]
         public IActionResult GetAllKhachHang()
@@ -32,7 +32,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             return Ok(listTaiKhoanKH.Result);
         }
 
-        // GET api/<TaiKhoanKhachHangController>/5
+        // GET api/<KhachHangController>/5
         [HttpGet("get/{id}")]
         public IActionResult GetKhachHang(int id)
         {
@@ -40,7 +40,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             return Ok(khachHang.Result);
         }
 
-        // GET api/<TaiKhoanKhachHangController>/check/email/phone
+        // GET api/<KhachHangController>/check/email/phone
         [HttpGet("check/{email}/{phone}")]
         public IActionResult GetKhachHang(string email,string phone)
         {
@@ -48,7 +48,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             return Ok(khachHang.Result);
         }
 
-        // POST api/<TaiKhoanKhachHangController>
+        // POST api/<KhachHangController>
         [HttpPost]
         public IActionResult Post([FromBody] CreateKhachHangRequest kh)
         {
@@ -56,13 +56,15 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             return Ok(khachHang.Result);
         }
 
-        // PUT api/<TaiKhoanKhachHangController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // GET api/<KhachHangController>/5
+        [HttpGet("get-id/{dienThoai}")]
+        public IActionResult getKhachHangId(string dienThoai)
         {
+            var khachHang = _khachHangServices.LayMaKH(dienThoai);
+            return Ok(khachHang.Result);
         }
 
-        // DELETE api/<TaiKhoanKhachHangController>/5
+        // DELETE api/<KhachHangController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

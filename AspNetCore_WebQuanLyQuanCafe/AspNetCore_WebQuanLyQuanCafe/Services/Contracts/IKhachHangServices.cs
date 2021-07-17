@@ -35,5 +35,12 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
         /// <param name="kh"></param>
         /// <returns></returns>
         Task<bool> InsertTaiKhoanKhachHangInfo(CreateKhachHangRequest kh);
+
+        /// <summary>
+        /// Lay ma khach hang 
+        /// </summary>
+        /// <param name="dienThoai"></param>
+        /// <returns></returns>
+        Task<string> LayMaKH(string dienThoai);
     }
 }

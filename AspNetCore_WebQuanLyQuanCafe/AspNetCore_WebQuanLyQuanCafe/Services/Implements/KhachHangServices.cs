@@ -116,7 +116,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 var open = await _sqlConnectDB.OpenAsync();
 
                 var queryExists = "select count(*) from KhachHang "
-                                                + "Where Email = '" + email + "' and DienThoai='" + phone + "'";
+                                                + "Where Email = '" + email + "' or DienThoai='" + phone + "'";
                 SqlCommand cmdKhachHang = new SqlCommand(queryExists, _sqlConnectDB.sqlConnection);
                 int check = (int)cmdKhachHang.ExecuteScalar();
                 if (check < 1)
@@ -142,8 +142,8 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
             {
                 var open = await _sqlConnectDB.OpenAsync();
 
-                var queryKhachHang = String.Format("insert into khachhang(HoTen,DienThoai) values" +
-                                                        "('{0}','{1}')", kh.HoTen, kh.DienThoai);
+                var queryKhachHang = String.Format("insert into khachhang(HoTen,DienThoai,Email) values" +
+                                                        "(N'{0}','{1}','{2}')", kh.HoTen, kh.DienThoai, kh.Email);
                 SqlCommand cmdKhachHang = new SqlCommand(queryKhachHang, _sqlConnectDB.sqlConnection);
                 cmdKhachHang.ExecuteNonQuery();
 
@@ -155,5 +155,36 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 return false;
             }
         }
+
+        /// <summary>
+        /// Lay ma khach hang 
+        /// </summary>
+        /// <param name="dienThoai"></param>
+        /// <returns></returns>
+        public async Task<string> LayMaKH(string dienThoai)
+        {
+            try
+            {
+                await _sqlConnectDB.OpenAsync();
+
+                var queryKhachHang = String.Format("select * from KhachHang"
+                                                + " where dienThoai='" + dienThoai + "'", dienThoai);
+                SqlCommand cmdKhachHang = new SqlCommand(queryKhachHang, _sqlConnectDB.sqlConnection);
+                SqlDataReader rdKhachHang = cmdKhachHang.ExecuteReader();
+
+                while (rdKhachHang.Read())
+                {
+                    return rdKhachHang[0].ToString();
+                }
+
+                await _sqlConnectDB.CloseAsync();
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
     }
 }

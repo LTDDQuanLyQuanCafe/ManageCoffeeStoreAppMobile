@@ -60,8 +60,8 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 await _sqlConnectDB.OpenAsync();
 
                 var queryTaiKhoanKhachHangs = String.Format("select * from taikhoankhachhang, khachhang"
-                                                +" where TAIKHOANKHACHHANG.MAKH = KHACHHANG.MAKHACHHANG"
-                                                +" and email = '{0}'",email);
+                                                + " where TAIKHOANKHACHHANG.MAKH = KHACHHANG.MAKHACHHANG"
+                                                + " and email = '{0}'", email);
                 SqlCommand cmdTaiKhoanKhachHang = new SqlCommand(queryTaiKhoanKhachHangs, _sqlConnectDB.sqlConnection);
                 SqlDataReader rdTaiKhoanKhachHang = cmdTaiKhoanKhachHang.ExecuteReader();
 
@@ -78,5 +78,62 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 return false;
             }
         }
+
+        /// <summary>
+        /// Kiem tra mat khau cu
+        /// </summary>
+        /// <param name="mkCu"></param>
+        /// <param name="tenTaiKhoan"></param>
+        /// <returns></returns>
+        public async Task<bool> KiemTraMKCu(string tenTaiKhoan,string mkCu)
+        {
+            try
+            {
+                await _sqlConnectDB.OpenAsync();
+
+                var queryTaiKhoanKhachHangs = String.Format("select * from taikhoankhachhang"
+                                                + " where tenTaiKhoan='{0}' and matKhau ='{1}'", tenTaiKhoan,mkCu);
+                SqlCommand cmdTaiKhoanKhachHang = new SqlCommand(queryTaiKhoanKhachHangs, _sqlConnectDB.sqlConnection);
+                SqlDataReader rdTaiKhoanKhachHang = cmdTaiKhoanKhachHang.ExecuteReader();
+
+                if (!rdTaiKhoanKhachHang.HasRows)
+                {
+                    return false;
+                }
+
+                await _sqlConnectDB.CloseAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Tao tai khoan khach hang
+        /// </summary>
+        /// <param name="tk"></param>
+        /// <returns></returns>
+        public async Task<bool> InsertTK(TaiKhoanKhachHang tk)
+        {
+            try
+            {
+                await _sqlConnectDB.OpenAsync();
+
+                var queryTaiKhoanKhachHangs = String.Format("insert into taikhoankhachhang values"
+                                                + " ('{0}','{1}','{2}','{3}')",tk.MaKH,tk.TenTaiKhoan,tk.MatKhau,tk.NgayTao);
+                SqlCommand cmdTaiKhoanKhachHang = new SqlCommand(queryTaiKhoanKhachHangs, _sqlConnectDB.sqlConnection);
+                cmdTaiKhoanKhachHang.ExecuteNonQuery();
+
+                await _sqlConnectDB.CloseAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

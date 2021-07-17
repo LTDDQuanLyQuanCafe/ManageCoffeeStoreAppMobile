@@ -9,5 +9,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Request
     {
         public string HoTen { get; set; }
         public string DienThoai { get; set; }
+        public string Email { get; set; }
     }
 }

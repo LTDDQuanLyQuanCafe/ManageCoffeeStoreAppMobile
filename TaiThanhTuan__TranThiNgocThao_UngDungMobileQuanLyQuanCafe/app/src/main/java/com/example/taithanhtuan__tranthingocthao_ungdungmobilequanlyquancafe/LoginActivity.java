@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal.TaiKhoanKhachHang;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -30,15 +31,12 @@ import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.pro
 
 import org.json.JSONObject;
 
-<<<<<<< HEAD
-    static String url = "https://192.168.1.9:5566/";
-=======
+
 import static com.facebook.FacebookSdk.sdkInitialize;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     public TaiKhoanKhachHang _taiKhoan;
->>>>>>> main
     EditText edtName,edtPass;
     TextView linkSU;
     Button btnLogin;
@@ -162,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                         _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
                         String userName = edtName.getText().toString();
                         String password = edtPass.getText().toString();
-                        String url = String.format(LoginActivity.url+"api/TaiKhoanKhachHang/login?tenTaiKhoan=%s&matKhau=%s",userName,password);
+                        String url = String.format(Common.preUrl+"TaiKhoanKhachHang/login?tenTaiKhoan=%s&matKhau=%s",userName,password);
                         String p = parseJson.readStringFileContent(url);
                         if(p.equals("true")){
                             Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, SignupActivity.class);

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dp"
+    android:background="@drawable/recycler_bg_solidgray">
+
+    <TextView
+
+        android:id="@+id/lst_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:ems="14"
+        android:fontFamily="@font/open_sans_bold"
+        android:gravity="left"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="asfsaf"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/lst_item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="asfsaf"
+        android:lines= "1"
+        android:ems= "13"
+        android:gravity= "left"
+        android:ellipsize="end"
+        android:maxLines="21"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/lst_item_name"
+        app:layout_constraintTop_toBottomOf="@+id/lst_item_name" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/lst_item_price">
+
+        <ImageView
+            android:id="@+id/btnTru"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/ic_group_400" />
+
+        <TextView
+            android:id="@+id/tv_SL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="01"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/btnCong"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            app:srcCompat="@drawable/ic_group_401" />
+
+        <TextView
+            android:id="@+id/all_menu_deliverytime"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="60dp"
+            android:background="@drawable/time_bg"
+            android:layout_gravity="center"
+            android:text="45 mins"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="8sp" />
+
+        <TextView
+            android:id="@+id/all_menu_delivery_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center"
+            android:text="Free Delivery" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:layout_weight="2"
+        android:scaleType="fitXY"
+        android:background="@drawable/decorate_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -54,22 +54,33 @@
                 style="@style/TagGroup" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ListView
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        >
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/listView"
-            android:visibility="gone"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/textView"
-            android:text="No result"
-            android:textSize="24sp"
-            android:gravity="center"/>
-    </ScrollView>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/lbl_Cart_notificationcart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="No result"
+                android:textColor="@color/hint_txt"
+                android:textSize="30dp" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/listView"
+                android:visibility="gone"/>
+        </FrameLayout>
+    </LinearLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"

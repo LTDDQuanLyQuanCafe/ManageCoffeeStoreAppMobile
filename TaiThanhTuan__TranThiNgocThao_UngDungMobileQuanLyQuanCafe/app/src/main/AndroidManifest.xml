@@ -13,7 +13,9 @@
         android:theme="@style/Theme.TaiThanhTuan__TranThiNgocThao_UngDungMobileQuanLyQuanCafe">
 
         <activity android:name=".GioHangActivity" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity">
+
+        </activity>
         <activity android:name=".DSThucDonActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -2,9 +2,11 @@ package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,6 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.GioHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.LoaiTDAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.TinTucAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.LoaiTD;
@@ -140,5 +143,15 @@ public class TrangChuActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.cart)
+        {
+            Intent intent = new Intent(this, GioHangActivity.class);
+            startActivity(intent);
+        }
 
+        return true;
+    }
 }

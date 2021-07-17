@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="@+id/back2" />
 
     <ImageView
-        android:id="@+id/big_image"
+        android:id="@+id/img_Hinh"
         android:layout_width="340dp"
         android:layout_height="340dp"
         android:layout_marginTop="16dp"
@@ -50,7 +50,7 @@
         app:srcCompat="@drawable/cafe_50px" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -60,42 +60,42 @@
         android:textColor="#333333"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/big_image" />
+        app:layout_constraintTop_toBottomOf="@+id/img_Hinh" />
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="239dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     <TextView
         android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:text="2.3"
+        android:text="4,0"
         app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
         app:layout_constraintStart_toEndOf="@+id/ratingBar"
         app:layout_constraintTop_toTopOf="@+id/ratingBar" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/img_Favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/name"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/name"
+        app:layout_constraintTop_toTopOf="@+id/tv_name"
         app:srcCompat="@drawable/ic_like" />
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="42000"
         android:textColor="@color/orange"
@@ -112,11 +112,11 @@
         android:text="VND"
         android:textColor="@color/orange"
         android:textSize="30sp"
-        app:layout_constraintStart_toEndOf="@+id/price"
-        app:layout_constraintTop_toTopOf="@+id/price" />
+        app:layout_constraintStart_toEndOf="@+id/tv_price"
+        app:layout_constraintTop_toTopOf="@+id/tv_price" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_Content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -126,21 +126,21 @@
         android:text="Theo chân những người gốc Hoa đến định cư tại Sài Gòn, Bạc sỉu là cách gọi tắt của Bạc tẩy sỉu phé trong tiếng Quảng Đông, chính là: Ly sữa trắng kèm một chút cà phê."
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/price"
-        app:layout_constraintTop_toBottomOf="@+id/price" />
+        app:layout_constraintStart_toStartOf="@+id/tv_price"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/img_Tru"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Content"
         app:srcCompat="@drawable/ic_group_400" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/tv_SL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -148,23 +148,23 @@
         android:text="01"
         android:textColor="#272670"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="@+id/imageView10" />
+        app:layout_constraintBottom_toBottomOf="@+id/img_Tru"
+        app:layout_constraintStart_toEndOf="@+id/img_Tru"
+        app:layout_constraintTop_toTopOf="@+id/img_Tru" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/img_Cong"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_SL"
+        app:layout_constraintStart_toEndOf="@+id/tv_SL"
+        app:layout_constraintTop_toTopOf="@+id/tv_SL"
         app:layout_constraintVertical_bias="0.428"
         app:srcCompat="@drawable/ic_group_401" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_AddCart"
         android:layout_width="250dp"
         android:layout_height="60dp"
 
@@ -174,9 +174,9 @@
         android:text="thêm vào giỏ hàng"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="@+id/imageView11"
+        app:layout_constraintBottom_toBottomOf="@+id/img_Cong"
+        app:layout_constraintStart_toEndOf="@+id/img_Cong"
+        app:layout_constraintTop_toTopOf="@+id/img_Cong"
         app:layout_constraintVertical_bias="0.466" />
 
 

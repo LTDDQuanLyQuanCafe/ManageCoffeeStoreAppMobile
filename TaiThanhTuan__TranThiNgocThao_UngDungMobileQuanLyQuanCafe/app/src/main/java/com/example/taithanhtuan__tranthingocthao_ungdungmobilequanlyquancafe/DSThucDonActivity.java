@@ -41,7 +41,7 @@ public class DSThucDonActivity extends AppCompatActivity {
     ArrayList<DALThucDon> data;
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
-    String url = "https://" + ip +":5566/api/ThucDon/all";
+    String url = "ThucDon/all";
     String url2 = "https://" + ip + ":5566/api/ThucDon/all";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +50,11 @@ public class DSThucDonActivity extends AppCompatActivity {
         data = new ArrayList<>();
 
 //        ArrayList<DALThucDon> loaiTDArrayList = new ArrayList<>();
-//        DALThucDon da = new DALThucDon("001","Trà", "1000", "Cốc","login.jpg","Hahahha", "01");
+//        DALThucDon da = new DALThucDon("001","Trà", "1000", "Cốc","cb4.jpg","Hahahha", "01");
 //        loaiTDArrayList.add(da);
-////        loaiTDArrayList.add(da);
-////        loaiTDArrayList.add(da);
-////        loaiTDArrayList.add(da);
+//        loaiTDArrayList.add(da);
+//        loaiTDArrayList.add(da);
+//        loaiTDArrayList.add(da);
 //        getThucDonData(loaiTDArrayList);
         try {
             data = LayDanhMucSP();
@@ -83,7 +83,7 @@ public class DSThucDonActivity extends AppCompatActivity {
             @Override
             public void run() {
                 ParseJson parseJson = new ParseJson();
-                String p = parseJson.readStringFileContent(url);
+                String p = parseJson.readStringFileContent(Common.preUrl+url);
                 JSONArray response = null;
                 try {
                     response = new JSONArray(p);
@@ -93,7 +93,7 @@ public class DSThucDonActivity extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        data.add(new DALThucDon(jsonObject.getString("maThucDon"), jsonObject.getString("tenMon"), jsonObject.getString("donGia"), jsonObject.getString("dvt"), jsonObject.getString("hinhAnh"), jsonObject.getString("moTa"), jsonObject.getString("maLoaiTD")));
+                        data.add(new DALThucDon(jsonObject.getString("maThucDon"), jsonObject.getString("tenMon"), jsonObject.getString("donGia"), jsonObject.getString("dvt"), jsonObject.getString("hinhAnh"), jsonObject.getString("moTa").trim(), jsonObject.getString("maLoaiTD")));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -102,57 +102,6 @@ public class DSThucDonActivity extends AppCompatActivity {
         }).start();
         return data;
     }
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//
-//        Response.Listener<JSONArray> thanhcong = new Response.Listener<JSONArray>() {
-//            @Override
-//            public void onResponse(JSONArray response) {
-//                for (int i = 0; i < response.length(); i++) {
-//                    try {
-//                        _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
-//                        JSONObject jsonObject = response.getJSONObject(i);
-//                        data.add(new DALThucDon(jsonObject.getString("MATHUCDON"), jsonObject.getString("TENMON"), jsonObject.getString("DONGIA"),jsonObject.getString("DVT"), jsonObject.getString("HINHANH"),jsonObject.getString("MOTA"),jsonObject.getString("MALOAITD")));
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                productAdapter.notifyDataSetChanged();
-//            }
-//        };
-//
-//        Response.ErrorListener thatbai = new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        };
-//
-//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, thanhcong, thatbai);
-//        requestQueue.add(jsonArrayRequest);
-
-
-//        ParseJson parseJson = new ParseJson();
-//        String url = Common.preUrl+"ThucDon/All";
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
-//                    String p = parseJson.readStringFileContent(url);
-//                    JSONObject jsonObject = new JSONObject(p);
-//                    JSONArray arrayMa = jsonObject.getJSONArray("MaThucDon");
-//                    for(int i =0 ; i<arrayMa.length();i++){
-//                        DALThucDon thucDon = new DALThucDon();
-////                        data.add(new DALThucDon(jsonObject.getString("MATHUCDON"), jsonObject.getString("TENMON"), jsonObject.getString("DONGIA"),jsonObject.getString("DVT"), jsonObject.getString("HINHANH"),jsonObject.getString("MOTA"),jsonObject.getString("MALOAITD")));
-//                        thucDon.setMaThucDon(arrayMa.get(i).toString());
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
-
-//    }
 
     private void  getThucDonData(List<DALThucDon> dalThucDonList){
         recyclerView = findViewById(R.id.listView);
@@ -172,6 +121,13 @@ public class DSThucDonActivity extends AppCompatActivity {
         InputMethodManager imm
                 =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public void itemClick(DALThucDon products) {
+        Intent intent = new Intent(this,ChiTietThucDonActivity.class);
+//        intent.putExtra("key1",products);
+        Common.thucDon = products;
+        startActivity(intent);
     }
 
 }

@@ -13,6 +13,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using System.Threading.Tasks;
 
 namespace AspNetCore_WebQuanLyQuanCafe
@@ -45,6 +46,7 @@ namespace AspNetCore_WebQuanLyQuanCafe
             services.AddTransient<IKhachHangServices, KhachHangServices>();
             services.AddTransient<ITaiKhoanKhachHangServices, TaiKhoanKhachHangServices>();
             services.AddTransient<IThucDonServices, ThucDonServices>();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

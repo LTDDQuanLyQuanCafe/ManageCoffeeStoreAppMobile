@@ -19,6 +19,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.WelcomeActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
-        }, 3000);
+        }, 300);
     }
 }

@@ -33,5 +33,16 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             return Ok(checkLogin);
         }
 
+        /// <summary>
+        /// Check email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [HttpGet("check/email/{email}")]
+        public IActionResult CheckEmail(string email)
+        {
+            var checkLogin = _taiKhoanKhachHangServices.KiemTraEmailTonTai(email).Result;
+            return Ok(checkLogin);
+        }
     }
 }

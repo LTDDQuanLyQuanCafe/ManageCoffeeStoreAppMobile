@@ -47,5 +47,36 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 return false;
             }
         }
+
+        /// <summary>
+        /// Kiem tra email da ton tai 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public async Task<bool> KiemTraEmailTonTai(string email)
+        {
+            try
+            {
+                await _sqlConnectDB.OpenAsync();
+
+                var queryTaiKhoanKhachHangs = String.Format("select * from taikhoankhachhang, khachhang"
+                                                +" where TAIKHOANKHACHHANG.MAKH = KHACHHANG.MAKHACHHANG"
+                                                +" and email = '{0}'",email);
+                SqlCommand cmdTaiKhoanKhachHang = new SqlCommand(queryTaiKhoanKhachHangs, _sqlConnectDB.sqlConnection);
+                SqlDataReader rdTaiKhoanKhachHang = cmdTaiKhoanKhachHang.ExecuteReader();
+
+                if (!rdTaiKhoanKhachHang.HasRows)
+                {
+                    return false;
+                }
+
+                await _sqlConnectDB.CloseAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

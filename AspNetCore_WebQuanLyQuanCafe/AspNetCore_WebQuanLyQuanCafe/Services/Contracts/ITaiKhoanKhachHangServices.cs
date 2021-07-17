@@ -14,5 +14,12 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
         /// <param name="matKhau">The mat khau.</param>
         /// <returns></returns>
         Task<bool> KiemTraDangNhap(string tenTaiKhoan, string matKhau);
+
+        /// <summary>
+        /// Kiem tra email da ton tai 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        Task<bool> KiemTraEmailTonTai(string email);
     }
 }

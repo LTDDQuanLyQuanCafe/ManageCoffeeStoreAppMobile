@@ -26,17 +26,21 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.PopularViewHolder> implements Filterable {
     private Context context;
-    private List<DALThucDon> popularList;
+    private ArrayList<DALThucDon> popularList;
     ArrayList<DALThucDon> popularListSearch;
     private OnClickListener listener;
 
 
-    public ProductAdapter(Context context, List<DALThucDon> popularList) {
+    public ProductAdapter(Context context, ArrayList<DALThucDon> popularList) {
         this.context = context;
         this.popularList = popularList;
     }
-
-
+    public ProductAdapter(Context context, ArrayList<DALThucDon> popularList, OnClickListener listener) {
+        this.context = context;
+        this.popularList = popularList;
+        this.popularListSearch = popularListSearch;
+        this.listener = listener;
+    }
     @NonNull
     @Override
     public PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -127,11 +131,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.PopularV
 
     public class PopularViewHolder extends RecyclerView.ViewHolder{
 
-        public DALThucDon dalThucDon;
+        DALThucDon dalThucDon ;
         public ImageView Img;
         public TextView LbTitle;
         public TextView LbContent;
-        public PopularViewHolder(View itemView) {
+        public PopularViewHolder(@NonNull View itemView) {
             super(itemView);
 
             Img=itemView.findViewById(R.id.imageView);
@@ -145,6 +149,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.PopularV
                     listener.itemClick(dalThucDon);
                 }
             });
+
         }
     }
 

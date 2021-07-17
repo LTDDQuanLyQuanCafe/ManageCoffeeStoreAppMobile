@@ -25,6 +25,8 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
     Button btnAddToCart;
     TextView tvName, tvPrice, tvDesc, tvPrNumb;
     ImageView imgHinhAnh, imgAddNumb, imgMinusNumb, imgFavorite, imgBack, imgCart;
+
+    private static final String SELECTED_ITEM_ID = "selected"; //nguoi dung da select item
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
         });
 
     }
+
     public Bitmap converStringToBitmapFromAccess(String filename){
         AssetManager assetManager = getApplicationContext().getAssets();
         try {

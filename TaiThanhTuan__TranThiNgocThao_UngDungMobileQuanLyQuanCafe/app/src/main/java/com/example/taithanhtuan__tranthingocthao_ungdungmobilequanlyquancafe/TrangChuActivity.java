@@ -154,4 +154,18 @@ public class TrangChuActivity extends AppCompatActivity {
 
         return true;
     }
+
+    //nut tro ve navigation
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+        {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else
+        {
+            super.onBackPressed();
+        }
+    }
+
 }

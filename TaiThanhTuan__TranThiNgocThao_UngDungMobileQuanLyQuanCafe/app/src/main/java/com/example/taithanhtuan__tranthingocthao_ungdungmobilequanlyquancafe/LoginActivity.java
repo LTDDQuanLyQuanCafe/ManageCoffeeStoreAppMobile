@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,7 +34,7 @@ import static com.facebook.FacebookSdk.sdkInitialize;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
-    public static TaiKhoanKhachHang _taiKhoan;
+    public TaiKhoanKhachHang _taiKhoan;
     EditText edtName,edtPass;
     TextView linkSU;
     Button btnLogin;
@@ -52,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         edtPass=findViewById(R.id.editTextPassword);
         sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-
+        _taiKhoan = new TaiKhoanKhachHang();
         btnLogin =findViewById(R.id.btnLogin);
         btnLoginFacebook = findViewById(R.id.btnFacebook);
         btnLoginFacebook.setReadPermissions("email");
@@ -75,16 +74,21 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "======Facebook login success======");
                 Log.d(TAG, "Facebook Access Token: " + loginResult.getAccessToken().getToken());
                 Toast.makeText(LoginActivity.this, "Login Facebook success.", Toast.LENGTH_SHORT).show();
-                    getFbInfomation();
+                getFbInfomation();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
-                        String email = param.getString("my_email");
-                        String url = String.format("https://192.168.1.9:5566/api/taikhoankhachhang/check/email/%s",email);
+                        String url = String.format("https://192.168.1.9:5566/api/taikhoankhachhang/check/email/%s",_taiKhoan.getEmail());
                         String p = parseJson.readStringFileContent(url);
                         if(p.equals("true")){
-                            Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, SignupActivity.class);
+//                            Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, SignupActivity.class);
+//                            startActivity(intent);
+                        }
+                        else
+                        {
+                            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                            intent.putExtra("Name",_taiKhoan.getHoTen());
                             startActivity(intent);
                         }
                     }
@@ -116,7 +120,9 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.i("ID: ", object.optString("id"));
                                 Toast.makeText(LoginActivity.this, "Name: " + object.optString("name"), Toast.LENGTH_SHORT).show();
                                 Toast.makeText(LoginActivity.this, "ID: " + object.optString("id"), Toast.LENGTH_SHORT).show();
-                                param.putString("my_email",object.optString("email"));
+                                _taiKhoan.setEmail(object.optString("email"));
+                                _taiKhoan.setHoTen(object.optString("name"));
+                                _taiKhoan.setTenTaiKhoan(object.optString("id"));
                             }
                         }
                     });

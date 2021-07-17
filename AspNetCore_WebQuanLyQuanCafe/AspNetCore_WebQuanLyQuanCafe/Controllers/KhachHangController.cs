@@ -1,4 +1,5 @@
 ﻿using AspNetCore_WebQuanLyQuanCafe.Models.Domain;
+using AspNetCore_WebQuanLyQuanCafe.Models.Request;
 using AspNetCore_WebQuanLyQuanCafe.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -39,10 +40,20 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             return Ok(khachHang.Result);
         }
 
+        // GET api/<TaiKhoanKhachHangController>/check/email/phone
+        [HttpGet("check/{email}/{phone}")]
+        public IActionResult GetKhachHang(string email,string phone)
+        {
+            var khachHang = _khachHangServices.CheckInfomationExist(email,phone);
+            return Ok(khachHang.Result);
+        }
+
         // POST api/<TaiKhoanKhachHangController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] CreateKhachHangRequest kh)
         {
+            var khachHang = _khachHangServices.InsertTaiKhoanKhachHangInfo(kh);
+            return Ok(khachHang.Result);
         }
 
         // PUT api/<TaiKhoanKhachHangController>/5

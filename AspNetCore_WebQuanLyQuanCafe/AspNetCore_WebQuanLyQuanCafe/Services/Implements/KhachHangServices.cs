@@ -1,5 +1,6 @@
 ﻿using AspNetCore_WebQuanLyQuanCafe.Models.ConnectSQL;
 using AspNetCore_WebQuanLyQuanCafe.Models.Domain;
+using AspNetCore_WebQuanLyQuanCafe.Models.Request;
 using AspNetCore_WebQuanLyQuanCafe.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -70,9 +71,9 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
             {
                 var open = await _sqlConnectDB.OpenAsync();
 
-                var queryKhachHangs = "select * from KhachHang "
+                var queryKhachHang = "select * from KhachHang "
                                                 + "Where maKhachHang = " + MaKH;
-                SqlCommand cmdKhachHang = new SqlCommand(queryKhachHangs, _sqlConnectDB.sqlConnection);
+                SqlCommand cmdKhachHang = new SqlCommand(queryKhachHang, _sqlConnectDB.sqlConnection);
                 SqlDataReader rdKhachHang = cmdKhachHang.ExecuteReader();
 
                 var result = new KhachHang();
@@ -102,5 +103,57 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
             }
         }
 
+        /// <summary>
+        /// Check account information be exist
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        public async Task<bool> CheckInfomationExist(string email, string phone)
+        {
+            try
+            {
+                var open = await _sqlConnectDB.OpenAsync();
+
+                var queryExists = "select count(*) from KhachHang "
+                                                + "Where Email = '" + email + "' and DienThoai='" + phone + "'";
+                SqlCommand cmdKhachHang = new SqlCommand(queryExists, _sqlConnectDB.sqlConnection);
+                int check = (int)cmdKhachHang.ExecuteScalar();
+                if (check < 1)
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Insert one customer
+        /// </summary>
+        /// <param name="kh"></param>
+        /// <returns></returns>
+        public async Task<bool> InsertTaiKhoanKhachHangInfo(CreateKhachHangRequest kh)
+        {
+            try
+            {
+                var open = await _sqlConnectDB.OpenAsync();
+
+                var queryKhachHang = String.Format("insert into khachhang(HoTen,DienThoai) values" +
+                                                        "('{0}','{1}')", kh.HoTen, kh.DienThoai);
+                SqlCommand cmdKhachHang = new SqlCommand(queryKhachHang, _sqlConnectDB.sqlConnection);
+                cmdKhachHang.ExecuteNonQuery();
+
+                await _sqlConnectDB.CloseAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

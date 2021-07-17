@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DSThucDonActivity"
-    android:orientation="vertical">
-    <LinearLayout
+    tools:context=".DSThucDonActivity">
+    <RelativeLayout
+        android:id="@+id/relative"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="100"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
         <!--        android:background="@android:color/holo_red_light"-->
         <!--        android:minHeight="?attr/actionBarSize"-->
         <!--        android:theme="?attr/actionBarTheme">-->
@@ -38,17 +36,19 @@
                 android:searchIcon="@drawable/ic_baseline_search_24" />
 
         </androidx.appcompat.widget.Toolbar>
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/listView">
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_below="@id/relative"
+        android:id="@+id/listView">
 
-        </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
-    <LinearLayout
+    </androidx.recyclerview.widget.RecyclerView>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_below="@id/listView">
+
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/coordinatorLayout"
             android:layout_width="match_parent"
@@ -62,7 +62,7 @@
             <com.google.android.material.bottomappbar.BottomAppBar
                 android:id="@+id/bottomAppBar2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="62dp"
                 android:layout_gravity="bottom"
                 app:menu="@menu/bottom_menu"
                 app:navigationIcon="@drawable/ic_cart_black" />
@@ -76,5 +76,5 @@
                 app:layout_anchor="@id/bottomAppBar2"
                 app:srcCompat="@drawable/ic_location" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    </LinearLayout>
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -70,6 +70,7 @@ public class TrangChuActivity extends AppCompatActivity {
         loadViewFlipper();
 
         ArrayList<LoaiTD> loaiTDArrayList = new ArrayList<>();
+        loaiTDArrayList.add(new LoaiTD("01","TẤT CẢ", 0, R.drawable.ic__10));
         loaiTDArrayList.add(new LoaiTD("L07","CÀ PHÊ MÁY", 0, R.drawable.ic__7));
         loaiTDArrayList.add(new LoaiTD("L08","COLD BREW", 0, R.drawable.ic__3));
         loaiTDArrayList.add(new LoaiTD("L09","CÀ PHÊ GÓI", 0, R.drawable.ic__9));

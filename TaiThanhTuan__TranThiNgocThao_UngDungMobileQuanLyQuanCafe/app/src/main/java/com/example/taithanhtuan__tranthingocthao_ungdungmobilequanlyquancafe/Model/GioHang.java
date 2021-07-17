@@ -1,12 +1,14 @@
 package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model;
 
-public class GioHang {
+import java.io.Serializable;
 
-    String idsp;
-    String hinhsp;
-    String tensp;
-    String giasp;
-    int soluong;
+public class GioHang implements Serializable {
+
+    public String idsp;
+    public String hinhsp;
+    public String tensp;
+    public String giasp;
+    public int soluong;
 
     public String getIdsp() {
         return idsp;

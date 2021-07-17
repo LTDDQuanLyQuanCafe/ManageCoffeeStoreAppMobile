@@ -42,10 +42,10 @@ import java.util.List;
 public class DSThucDonActivity extends AppCompatActivity implements OnClickListener {
 
     String ip = "192.168.1.2";
-    ArrayList<DALThucDon> data;
+    static ArrayList<DALThucDon> data;
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
-    String url = "ThucDon/all";
+    static String url = "ThucDon/all";
     String url2 = "https://" + ip + ":5566/api/ThucDon/all";
 
     @Override
@@ -81,7 +81,7 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
 //
 //    }
 
-    public ArrayList<DALThucDon> LayDanhMucSP() throws JSONException {
+    public static ArrayList<DALThucDon> LayDanhMucSP() throws JSONException {
         _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
 
         new Thread(new Runnable() {

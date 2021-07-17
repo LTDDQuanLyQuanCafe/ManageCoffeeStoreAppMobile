@@ -11,4 +11,6 @@ public class Common {
     //    public static NGUOIDUNG USER;
     public static ArrayList<GioHang> carts = new ArrayList<>();
     public static DALThucDon thucDon;
+
+
 }

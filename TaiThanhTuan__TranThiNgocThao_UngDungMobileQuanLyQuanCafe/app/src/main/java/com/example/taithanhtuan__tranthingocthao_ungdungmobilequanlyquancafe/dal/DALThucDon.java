@@ -7,8 +7,9 @@ import android.graphics.BitmapFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 
-public class DALThucDon {
+public class DALThucDon implements Serializable {
 
     public String getMaThucDon() {
         return MaThucDon;
@@ -79,20 +80,20 @@ public class DALThucDon {
         MaLoaiTD = maLoaiTD;
     }
 
-    String MaThucDon ;
+    public String MaThucDon ;
 
-    String TenMon ;
+    public String TenMon ;
 
 
 
-    String DonGia ;
+    public String DonGia ;
 
-    String DVT ;
+    public String DVT ;
 
-    String HinhAnh ;
+    public String HinhAnh ;
 
-    String MoTa ;
+    public String MoTa ;
 
-    String MaLoaiTD ;
+    public String MaLoaiTD ;
 
 }

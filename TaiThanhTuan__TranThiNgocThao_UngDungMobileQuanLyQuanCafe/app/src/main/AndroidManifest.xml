@@ -11,30 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaiThanhTuan__TranThiNgocThao_UngDungMobileQuanLyQuanCafe">
-
+        <activity android:name=".TinTucActivity"></activity>
         <activity android:name=".GioHangActivity" />
-        <activity android:name=".SearchActivity">
+        <activity android:name=".SearchActivity"></activity>
+        <activity
+            android:name=".DSThucDonActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".DSThucDonActivity"/>
-        <activity android:name=".ForgetPass"></activity>
-        <activity android:name=".SignupActivity" >
-
-        </activity>
-        <activity android:name=".ChiTietThucDonActivity" />
-
-        <activity android:name=".TrangChuActivity">
-
-        </activity>
+        <activity android:name=".ForgetPass" />
+        <activity android:name=".SignupActivity"></activity>
+        <activity
+            android:name=".ChiTietThucDonActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
+        <activity android:name=".TrangChuActivity"></activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
 
-        </activity>
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <activity android:name=".WelcomeActivity">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        </activity>
+        <activity android:name=".WelcomeActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

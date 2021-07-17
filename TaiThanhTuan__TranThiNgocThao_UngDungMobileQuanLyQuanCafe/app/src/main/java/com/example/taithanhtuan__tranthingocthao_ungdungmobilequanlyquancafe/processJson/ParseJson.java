@@ -2,11 +2,14 @@ package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.pr
 
 import android.net.http.HttpResponseCache;
 
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal.TaiKhoanKhachHang;
+
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -55,7 +58,7 @@ public class ParseJson {
         }
         return StringFileContent;
     }
-    public String postObjectToDB(String urlString)
+    public String postObjectToDB(String urlString, TaiKhoanKhachHang object,String jsonInputString)
     {
         StringFileContent = "";
         StringFileIsDownloaded = false;
@@ -67,22 +70,23 @@ public class ParseJson {
             connection.setReadTimeout(10000);
 
             connection.setRequestMethod("POST");
-            connection.connect();
-
-            InputStream inputStream = connection.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader in = new BufferedReader(inputStreamReader);
-
-            StringBuilder response = new StringBuilder();
-            String inputLine;
-            while ((inputLine = in.readLine()) != null)
-            {
-                response.append(inputLine);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+            try(OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
             }
-            in.close();
 
-            StringFileContent = response.toString();
-            StringFileIsDownloaded = true;
+            try(BufferedReader br = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                StringFileContent = response.toString();
+            }
         }
         catch (Exception localException)
         {

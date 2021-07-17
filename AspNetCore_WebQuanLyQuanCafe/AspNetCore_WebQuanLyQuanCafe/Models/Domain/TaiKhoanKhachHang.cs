@@ -25,7 +25,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         /// </value>
         [Required]
         [MaxLength(100)]
-        public string TenKH { get; set; }
+        public string TenTaiKhoan { get; set; }
 
         /// <summary>
         /// Gets or sets the mat khau.
@@ -43,6 +43,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         /// <value>
         /// The ngay tao.
         /// </value>
-        public DateTime NgayTao { get; set; }
+        public string NgayTao { get; set; }
     }
 }

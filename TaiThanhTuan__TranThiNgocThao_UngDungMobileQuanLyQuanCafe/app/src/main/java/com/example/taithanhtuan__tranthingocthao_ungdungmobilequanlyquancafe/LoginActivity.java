@@ -3,10 +3,13 @@ package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -38,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     public TaiKhoanKhachHang _taiKhoan;
     EditText edtName,edtPass;
-    TextView linkSU;
+    TextView linkSU,linkForget;
     Button btnLogin;
     LoginButton btnLoginFacebook;
     CallbackManager callbackManager;
@@ -58,6 +61,15 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginFacebook = findViewById(R.id.btnFacebook);
         btnLoginFacebook.setReadPermissions("email");
 
+        linkForget = findViewById(R.id.linkForget);
+        linkForget.setTextColor(Color.BLUE);
+        linkForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, ForgetPass.class);
+                startActivity(intent);
+            }
+        });
 
         edtName.setFocusable(true);
         linkSU = findViewById(R.id.linkSignUp);
@@ -74,24 +86,27 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d(TAG, "======Facebook login success======");
-                Log.d(TAG, "Facebook Access Token: " + loginResult.getAccessToken().getToken());
                 Toast.makeText(LoginActivity.this, "Login Facebook success.", Toast.LENGTH_SHORT).show();
+
                 getFbInfomation();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+
                         _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
                         String url = String.format("https://192.168.1.9:5566/api/taikhoankhachhang/check/email/%s",_taiKhoan.getEmail());
                         String p = parseJson.readStringFileContent(url);
                         if(p.equals("true")){
-//                            Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, SignupActivity.class);
-//                            startActivity(intent);
+                            Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, TrangChuActivity.class);
+                            startActivity(intent);
                         }
                         else
                         {
                             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                             intent.putExtra("Name",_taiKhoan.getHoTen());
-                            startActivity(intent);
+                            intent.putExtra("Id",_taiKhoan.getTenTaiKhoan());
+                            intent.putExtra("Email",_taiKhoan.getEmail());
+                            startActivityForResult(intent,0);
                         }
                     }
                 }).start();

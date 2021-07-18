@@ -46,13 +46,29 @@
         </activity>
         <activity
             android:name=".LoginActivity"
+<<<<<<< HEAD
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" >
 
         </activity>
+=======
+<<<<<<< HEAD
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
+>>>>>>> 4ef7f275a2926a1a6fa461e5890a79b1e842d87e
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+=======
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <activity android:name=".WelcomeActivity">
+>>>>>>> main
 
         <activity android:name=".WelcomeActivity" />
 

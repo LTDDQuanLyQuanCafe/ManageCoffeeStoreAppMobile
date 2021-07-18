@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,6 +53,10 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ds_thuc_don);
+        //Hide action bar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         data = new ArrayList<>();
 
 //        ArrayList<DALThucDon> loaiTDArrayList = new ArrayList<>();

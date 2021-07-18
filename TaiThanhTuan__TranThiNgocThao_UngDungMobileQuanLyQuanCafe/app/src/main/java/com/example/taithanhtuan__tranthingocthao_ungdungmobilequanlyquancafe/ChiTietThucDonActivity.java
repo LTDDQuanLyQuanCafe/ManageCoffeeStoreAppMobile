@@ -26,7 +26,7 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
     Button btnAddToCart;
     TextView tvName, tvPrice, tvDesc, tvPrNumb;
     ImageView imgHinhAnh, imgAddNumb, imgMinusNumb, imgFavorite, imgBack, imgCart;
-    int numb;
+    int numb=1;
     private static final String SELECTED_ITEM_ID = "selected"; //nguoi dung da select item
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,13 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 numb++;
-                tvPrNumb.setText(numb);
+                if(numb >0){
+                    if(numb<10){
+                        tvPrNumb.setText("0"+numb+"");
+                    }
+                    else
+                        tvPrNumb.setText(numb+"");
+                }
             }
         });
 
@@ -60,7 +66,15 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 numb--;
-                tvPrNumb.setText(numb);
+                if(numb >0){
+                    if(numb<10){
+                        tvPrNumb.setText("0"+numb+"");
+                    }
+                    else
+                        tvPrNumb.setText(numb+"");
+                }
+                else
+                    numb=1;
             }
         });
 
@@ -75,21 +89,21 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
                     {
                         if(Common.carts.get(i).getIdsp().equals(Common.thucDon.getMaLoaiTD()))//OK so sánh String phải dùng equal
                         {
-                            Common.carts.get(i).setSoluong(Common.carts.get(i).getSoluong()+numb);
+                            Common.carts.get(i).setSoluong(Common.carts.get(i).getSoluong()+ Integer.parseInt(String.valueOf(tvPrNumb.getText())));
                             exist =true;
                         }
                     }
                     if(exist == false)
                     {
-                        Common.carts.add(new GioHang(Common.thucDon.getMaLoaiTD(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(), numb));
+                        Common.carts.add(new GioHang(Common.thucDon.getMaLoaiTD(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(),Integer.parseInt(String.valueOf(tvPrNumb.getText()))));
                     }
                 }
                 //Cart null
                 else
                 {
-                    Common.carts.add(new GioHang(Common.thucDon.getMaLoaiTD(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(), numb));
-
+                    Common.carts.add(new GioHang(Common.thucDon.getMaLoaiTD(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(), Integer.parseInt(String.valueOf(tvPrNumb.getText()))));
                 }
+
                 Intent intent1 = new Intent(getApplicationContext(),GioHangActivity.class);
                 startActivity(intent1);
             }

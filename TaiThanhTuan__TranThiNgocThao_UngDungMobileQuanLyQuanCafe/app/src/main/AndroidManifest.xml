@@ -11,11 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaiThanhTuan__TranThiNgocThao_UngDungMobileQuanLyQuanCafe">
-        <activity android:name=".TinTucActivity"></activity>
-        <activity android:name=".GioHangActivity" />
-        <activity android:name=".SearchActivity"></activity>
-        <activity
-            android:name=".DSThucDonActivity"
+        <activity android:name=".XacNhanDonHangActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,21 +19,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TinTucActivity" />
+        <activity
+            android:name=".GioHangActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
+        <activity android:name=".SearchActivity" >
+
+        </activity>
+        <activity
+            android:name=".DSThucDonActivity">
+
+        </activity>
         <activity android:name=".ForgetPass" />
-        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".SignupActivity" />
         <activity
             android:name=".ChiTietThucDonActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
-        <activity android:name=".TrangChuActivity"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+        </activity>
+        <activity android:name=".TrangChuActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" >
+
+        </activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".WelcomeActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

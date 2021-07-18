@@ -6,15 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".ChiTietThucDonActivity">
 
-    <ImageView
-        android:id="@+id/cart"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:paddingRight="3dip"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_cart_black" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoMirrored="true"
+            android:background="@null"
+            android:clickable="false"
+            android:padding="5dip"
+            android:rotationY="@integer/locale_mirror_flip"
+            android:src="@drawable/ic_cart_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/cart"
+            android:layout_alignEnd="@id/cart"
+            android:layout_marginTop="5dip"
+            android:layout_marginEnd="5dip"
+            android:background="@drawable/notification_circle"
+            android:gravity="center"
+            android:minWidth="20dip"
+            android:minHeight="20dip"
+            android:padding="3dip"
+            android:text="0"
+            android:textColor="#424242"
+            android:textSize="12sp" />
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/back2"
@@ -42,7 +72,7 @@
         android:id="@+id/img_Hinh"
         android:layout_width="340dp"
         android:layout_height="340dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back2"
@@ -53,9 +83,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="Trà Sữa Khoai Môn"
+
+        android:ems="9"
+        android:gravity="left"
+        android:lineSpacingExtra="1dp"
+        android:lines="2"
+        android:maxLines="2"
         android:textColor="#333333"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +101,6 @@
         android:id="@+id/ratingBar"
         android:layout_width="239dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/tv_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
@@ -86,7 +121,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/img_Hinh"
         app:srcCompat="@drawable/ic_like" />
 
     <TextView
@@ -94,7 +129,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="42000"
         android:textColor="@color/orange"
@@ -118,10 +153,15 @@
         android:id="@+id/tv_Content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:ems="13"
         android:fontFamily="@font/open_sans_semibold"
-        android:lineSpacingExtra="2dp"
+        android:gravity="left"
+        android:lineSpacingExtra="1dp"
+        android:lines="5"
+        android:maxLines="6"
         android:text="Theo chân những người gốc Hoa đến định cư tại Sài Gòn, Bạc sỉu là cách gọi tắt của Bạc tẩy sỉu phé trong tiếng Quảng Đông, chính là: Ly sữa trắng kèm một chút cà phê."
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,9 +173,9 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_Content"
         app:srcCompat="@drawable/ic_group_400" />
 
     <TextView
@@ -164,7 +204,7 @@
 
     <Button
         android:id="@+id/btn_AddCart"
-        android:layout_width="250dp"
+        android:layout_width="230dp"
         android:layout_height="60dp"
 
         android:layout_marginStart="6dp"

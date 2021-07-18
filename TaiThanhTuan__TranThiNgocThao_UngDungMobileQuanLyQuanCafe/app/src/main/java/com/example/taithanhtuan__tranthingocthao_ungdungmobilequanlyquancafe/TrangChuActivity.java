@@ -128,19 +128,19 @@ public class TrangChuActivity extends AppCompatActivity {
 
     //dieu huong navigation
     private void navigation(int mSelectedId) {
-        Intent intent = null;
-        if (mSelectedId == R.id.mnu_user) {
-            intent = new Intent(TrangChuActivity.this, InfoKhachHangActivity.class);
-            startActivity(intent);
-
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        if (mSelectedId == R.id.mnu_cart) {
-            intent = new Intent(TrangChuActivity.this, GioHangActivity.class);
-            startActivity(intent);
-
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
+//        Intent intent = null;
+//        if (mSelectedId == R.id.mnu_user) {
+//            intent = new Intent(TrangChuActivity.this, InfoKhachHangActivity.class);
+//            startActivity(intent);
+//
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        }
+//        if (mSelectedId == R.id.mnu_cart) {
+//            intent = new Intent(TrangChuActivity.this, GioHangActivity.class);
+//            startActivity(intent);
+//
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        }
     }
 
 

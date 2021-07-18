@@ -123,6 +123,7 @@
         android:layout_height="0dp"
         android:text="Thanh toán"
         android:textStyle="bold"
+
         android:backgroundTint="@color/orange"
         android:textColor="@color/white"
         />

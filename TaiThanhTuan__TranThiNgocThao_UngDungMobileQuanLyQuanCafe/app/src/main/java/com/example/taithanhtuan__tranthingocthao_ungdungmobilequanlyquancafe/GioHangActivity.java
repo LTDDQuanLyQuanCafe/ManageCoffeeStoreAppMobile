@@ -65,9 +65,26 @@ public class GioHangActivity extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(),DSThucDonActivity.class);
+                Intent intent1 = new Intent(getApplicationContext(),TrangChuActivity.class);
                 startActivity(intent1);
 
+            }
+        });
+        btnPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tvThanhtien.getText().toString().equals(0+"  VND"))
+                {
+                    btnPay.setVisibility(View.VISIBLE);
+                    Toast.makeText(getApplicationContext(), "Giỏ hàng bạn chưa có gì để thanh toán", Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+
+                    Intent intent1 = new Intent(getApplicationContext(),DSThucDonActivity.class);
+                    startActivity(intent1);
+                }
             }
         });
 
@@ -122,13 +139,15 @@ public class GioHangActivity extends AppCompatActivity {
             {
                 for (DALThucDon sp : datasp)
                 {
-                    if(i.idsp.equals(sp.DonGia))
+                    if(i.idsp.equals(sp.MaThucDon))
                     {
                         int giasp = Integer.parseInt(sp.DonGia);
                         int soluongsp = i.soluong;
                         Tongtien += giasp * soluongsp;
                         tvThanhtien.setText(Tongtien + "  VND");
+                        break;
                     }
+
                 }
 
             }

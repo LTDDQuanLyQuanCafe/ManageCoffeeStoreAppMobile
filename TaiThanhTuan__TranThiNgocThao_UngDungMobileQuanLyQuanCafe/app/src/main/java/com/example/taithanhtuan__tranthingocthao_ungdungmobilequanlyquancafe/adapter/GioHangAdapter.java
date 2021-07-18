@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.GioHangActivity;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.GioHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.R;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
@@ -56,41 +57,67 @@ public class GioHangAdapter extends BaseAdapter {
 
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
-        ViewHolderListGH viewHolderListGH = null;
-        if(view == null)
+    public View getView(int position, View convertview, ViewGroup parent) {
+        if(convertview == null)
         {
-            viewHolderListGH = new ViewHolderListGH();
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.layout_1dong_giohang, null);
-            // anh xa
-            viewHolderListGH.tvTenspCart = (TextView)view.findViewById(R.id.lst_item_name);
-            viewHolderListGH.tvGiaspCart = (TextView)view.findViewById(R.id.lst_item_price);
-            viewHolderListGH.tvSLspCart = (TextView)view.findViewById(R.id.tv_SL);
-            viewHolderListGH.imgspCart = (ImageView)view.findViewById(R.id.imageView);
-            viewHolderListGH.btnAdd = (ImageView)view.findViewById(R.id.btnCong);
-            viewHolderListGH.btnMin = (ImageView)view.findViewById(R.id.btnTru);
-            view.setTag(viewHolderListGH);
+            convertview = LayoutInflater.from(context).inflate(R.layout.layout_1dong_giohang, null);
+            // gen
+            ImageView cart_img;
+            TextView cart_name, cart_cost, cart_qlty;
+            ImageView btn_add, btn_min;
+
+            // mapping
+
+            cart_img = convertview.findViewById(R.id.imageView);
+            cart_name = convertview.findViewById(R.id.lst_item_name);
+            cart_cost = convertview.findViewById(R.id.lst_item_price);
+            cart_qlty = convertview.findViewById(R.id.tv_SL);
+            btn_add = convertview.findViewById(R.id.btnCong);
+            btn_min = convertview.findViewById(R.id.btnTru);
+
+            //hooking
+            GioHang cart = (GioHang)getItem(position);
+
+            cart_name.setText(cart.getTensp());
+            cart_cost.setText(cart.getGiasp());
+
+            //load anh
+            cart_img.setImageBitmap(this.converStringToBitmapFromAccess(cart.getHinhsp()));
+            cart_img.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            cart_qlty.setText(cart.getSoluong() + "");
+
+            btn_add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Common.carts.get(position).soluong++;
+                    cart_qlty.setText(Common.carts.get(position).soluong + "");
+                    ((GioHangActivity)(context)).xuLyThanhTien();
+
+
+                }
+            });
+
+            btn_min.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int soluong;
+                    soluong = Integer.parseInt(cart_qlty.getText().toString());
+                    if(soluong < 1)
+                    {
+                        btn_min.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        Common.carts.get(position).soluong--;
+                        cart_qlty.setText(Common.carts.get(position).soluong + "");
+                        ((GioHangActivity)(context)).xuLyThanhTien();
+                    }
+
+                }
+            });
+
         }
-        else
-        {
-            viewHolderListGH = (ViewHolderListGH) view.getTag();
-        }
-        GioHang gioHang = (GioHang)getItem(position);
-        viewHolderListGH.tvTenspCart.setText(gioHang.getTensp());
-//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-//        viewHolderListCart.tvGiaspCart.setText(decimalFormat.format(cart.getGiasp()));
-        viewHolderListGH.tvGiaspCart.setText(gioHang.getGiasp());
-
-        //load anh
-        viewHolderListGH.imgspCart.setImageBitmap(this.converStringToBitmapFromAccess(gioHang.getHinhsp()));
-        viewHolderListGH.imgspCart.setScaleType(ImageView.ScaleType.FIT_CENTER);
-
-        //Them "" de chuyen ve kieu String
-        viewHolderListGH.tvSLspCart.setText(gioHang.getSoluong() + "");
-
-
-        return view;
+        return convertview;
     }
 
 

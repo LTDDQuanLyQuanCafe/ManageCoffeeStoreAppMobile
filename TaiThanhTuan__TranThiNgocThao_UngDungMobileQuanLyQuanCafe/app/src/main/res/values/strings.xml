@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">TaiThanhTuan__TranThiNgocThao_UngDungMobileQuanLyQuanCafe</string>
     <string name="facebook_app_id">213392533995058</string>
+
+    <integer name="locale_mirror_flip2">180</integer>
+    <integer name="locale_mirror_flip">0</integer>
 </resources>

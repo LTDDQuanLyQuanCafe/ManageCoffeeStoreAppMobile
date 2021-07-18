@@ -63,22 +63,83 @@ public class LoginActivity extends AppCompatActivity {
 
         linkForget = findViewById(R.id.linkForget);
         linkForget.setTextColor(Color.BLUE);
-        linkForget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, ForgetPass.class);
-                startActivity(intent);
-            }
-        });
 
         edtName.setFocusable(true);
         linkSU = findViewById(R.id.linkSignUp);
         linkSU.setTextColor(Color.BLUE);
-        linkSU.setOnClickListener(new View.OnClickListener() {
+
+
+    }
+
+    private void getFbInfomation(){
+        if(AccessToken.getCurrentAccessToken()!=null) {
+            GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(),
+                    new GraphRequest.GraphJSONObjectCallback() {
+                        @Override
+                        public void onCompleted(JSONObject object, GraphResponse response) {
+                            if (object != null) {
+                                Log.i("Login: ", object.optString("name"));
+                                Log.i("ID: ", object.optString("id"));
+                                Toast.makeText(LoginActivity.this, "Name: " + object.optString("name"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "ID: " + object.optString("id"), Toast.LENGTH_SHORT).show();
+                                _taiKhoan.setEmail(object.optString("email"));
+                                _taiKhoan.setHoTen(object.optString("name"));
+                                _taiKhoan.setTenTaiKhoan(object.optString("id"));
+                            }
+                        }
+                    });
+            param = new Bundle();
+            param.putString("fields","id,name,link,email");
+            request.setParameters(param);
+            request.executeAsync();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode,resultCode,data);
+    }
+
+    public void hideSoftKeyboard(View view){
+        InputMethodManager imm
+                =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, SignupActivity.class);
-                startActivity(intent);
+                if (edtName.getText().toString().equals("") || edtPass.getText().toString().equals("")) {
+                    Log.d(TAG, "======Not enougn======");
+                    Log.e(TAG, "User name or password be empty.");
+                    Toast.makeText(LoginActivity.this, "Not be empty.", Toast.LENGTH_SHORT).show();
+                } else {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do network action in this function
+                            _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
+                            String userName = edtName.getText().toString();
+                            String password = edtPass.getText().toString();
+
+                            String url = String.format(Common.preUrl + "TaiKhoanKhachHang/login?tenTaiKhoan=%s&matKhau=%s", userName, password);
+                            String p = parseJson.readStringFileContent(url);
+                            if (p.equals("true")) {
+                                Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, TrangChuActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Log.d(TAG, "======Login be not success======");
+                                Log.e(TAG, "Account login is not success.");
+                                Toast.makeText(LoginActivity.this, "Login be not success.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }).start();
+                }
             }
         });
 
@@ -124,65 +185,19 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Login Facebook error.", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
-    private void getFbInfomation(){
-        if(AccessToken.getCurrentAccessToken()!=null) {
-            GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(),
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(JSONObject object, GraphResponse response) {
-                            if (object != null) {
-                                Log.i("Login: ", object.optString("name"));
-                                Log.i("ID: ", object.optString("id"));
-                                Toast.makeText(LoginActivity.this, "Name: " + object.optString("name"), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(LoginActivity.this, "ID: " + object.optString("id"), Toast.LENGTH_SHORT).show();
-                                _taiKhoan.setEmail(object.optString("email"));
-                                _taiKhoan.setHoTen(object.optString("name"));
-                                _taiKhoan.setTenTaiKhoan(object.optString("id"));
-                            }
-                        }
-                    });
-            param = new Bundle();
-            param.putString("fields","id,name,link,email");
-            request.setParameters(param);
-            request.executeAsync();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode,resultCode,data);
-    }
-
-    public void hideSoftKeyboard(View view){
-        InputMethodManager imm
-                =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        linkForget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable(){
-                    @Override
-                    public void run() {
-                        // Do network action in this function
-                        _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
-                        String userName = edtName.getText().toString();
-                        String password = edtPass.getText().toString();
-                        String url = String.format(Common.preUrl+"TaiKhoanKhachHang/login?tenTaiKhoan=%s&matKhau=%s",userName,password);
-                        String p = parseJson.readStringFileContent(url);
-                        if(p.equals("true")){
-                            Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, SignupActivity.class);
-                            startActivity(intent);
-                        }
-                    }
-                }).start();
+                Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, ForgetPass.class);
+                startActivity(intent);
+            }
+        });
+        linkSU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
             }
         });
     }

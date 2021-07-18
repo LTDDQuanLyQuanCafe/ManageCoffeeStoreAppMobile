@@ -50,7 +50,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
 
         // POST api/<KhachHangController>
         [HttpPost]
-        public IActionResult Post([FromBody] CreateKhachHangRequest kh)
+        public IActionResult CreateKhachHang([FromBody] CreateKhachHangRequest kh)
         {
             var khachHang = _khachHangServices.InsertTaiKhoanKhachHangInfo(kh);
             return Ok(khachHang.Result);

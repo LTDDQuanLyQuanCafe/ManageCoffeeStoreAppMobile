@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 public class ForgetPass extends AppCompatActivity {
 
-    EditText edtOldPass,edtNewPass,edtEmail,edtVerify;
+    EditText edtEmail,edtVerify;
     Button btnSend,btnConfirm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +18,6 @@ public class ForgetPass extends AppCompatActivity {
         setContentView(R.layout.activity_forget_pass);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        edtOldPass = findViewById(R.id.edtOldPass);
-        edtOldPass.findFocus();
-        edtNewPass = findViewById(R.id.edtNewPass);
         edtEmail = findViewById(R.id.edtEmailSend);
         edtVerify = findViewById(R.id.edtVerifyMail);
         btnConfirm = findViewById(R.id.btnConfirm);

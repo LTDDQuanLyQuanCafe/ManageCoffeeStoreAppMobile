@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,12 +21,15 @@ import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson.ParseJson;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson._HttpsTrustManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class SignupActivity extends AppCompatActivity {
 
     private static final String TAG = SignupActivity.class.getSimpleName();
     TextView linkReLI;
     EditText edtHoTen,edtPhone,edtMK,edtReMK;
-    TaiKhoanKhachHang _TaiKhoan;
+    TaiKhoanKhachHang _taiKhoan;
     Button btnRegister;
     ParseJson parseJson ;
 
@@ -40,11 +45,14 @@ public class SignupActivity extends AppCompatActivity {
         edtMK = findViewById(R.id.edtPass);
         edtReMK = findViewById(R.id.edtRePass);
         btnRegister = findViewById(R.id.btnRegister);
+        _taiKhoan = new TaiKhoanKhachHang();
         parseJson = new ParseJson();
         try {
             Bundle extras = getIntent().getExtras();
             if (extras != null)
                 edtHoTen.setText(extras.getString("Name"));
+                _taiKhoan.setEmail(extras.getString("Email"));
+                _taiKhoan.setTenTaiKhoan(extras.getString("Email"));
         }catch (Exception ex){
             Log.d(TAG,ex.getMessage());
         }
@@ -59,61 +67,149 @@ public class SignupActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fullName ="",phoneNumber="",mk="",reMK="";
-                fullName= edtHoTen.getText().toString();
-                phoneNumber = edtPhone.getText().toString();
-                mk = edtMK.getText().toString();
-                reMK =  edtReMK.getText().toString();
-                checkHelper(fullName,phoneNumber,mk,reMK);
-
-                String url = String.format(Common.preUrl + "KhachHang/check/%s/%s", "tttuan272000@gmail.com", phoneNumber);
-                final Boolean[] flag = {true};
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
-                        String result = parseJson.readStringFileContent(url);
-                        if (result.equals("true")){
-                            Log.d(TAG,"======Account information be exist======");
-                            Log.e(TAG, "This information has been another user use. Please use other information.");
-                            Toast.makeText(SignupActivity.this, "Account information exist.", Toast.LENGTH_SHORT).show();
-                            flag[0] = false;
+                        String fullName = "", phoneNumber = "", mk = "", reMK = "";
+                        fullName = edtHoTen.getText().toString();
+                        phoneNumber = edtPhone.getText().toString();
+                        mk = edtMK.getText().toString();
+                        reMK = edtReMK.getText().toString();
+                        if (checkHelper(fullName, phoneNumber, mk, reMK)) {
+                            final Toast toast;
+                            String url = String.format(Common.preUrl + "KhachHang/check/%s/%s", _taiKhoan.getEmail(), phoneNumber);
+                            _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
+                            String result = parseJson.readStringFileContent(url);
+                            if (result.equals("true")) {
+                                Log.d(TAG, "======Account information be exist======");
+                                Log.e(TAG, "This information use email or phone number has been another user use. Please use other information.");
+
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast toast = Toast.makeText(SignupActivity.this, "This information use email or phone number has been another user use.", Toast.LENGTH_SHORT);
+                                        toast.show();
+                                    }
+                                });
+                            } else {
+                                _taiKhoan.setHoTen(fullName);
+                                _taiKhoan.setDienThoai(phoneNumber);
+                                url = Common.preUrl + "KhachHang/";
+                                _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
+                                String jsonIns = "{'HoTen': '"+_taiKhoan.getHoTen()+"', 'DienThoai': '"+_taiKhoan.getDienThoai()+"', 'Email': '"+_taiKhoan.getEmail()+"'}";
+                                String checkIns = parseJson.postObjectToDB(url, _taiKhoan,jsonIns);
+                                if (checkIns.equals("true")) {
+
+                                    //Get new KhachHangID
+                                    url = String.format(Common.preUrl + "KhachHang/get-id/%s",_taiKhoan.getDienThoai());
+                                    String maKH = parseJson.readStringFileContent(url);
+                                    String ngayTao = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
+                                    _taiKhoan.setMaKH(maKH);
+                                    _taiKhoan.setMatKhau(mk);
+                                    _taiKhoan.setNgayTao(ngayTao);
+                                    url = Common.preUrl +"TaiKhoanKhachHang/";
+                                    String jsonQuery = String.format("{'MaKH': '%s', 'TenTaiKhoan': '%s', 'matKhau': '%s', 'ngayTao' : '%s'}",_taiKhoan.getMaKH(),_taiKhoan.getTenTaiKhoan(),_taiKhoan.getMatKhau(),_taiKhoan.getNgayTao());
+                                    parseJson.postObjectToDB(url, _taiKhoan,jsonQuery);
+
+                                    Log.d(TAG, "Congratulations on your successful account registration");
+                                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast toast = Toast.makeText(SignupActivity.this, "Register success.", Toast.LENGTH_SHORT);
+                                            toast.show();
+                                        }
+                                    });
+                                    Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.SignupActivity.this, TrangChuActivity.class);
+                                    startActivity(intent);
+                                }
+                            }
                         }
                     }
                 }).start();
-                if(flag[0]==true){
-
-                }
             }
         });
     }
-        private boolean checkHelper(String fullName, String phoneNumber, String mk, String reMK){
+
+    private boolean checkHelper(String fullName, String phoneNumber, String mk, String reMK){
             if(fullName.equals("") || phoneNumber.equals("") || mk.equals("") || reMK.equals(""))
             {
                 Log.d(TAG,"======Information be empty======");
                 Log.e(TAG, "Information of user be not empty");
-                Toast.makeText(SignupActivity.this, "Information not enough.", Toast.LENGTH_SHORT).show();
+
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast toast = Toast.makeText(SignupActivity.this, "Information not enough.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
                 return false;
             }
             if(!Helper.isFullname(fullName)){
                 Log.d(TAG,"======Fullname invalid======");
                 Log.e(TAG, String.format("User Name %s is not valid. User name contains only alphabetic characters a->z.",fullName));
-                Toast.makeText(SignupActivity.this, "Fullname invalid.", Toast.LENGTH_SHORT).show();
+
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast toast = Toast.makeText(SignupActivity.this, "Fullname invalid.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
                 return false;
             }
             if(fullName.length()>50){
                 Log.d(TAG,"======Fullname Length over max======");
                 Log.e(TAG, String.format("User Name %s exceed the maximum allowed character length. User name length maximum of only 50 characters.",fullName));
-                Toast.makeText(SignupActivity.this, "Fullname Length over max.", Toast.LENGTH_SHORT).show();
+
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast toast = Toast.makeText(SignupActivity.this, "Fullname Length over max.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
                 return false;
             }
             if(!Helper.isPhoneNumber(phoneNumber)){
                 Log.d(TAG,"======PhoneNumber invalid======");
                 Log.e(TAG, String.format("Phone number %s is not valid. Phone number should be phone number VietNam.",phoneNumber));
-                Toast.makeText(SignupActivity.this, "PhoneNumber invalid.", Toast.LENGTH_SHORT).show();
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast toast= Toast.makeText(SignupActivity.this, "PhoneNumber invalid.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
                 return false;
             }
+            if(!Helper.isPassword(mk)){
+                Log.d(TAG,"======Password invalid======");
+                Log.e(TAG, String.format("Password %s is not valid. Password include characters: aA->zZ, special characters, number and minimum length is 8.",mk));
+//                toast = Toast.makeText(SignupActivity.this, "Password invalid.", Toast.LENGTH_SHORT);
+//                toast.show();
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast toast = Toast.makeText(SignupActivity.this, "Password invalid.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+                return false;
+            }
+            if(!mk.equals(reMK)){
+                Log.d(TAG,"======RePassword not match======");
+                Log.e(TAG, "RePassword unlike does not match the password you just entered.");
 
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast toast = Toast.makeText(SignupActivity.this, "RePassword not match.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+                return false;
+            }
             return true;
         }
 

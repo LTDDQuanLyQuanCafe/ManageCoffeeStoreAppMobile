@@ -12,6 +12,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
         /// <returns><br/></returns>
         Task<IList<ThucDon>> GetAllThucDon();
 
+
         /// <summary>
         /// Gets List Thuc Dons follow Loai Thuc Don
         /// </summary>

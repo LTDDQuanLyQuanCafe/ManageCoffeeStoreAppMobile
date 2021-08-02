@@ -1,10 +1,17 @@
 package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +41,7 @@ public class GioHangActivity extends AppCompatActivity {
     Button btnPay, btnContinue, btnAdd, btnMin;
     ListView lvCart;
     ArrayList<DALThucDon> datasp = new ArrayList<>();
+
     TextView tvThanhtien, tvNull, tvSL, tvGiasp;
     GioHangAdapter cartAdapter;
 
@@ -41,6 +49,30 @@ public class GioHangActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gio_hang);
+
+        //Action Bar
+        ActionBar actionBar = getSupportActionBar();
+        //thanh tro ve home
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        //doi mau thanh action bar
+        ColorDrawable colorDrawable
+                = new ColorDrawable(Color.parseColor("#EA8734"));
+        // Set BackgroundDrawable
+        actionBar.setBackgroundDrawable(colorDrawable);
+
+        actionBar.setTitle("Giỏ hàng"); //Thiết lập tiêu đề
+        //Doi mau
+        Spannable text = new SpannableString(actionBar.getTitle());
+        text.setSpan(new ForegroundColorSpan(Color.WHITE), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        actionBar.setTitle(text);
+
+
+
+//        int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "Android");
+//        TextView titleText = (TextView)findViewById(titleId);
+//        titleText.setTextColor(Color.parseColor("#000000"));
+
 
 
         //anh xa
@@ -54,6 +86,8 @@ public class GioHangActivity extends AppCompatActivity {
         cartAdapter = new GioHangAdapter(GioHangActivity.this, Common.carts);
         lvCart.setAdapter(cartAdapter);
 
+
+
         //Kiem tra ListView
         checkData();
 
@@ -65,7 +99,7 @@ public class GioHangActivity extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(),TrangChuActivity.class);
+                Intent intent1 = new Intent(getApplicationContext(), DSThucDonActivity.class);
                 startActivity(intent1);
 
             }
@@ -154,42 +188,5 @@ public class GioHangActivity extends AppCompatActivity {
         }
     }
 
-    public void handleAddCart_1dong(View view)
-    {
-        int Tongtien = 0;
-        TextView tvgiasp, tvsl1dong;
-        // anh xa
-        tvgiasp = findViewById(R.id.lst_item_price);
-        tvsl1dong = findViewById(R.id.tv_SL);
 
-        int giasp = Integer.parseInt(tvgiasp.getText().toString());
-        int sl = Integer.parseInt(tvsl1dong.getText().toString()) + 1;
-        Tongtien = giasp * sl;
-        tvThanhtien.setText(Tongtien+"  VND");
-        tvsl1dong.setText(sl+"");
-    }
-    public void handleMinCart_1dong(View view)
-    {
-        int Tongtien = 0;
-        TextView tvgiasp, tvsl1dong;
-        // anh xa
-        tvgiasp = findViewById(R.id.lst_item_price);
-        tvsl1dong = findViewById(R.id.tv_SL);
-
-        int giasp = Integer.parseInt(tvgiasp.getText().toString());
-        int sl = Integer.parseInt(tvsl1dong.getText().toString()) - 1;
-        if(sl <0)
-        {
-            sl = 0;
-            tvsl1dong.setText(sl+"");
-        }
-        else
-        {
-            Tongtien = giasp * sl;
-            tvThanhtien.setText(Tongtien+"  VND");
-            tvsl1dong.setText(sl+"");
-
-        }
-
-    }
 }

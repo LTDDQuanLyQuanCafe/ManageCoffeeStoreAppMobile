@@ -38,7 +38,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.PopularV
     public ProductAdapter(Context context, ArrayList<DALThucDon> popularList, OnClickListener listener) {
         this.context = context;
         this.popularList = popularList;
-        this.popularListSearch = popularListSearch;
+        this.popularListSearch = popularList;
         this.listener = listener;
     }
     @NonNull

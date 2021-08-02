@@ -21,7 +21,6 @@ E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore
 E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
 E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.csproj.AssemblyReference.cache
 E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.GeneratedMSBuildEditorConfig.editorconfig
 E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.AssemblyInfoInputs.cache
 E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.AssemblyInfo.cs
@@ -37,3 +36,4 @@ E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore
 E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\ref\AspNetCore_WebQuanLyQuanCafe.dll
 E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.pdb
 E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.genruntimeconfig.cache
+E:\Hoc\MOBILE\ManageCoffeeStoreAppMobile\AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe\obj\Debug\net5.0\AspNetCore_WebQuanLyQuanCafe.csproj.AssemblyReference.cache

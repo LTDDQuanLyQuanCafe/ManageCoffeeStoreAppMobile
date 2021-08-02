@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChiTietThucDonActivity">
+    tools:context=".ChiTietThucDonActivity"
+    android:paddingTop="10dp"
+    >
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -47,36 +49,14 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/back2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans"
-        android:text="Chi tiết sản phẩm"
-        android:textColor="@android:color/background_dark"
-        app:layout_constraintBottom_toBottomOf="@+id/back2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/back2" />
-
-    <ImageView
         android:id="@+id/img_Hinh"
         android:layout_width="340dp"
         android:layout_height="340dp"
-        android:layout_marginTop="8dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back2"
-        app:srcCompat="@drawable/cafe_50px" />
+        app:srcCompat="@drawable/cafe_50px"
+        tools:layout_editor_absoluteY="48dp" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -205,7 +185,7 @@
     <Button
         android:id="@+id/btn_AddCart"
         android:layout_width="230dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
 
         android:layout_marginStart="6dp"
         android:backgroundTint="@color/orange"

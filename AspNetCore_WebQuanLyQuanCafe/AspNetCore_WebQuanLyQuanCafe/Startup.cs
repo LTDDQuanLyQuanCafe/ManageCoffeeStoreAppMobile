@@ -46,6 +46,7 @@ namespace AspNetCore_WebQuanLyQuanCafe
             services.AddTransient<IKhachHangServices, KhachHangServices>();
             services.AddTransient<ITaiKhoanKhachHangServices, TaiKhoanKhachHangServices>();
             services.AddTransient<IThucDonServices, ThucDonServices>();
+            services.AddTransient<ILoaiTDServices, LoaiTDServices>();
             services.AddControllers().AddNewtonsoftJson();
         }
 

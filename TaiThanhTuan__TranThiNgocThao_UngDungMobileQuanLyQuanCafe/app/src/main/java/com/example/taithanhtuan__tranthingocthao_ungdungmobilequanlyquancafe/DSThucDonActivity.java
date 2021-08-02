@@ -1,9 +1,11 @@
 package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.LoaiTD;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.ProductAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnClickListener;
@@ -42,13 +46,15 @@ import java.util.List;
 
 public class DSThucDonActivity extends AppCompatActivity implements OnClickListener {
 
-    String ip = "192.168.1.2";
+
     static ArrayList<DALThucDon> data;
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
     static String url = "ThucDon/all";
-    String url2 = "https://" + ip + ":5566/api/ThucDon/all";
+    SearchView searchView;
 
+    String url2 = Common.preUrl + "ThucDon/all";
+    LoaiTD loaiTD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +62,8 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
         //Hide action bar
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+
 
         data = new ArrayList<>();
 
@@ -141,6 +149,36 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
         Common.thucDon = dalThucDon;
         startActivity(intent);
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_search,menu);
+////        getMenuInflater().inflate(R.menu.menu_cart,menu);
+//
+//
+//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//        searchView.setMaxWidth(Integer.MAX_VALUE);
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                productAdapter.getFilter().filter(query);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                productAdapter.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
+//        return true;
+//    }
+
+
+
 }
 
 

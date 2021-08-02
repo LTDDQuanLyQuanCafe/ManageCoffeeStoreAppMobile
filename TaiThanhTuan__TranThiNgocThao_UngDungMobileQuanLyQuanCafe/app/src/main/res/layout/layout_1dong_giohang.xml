@@ -71,12 +71,25 @@
             android:layout_gravity="center"
             android:layout_marginStart="4dp"
             app:srcCompat="@drawable/ic_group_401" />
+        <Button
+            android:layout_width="55dp"
+            android:layout_height="27dp"
+            android:text="Xóa"
+            android:textStyle="bold"
+            android:textSize="11dp"
+            android:layout_marginLeft="15dp"
+            android:padding="0dp"
+            android:paddingTop="0dp"
+            android:gravity="top|center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/red_basic"
 
+            />
         <TextView
             android:id="@+id/all_menu_deliverytime"
             android:layout_width="40dp"
             android:layout_height="15dp"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/time_bg"
             android:layout_gravity="center"
             android:text="45 mins"
@@ -88,7 +101,7 @@
             android:id="@+id/all_menu_delivery_charge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="14dp"
             android:layout_gravity="center"
             android:text="Free Delivery" />
 

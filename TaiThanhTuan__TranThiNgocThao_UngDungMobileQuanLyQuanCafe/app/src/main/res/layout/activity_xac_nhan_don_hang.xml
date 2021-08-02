@@ -130,12 +130,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:paddingRight="10dp">
+                android:paddingRight="10dp"
+                android:layout_weight="1"
+                >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Phan Mai Như Ý"
+                    android:text="Trần Thị Ngọc Thảo"
                     android:textSize="18dp"
                     android:layout_marginBottom="5dp"
                     android:ems="7"
@@ -220,7 +222,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Càng sớm càng tốt"
-                    android:textSize="18dp"
+                    android:textSize="17dp"
                     android:layout_marginBottom="5dp"
                     android:ems="7"
                     android:fontFamily="@font/open_sans_semibold"
@@ -260,6 +262,7 @@
 
             </TextView>
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -273,7 +276,26 @@
             </TextView>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Thêm ghi chú"
+                android:background="@color/white"
 
+
+
+                />
+        
+            
+
+
+
+        </LinearLayout>
 
     </LinearLayout>
     <LinearLayout

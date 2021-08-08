@@ -36,25 +36,33 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 var result = new List<KhachHang>();
                 while (rdKhachHang.Read())
                 {
-                    result.Add(new KhachHang()
+                    KhachHang kh= new KhachHang()
                     {
                         MaKhachHang = rdKhachHang[0].ToString(),
                         TenKhachHang = rdKhachHang[1].ToString(),
-                        NgaySinh = DateTime.Parse(rdKhachHang[2].ToString()),
                         GioiTinh = rdKhachHang[3].ToString(),
                         Email = rdKhachHang[4].ToString(),
                         DienThoai = rdKhachHang[5].ToString(),
                         MaLoaiKH = rdKhachHang[6].ToString(),
                         DiaChi = rdKhachHang[7].ToString(),
                         DiemTichLuy = int.Parse(rdKhachHang[8].ToString()),
-                        HinhAnh = rdKhachHang[9].ToString()
-                    });
+                        HinhAnh = rdKhachHang[9].ToString(),
+                        MatKhau = rdKhachHang[10].ToString(),
+                    };
+
+                    if (DateTime.TryParse(rdKhachHang[11].ToString(), out DateTime dt1)) {
+                        kh.NgayTao = dt1;
+                    }
+                    if (DateTime.TryParse(rdKhachHang[2].ToString(), out DateTime dt2)) { 
+                        kh.NgaySinh = dt2;
+                    }
+                    result.Add(kh);
                 }
 
                 await _sqlConnectDB.CloseAsync();
                 return result;
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }
@@ -90,7 +98,9 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                         MaLoaiKH = rdKhachHang[6].ToString(),
                         DiaChi = rdKhachHang[7].ToString(),
                         DiemTichLuy = int.Parse(rdKhachHang[8].ToString()),
-                        HinhAnh = rdKhachHang[9].ToString()
+                        HinhAnh = rdKhachHang[9].ToString(),
+                        MatKhau = rdKhachHang[10].ToString(),
+                        NgayTao = DateTime.Parse(rdKhachHang[11].ToString())
                     };
                 }
 

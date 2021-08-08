@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     CallbackManager callbackManager;
     ParseJson parseJson = new ParseJson();
     Bundle param;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +65,22 @@ public class LoginActivity extends AppCompatActivity {
 
         linkForget = findViewById(R.id.linkForget);
         linkForget.setTextColor(Color.BLUE);
+        sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
 
         edtName.setFocusable(true);
         linkSU = findViewById(R.id.linkSignUp);
         linkSU.setTextColor(Color.BLUE);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+    }
+
+    public boolean onSupportNavigateUp() {
+//        hideSoftKeyboard(searchView);
+        Intent intent = new Intent(LoginActivity.this, TrangChuActivity.class);
+        startActivity(intent);
+        finish();
+        return super.onSupportNavigateUp();
     }
 
     private void getFbInfomation(){
@@ -81,7 +93,6 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.i("Login: ", object.optString("name"));
                                 Log.i("ID: ", object.optString("id"));
                                 Toast.makeText(LoginActivity.this, "Name: " + object.optString("name"), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(LoginActivity.this, "ID: " + object.optString("id"), Toast.LENGTH_SHORT).show();
                                 _taiKhoan.setEmail(object.optString("email"));
                                 _taiKhoan.setHoTen(object.optString("name"));
                                 _taiKhoan.setTenTaiKhoan(object.optString("id"));
@@ -129,13 +140,21 @@ public class LoginActivity extends AppCompatActivity {
 
                             String url = String.format(Common.preUrl + "TaiKhoanKhachHang/login?tenTaiKhoan=%s&matKhau=%s", userName, password);
                             String p = parseJson.readStringFileContent(url);
-                            if (p.equals("true")) {
+                            if (Boolean.valueOf(p) == true) {
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("my_email", edtName.getText().toString());
+                                editor.commit();
                                 Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, TrangChuActivity.class);
                                 startActivity(intent);
                             } else {
                                 Log.d(TAG, "======Login be not success======");
                                 Log.e(TAG, "Account login is not success.");
-                                Toast.makeText(LoginActivity.this, "Login be not success.", Toast.LENGTH_SHORT).show();
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(LoginActivity.this, "Login be not success.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             }
                         }
                     }).start();
@@ -155,7 +174,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void run() {
 
                         _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
-                        String url = String.format("https://192.168.1.9:5566/api/taikhoankhachhang/check/email/%s",_taiKhoan.getEmail());
+                        String url = String.format(Common.preUrl+"TaiKhoanKhachHang/check/email/%s",_taiKhoan.getEmail());
                         String p = parseJson.readStringFileContent(url);
                         if(p.equals("true")){
                             Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, TrangChuActivity.class);

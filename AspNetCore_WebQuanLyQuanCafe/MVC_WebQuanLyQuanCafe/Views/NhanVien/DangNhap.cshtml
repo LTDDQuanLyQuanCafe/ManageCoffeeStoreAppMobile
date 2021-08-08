@@ -1,0 +1,70 @@
+﻿
+@{
+    Layout = null;
+}
+@model MVC_WebQuanLyQuanCafe.Models.NHANVIEN
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://kit.fontawesome.com/218edafa57.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="JS/slider.js"></script>
+    <style>
+        #field {
+            font-size: 1.25rem
+        }
+
+        body {
+            margin: auto;
+        }
+    </style>
+</head>
+<body style="background-color:cadetblue">
+    <div class="container-fluid">
+        <div class="row justify-content-md-center" style="margin-top:10%">
+            <div class="col-md-5">
+                <div class="card" style="border:none">
+                    <center class="w-100" style="height:90px; background-color:Background">
+                        <img src="~/dist/img/gears.png" class="mt-1 card-img-top mx-auto" alt="DangNhap" style="width:100px;height:80px;">
+                    </center>
+                    <div class="card-header">
+                        <center style="font-weight: bold; font-size: 2rem; font-family: 'UTM Amherst'">
+                            ĐĂNG NHẬP TÀI KHOẢN
+                        </center>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("DangNhap", "NhanVien", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <b id="field">@Html.DisplayName("Tên tài khoản:")</b>
+                                @Html.TextBoxFor(m => m.TENTAIKHOAN, "", new { @class = "form-control", @placeholder = "Tên tài khoản", @name = "TenTaiKhoan" })
+                                <b style="color:red"> @ViewBag.LoiTen</b>
+                            </div>
+                            <div class="form-group">
+                                <b id="field">@Html.DisplayName("Mật khẩu:")</b>
+                                @Html.PasswordFor(m => m.MATKHAU, new { @class = "form-control", @placeholder = "Mật khẩu", @name = "MatKhau" })
+                                <b style="color:red">@ViewBag.LoiMK</b>
+                            </div>
+                            <div class="form-group">
+                                <center>
+                                    <input type="submit" name="submit" class="btn btn-lg btn-primary" value="Đăng Nhập" /><br />
+                                    <b style="color:red">@ViewBag.LoiTK</b>
+                                </center>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -33,7 +33,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         /// The ngay sinh.
         /// </value>
         [Required]
-        public DateTime NgaySinh { get; set; }
+        public DateTime? NgaySinh { get; set; }
 
         /// <summary>
         /// Gets or sets the gioi tinh.
@@ -98,5 +98,23 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         /// The hinh anh.
         /// </value>
         public string HinhAnh { get; set; }
+
+        /// <summary>
+        /// Gets or sets the mat khau.
+        /// </summary>
+        /// <value>
+        /// The mat khau.
+        /// </value>
+        [Required]
+        [MaxLength(30), MinLength(6)]
+        public string MatKhau { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ngay tao.
+        /// </summary>
+        /// <value>
+        /// The ngay tao.
+        /// </value>
+        public DateTime? NgayTao { get; set; }
     }
 }

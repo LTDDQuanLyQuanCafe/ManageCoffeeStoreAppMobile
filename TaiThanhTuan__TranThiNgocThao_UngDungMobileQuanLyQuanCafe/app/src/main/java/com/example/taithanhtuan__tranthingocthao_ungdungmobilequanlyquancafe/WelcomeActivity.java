@@ -16,9 +16,9 @@ public class WelcomeActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.WelcomeActivity.this, LoginActivity.class);
+                Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.WelcomeActivity.this, TrangChuActivity.class);
                 startActivity(intent);
             }
-        }, 300);
+        }, 100);
     }
 }

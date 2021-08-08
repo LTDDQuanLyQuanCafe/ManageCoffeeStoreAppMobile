@@ -6,7 +6,8 @@
         <item
             android:id="@+id/mnu_user"
             android:icon="@drawable/username"
-            android:title="Thông tin người dùng" />
+            android:title="Thông tin người dùng"
+            android:visible="false"/>
         <item
             android:id="@+id/mnu_cart"
             android:icon="@drawable/ic_baseline_shopping_cart_24"
@@ -30,7 +31,12 @@
         <item
             android:id="@+id/mnu_address"
             android:icon="@drawable/ic_location"
-            android:title="Địa chỉ" />
+            android:title="Địa chỉ"
+            android:visible="false"/>
+        <item
+            android:id="@+id/mnu_login"
+            android:icon="@drawable/ic_location"
+            android:title="Đăng nhập" />
     </group>
 
 </menu>

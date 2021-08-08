@@ -45,30 +45,5 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             var checkLogin = _taiKhoanKhachHangServices.KiemTraEmailTonTai(email).Result;
             return Ok(checkLogin);
         }
-
-        /// <summary>
-        /// Check old pass for user
-        /// </summary>
-        /// <param name="tenTaiKhoan"></param>
-        /// <param name="mkCu"></param>
-        /// <returns></returns>
-        [HttpGet("checkOP/{tenTaiKhoan}/{mkCu}")]
-        public IActionResult CheckOldPass(string tenTaiKhoan,string mkCu)
-        {
-            var checkLogin = _taiKhoanKhachHangServices.KiemTraMKCu(tenTaiKhoan,mkCu).Result;
-            return Ok(checkLogin);
-        }
-
-        /// <summary>
-        /// Create a new customer account
-        /// </summary>
-        /// <param name="tk"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public IActionResult InsertCustomerAccount([FromBody]TaiKhoanKhachHang tk)
-        {
-            var checkLogin = _taiKhoanKhachHangServices.InsertTK(tk).Result;
-            return Ok(checkLogin);
-        }
     }
 }

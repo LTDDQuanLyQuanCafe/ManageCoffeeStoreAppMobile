@@ -6,5 +6,4 @@ import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal
 
 public interface OnClickListenerLoaiTD {
     void ItemClick (LoaiTD loaiTD);
-
 }

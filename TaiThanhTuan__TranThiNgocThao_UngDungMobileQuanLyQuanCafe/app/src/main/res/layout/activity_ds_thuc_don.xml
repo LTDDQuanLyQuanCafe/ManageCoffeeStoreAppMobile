@@ -23,9 +23,9 @@
             android:padding="5dp">
 
             <SearchView
-                android:id="@+id/searchview"
+                android:id="@+id/search_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
@@ -51,15 +51,23 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
-                android:layout_height="550dp">
+                android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
+            <ImageView
+                android:id="@+id/img_NoProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/noproduct"
+                android:layout_gravity="center">
+
+            </ImageView>
         </FrameLayout>
     </LinearLayout>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="80dp">
 
 
         <com.google.android.material.bottomappbar.BottomAppBar

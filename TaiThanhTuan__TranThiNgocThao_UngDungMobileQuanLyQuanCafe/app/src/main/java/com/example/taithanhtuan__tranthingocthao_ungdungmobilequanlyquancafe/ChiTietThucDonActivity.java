@@ -112,7 +112,7 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
                     boolean exist = false;
                     for(int i =0; i < Common.carts.size(); i++)
                     {
-                        if(Common.carts.get(i).getIdsp().equals(Common.thucDon.getMaLoaiTD()))//OK so sánh String phải dùng equal
+                        if(Common.carts.get(i).getIdsp().equals(Common.thucDon.getMaThucDon()))//OK so sánh String phải dùng equal
                         {
                             Common.carts.get(i).setSoluong(Common.carts.get(i).getSoluong()+ Integer.parseInt(String.valueOf(tvPrNumb.getText())));
                             exist =true;
@@ -120,13 +120,13 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
                     }
                     if(exist == false)
                     {
-                        Common.carts.add(new GioHang(Common.thucDon.getMaLoaiTD(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(),Integer.parseInt(String.valueOf(tvPrNumb.getText()))));
+                        Common.carts.add(new GioHang(Common.thucDon.getMaThucDon(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(),Integer.parseInt(String.valueOf(tvPrNumb.getText()))));
                     }
                 }
                 //Cart null
                 else
                 {
-                    Common.carts.add(new GioHang(Common.thucDon.getMaLoaiTD(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(), Integer.parseInt(String.valueOf(tvPrNumb.getText()))));
+                    Common.carts.add(new GioHang(Common.thucDon.getMaThucDon(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(), Integer.parseInt(String.valueOf(tvPrNumb.getText()))));
                 }
 
                 Intent intent1 = new Intent(getApplicationContext(),GioHangActivity.class);

@@ -16,6 +16,7 @@ import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Gio
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.GioHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.R;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnDeleteCart;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -25,13 +26,21 @@ import java.util.ArrayList;
 public class GioHangAdapter extends BaseAdapter {
     Context context;
     ArrayList<GioHang> gioHangs;
-
+    OnDeleteCart onDeleteCart;
 
     public GioHangAdapter(Context context, ArrayList<GioHang> gioHangs)
     {
         this.context = context;
         this.gioHangs = gioHangs;
     }
+
+    public GioHangAdapter(Context context, ArrayList<GioHang> carts, OnDeleteCart onDeleteCart)
+    {
+        this.context = context;
+        this.gioHangs = carts;
+        this.onDeleteCart = onDeleteCart;
+    }
+
 
     @Override
     public int getCount() {
@@ -65,6 +74,7 @@ public class GioHangAdapter extends BaseAdapter {
             ImageView cart_img;
             TextView cart_name, cart_cost, cart_qlty;
             ImageView btn_add, btn_min;
+            Button btn_delete;
 
             // mapping
 
@@ -74,6 +84,7 @@ public class GioHangAdapter extends BaseAdapter {
             cart_qlty = convertview.findViewById(R.id.tv_SL);
             btn_add = convertview.findViewById(R.id.btnCong);
             btn_min = convertview.findViewById(R.id.btnTru);
+            btn_delete = convertview.findViewById(R.id.btn_Cart_Xoa1dong);
 
             //hooking
             GioHang cart = (GioHang)getItem(position);
@@ -102,9 +113,26 @@ public class GioHangAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     int soluong;
                     soluong = Integer.parseInt(cart_qlty.getText().toString());
-                    if(soluong < 1)
+                    if(soluong == 1)
                     {
-                        btn_min.setVisibility(View.VISIBLE);
+                        //btn_min.setVisibility(View.VISIBLE);
+
+                        if(Common.carts.size()<=0)
+                        {
+                            ((GioHangActivity)(context)).tvNull.setVisibility(View.VISIBLE);
+                        }
+                        if ((Common.carts.size()>=0))
+                        {
+
+                            onDeleteCart.onDelete(gioHangs.get(position));
+                            ((GioHangActivity)(context)).xuLyThanhTien();
+                        }
+                        else if(Common.carts.size()<=0)
+                        {
+                            ((GioHangActivity)(context)).tvNull.setVisibility(View.VISIBLE);
+//                        ((CartActivity)(context)).cartAdapter.notify();
+                            ((GioHangActivity)(context)).xuLyThanhTien();
+                        }
                     }
                     else
                     {
@@ -113,6 +141,31 @@ public class GioHangAdapter extends BaseAdapter {
                         ((GioHangActivity)(context)).xuLyThanhTien();
                     }
 
+                }
+            });
+
+            btn_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(Common.carts.size()<=0)
+                    {
+                        ((GioHangActivity)(context)).tvNull.setVisibility(View.VISIBLE);
+                    }
+                    if ((Common.carts.size()>=0))
+                    {
+//                        DEPRESS.carts.remove(carts.get(position));
+//                        synchronized(carts){
+//                        carts.notify();
+//                    }
+                        onDeleteCart.onDelete(gioHangs.get(position));
+                        ((GioHangActivity)(context)).xuLyThanhTien();
+                    }
+                    else if(Common.carts.size()<=0)
+                    {
+                        ((GioHangActivity)(context)).tvNull.setVisibility(View.VISIBLE);
+//                        ((CartActivity)(context)).cartAdapter.notify();
+                        ((GioHangActivity)(context)).xuLyThanhTien();
+                    }
                 }
             });
 

@@ -65,20 +65,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <ImageView
                 android:id="@+id/lbl_Cart_notificationcart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="No result"
-                android:textColor="@color/hint_txt"
-                android:textSize="30dp" />
+                android:src="@drawable/noproduct"
+                android:layout_gravity="center">
 
-            <ListView
+            </ImageView>
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/listView"
                 android:visibility="gone"/>
+
+
         </FrameLayout>
     </LinearLayout>
 

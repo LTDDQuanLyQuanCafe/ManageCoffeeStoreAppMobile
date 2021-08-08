@@ -57,9 +57,9 @@ public class TinTucAdapter extends RecyclerView.Adapter<TinTucAdapter.UserItemVi
 
         public UserItemViewHolder(View itemView) {
             super(itemView);
-            tvTieuDe = itemView.findViewById(R.id.tv_TieuDe);
-            tvNoiDung = itemView.findViewById(R.id.tv_NoiDung);
-            ivAvatar = itemView.findViewById(R.id.iv_TinTuc);
+            tvTieuDe = itemView.findViewById(R.id.txt_TieuDe);
+            tvNoiDung = itemView.findViewById(R.id.txt_NoiDung);
+            ivAvatar = itemView.findViewById(R.id.img_TinTuc);
 
 
         }

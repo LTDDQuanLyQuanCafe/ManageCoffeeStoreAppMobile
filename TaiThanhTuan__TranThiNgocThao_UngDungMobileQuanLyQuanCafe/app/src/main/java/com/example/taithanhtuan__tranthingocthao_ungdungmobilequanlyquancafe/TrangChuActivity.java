@@ -27,18 +27,23 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.GioHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.LoaiTDAdapter;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.ProductAdapter;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.SPTrangChuAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.TinTucAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.LoaiTD;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.TinTuc;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.LoaiTDAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.TinTucAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnClickListener;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnClickListenerLoaiTD;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal.DALThucDon;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson.ParseJson;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson._HttpsTrustManager;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,7 +51,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class TrangChuActivity extends AppCompatActivity implements OnClickListenerLoaiTD, NavigationView.OnNavigationItemSelectedListener {
+public class TrangChuActivity extends AppCompatActivity implements OnClickListenerLoaiTD, NavigationView.OnNavigationItemSelectedListener, OnClickListener {
     //
 //    Toolbar toolbar;
 //    DrawerLayout drawerLayout;
@@ -59,10 +64,13 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 //    }
     RecyclerView recyclerView;
     private int mSelectedId;
-    RecyclerView recyclerView_TinTuc;
+    RecyclerView recyclerView_SP;
     private static final String SELECTED_ITEM_ID = "selected";
     LoaiTDAdapter loaiTDAdapter;
-    TinTucAdapter tinTucAdapter;
+    SPTrangChuAdapter spTrangChuAdapter;
+    RecyclerView.Adapter adaptersp;
+    String url2;
+    ArrayList<DALThucDon> data;
 
     ViewFlipper viewFlipper;
     DrawerLayout drawerLayout;
@@ -101,6 +109,8 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         toolbar = findViewById(R.id.toolbar);
         navigationLeft = findViewById(R.id.nagivationviewLeft);
 
+        url2 = "ThucDon/get/category/L06";
+
         loadViewFlipper();
 
 
@@ -129,11 +139,17 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 
         setLoaiTDRecycler(loaiTDArrayList);
         //m4BMked
-        ArrayList<TinTuc> tinTucArrayList = new ArrayList<>();
-        tinTucArrayList.add(new TinTuc("xZ6tZS6","(*) Giảm 40% cho thành viên thân thiết", "Nhập mã DONGHANH khi order món ngon qua app, Nhà mời liền 40% (tối đa 50.000đ), áp dụng cho đơn từ 4 món đó nha."));
-        tinTucArrayList.add(new TinTuc("tNyqGb4","Mua 1 tặng 1 tinh dầu", "Nhập mã TINHDAU, bạn sẽ được tặng ngay 1 ly Trà sữa hoặc Mochi mát lạnh tùy bạn chọn đó nha."));
-        tinTucArrayList.add(new TinTuc("xZ6tZS6","Combo sáng ưu đãi giá 39k", "Nạp căng miếng năng lượng cùng combo NĂNG LƯỢNG SÁNG 39k ngay thôi. Với cà phê sữa đá đậm đầ kết hợp 2 bánh mì que thơm ngậy, combo Năng lượng của Nhà sẽ cùng bạn:"));
-        setTinTucRecycler(tinTucArrayList);
+        data = new ArrayList<>();
+        adaptersp = new ProductAdapter(this, data, this);
+        try {
+            data = LayDanhMucSP();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        setSanPhamRecycler(data);
+
+
+
     }
     private void setLoaiTDRecycler(ArrayList<LoaiTD> loaiTDArrayList) {
         recyclerView = findViewById(R.id.recycleView_option);
@@ -142,11 +158,11 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         recyclerView.setAdapter(loaiTDAdapter);
     }
 
-    private void setTinTucRecycler(ArrayList<TinTuc> tinTucArrayList) {
-        recyclerView_TinTuc = findViewById(R.id.recycleView_tintuc);
-        recyclerView_TinTuc.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        tinTucAdapter = new TinTucAdapter(tinTucArrayList, this);
-        recyclerView_TinTuc.setAdapter(tinTucAdapter);
+    private void setSanPhamRecycler(ArrayList<DALThucDon> tinTucArrayList) {
+        recyclerView_SP = findViewById(R.id.recycleView_tintuc);
+        recyclerView_SP.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        spTrangChuAdapter = new SPTrangChuAdapter( this, tinTucArrayList, this);
+        recyclerView_SP.setAdapter(spTrangChuAdapter);
     }
     void loadViewFlipper() {
         viewFlipper = findViewById(R.id.viewflipper);
@@ -218,14 +234,14 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 
     @Override
     public void ItemClick(LoaiTD loaiTD) {
-        Intent intent = new Intent(this,SPTheoLoaiActivity.class);
+        Intent intent = new Intent(this,DSThucDonActivity.class);
 //        intent.putExtra("key1",products);
         Common.loaidachon = loaiTD;
         startActivity(intent);
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         item.setChecked(true);
         mSelectedId = item.getItemId();
         navigation(mSelectedId);
@@ -266,13 +282,40 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 //        requestQueue.add(jsonArrayRequest);
 //    }
 
+    public ArrayList<DALThucDon> LayDanhMucSP() throws JSONException {
+        _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                ParseJson parseJson = new ParseJson();
+                String p = parseJson.readStringFileContent(Common.preUrl + url2);
+                JSONArray response = null;
+                try {
+                    response = new JSONArray(p);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject jsonObject = response.getJSONObject(i);
+                        data.add(new DALThucDon(jsonObject.getString("maThucDon"), jsonObject.getString("tenMon"), jsonObject.getString("donGia"), jsonObject.getString("dvt"), jsonObject.getString("hinhAnh"), jsonObject.getString("moTa").trim(), jsonObject.getString("maLoaiTD")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                adaptersp.notifyDataSetChanged();
+            }
+        }).start();
+        return data;
+    }
 
 
-
-
-
-
-
-
-
+    @Override
+    public void itemClick(DALThucDon dalThucDon) {
+        Intent intent = new Intent(this,ChiTietThucDonActivity.class);
+        Common.thucDon = dalThucDon;
+        startActivity(intent);
+    }
 }

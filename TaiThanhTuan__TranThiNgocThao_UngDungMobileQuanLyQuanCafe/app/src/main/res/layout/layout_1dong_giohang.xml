@@ -72,6 +72,7 @@
             android:layout_marginStart="4dp"
             app:srcCompat="@drawable/ic_group_401" />
         <Button
+            android:id="@+id/btn_Cart_Xoa1dong"
             android:layout_width="55dp"
             android:layout_height="27dp"
             android:text="Xóa"

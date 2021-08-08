@@ -21,7 +21,7 @@ import java.util.List;
 public class LoaiTDAdapter extends RecyclerView.Adapter<LoaiTDAdapter.UserItemViewHolder> {
     List<LoaiTD> loaiTDList;
     Context context;
-    private OnClickListenerLoaiTD listenerLoaiTD;
+    OnClickListenerLoaiTD listenerLoaiTD;
 
 
     public LoaiTDAdapter(List<LoaiTD> users, Context c, OnClickListenerLoaiTD listenerLoaiTD) {
@@ -43,20 +43,24 @@ public class LoaiTDAdapter extends RecyclerView.Adapter<LoaiTDAdapter.UserItemVi
 
     @Override
     public void onBindViewHolder(@NonNull UserItemViewHolder holder, int position) {
+        LoaiTD options = loaiTDList.get(position);
+
         com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.LoaiTD loaiTD = loaiTDList.get(position);
         holder.tvTenLoaiTD.setText(loaiTD.getTENLOAITD());
 //        Locale locale = new Locale("vn", "VN");
 //        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
 //        holder.txtGiaSanPham.setText(currencyFormatter.format(sanPham.getGiaSanPham()));
         holder.ivAvatar.setImageResource(loaiTD.getHINHANH());
+
+        holder.loaiTD = loaiTDList.get(position);
     }
 
 
-    public static class UserItemViewHolder extends RecyclerView.ViewHolder {
+    public class UserItemViewHolder extends RecyclerView.ViewHolder {
         public TextView tvTenLoaiTD;
         public ImageView ivAvatar;
         LoaiTD loaiTD;
-        private TrangChuActivity listenerLoaiTD;
+
 //        private OnClickListenerLoaiTD listenerLoaiTD;
 
         public UserItemViewHolder(View itemView) {

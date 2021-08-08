@@ -9,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.LoaiTD;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.LoaiTDAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.ProductAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnClickListener;
@@ -47,14 +50,20 @@ import java.util.List;
 public class DSThucDonActivity extends AppCompatActivity implements OnClickListener {
 
 
-    static ArrayList<DALThucDon> data;
+    static ArrayList<DALThucDon> data  ;
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
     static String url = "ThucDon/all";
     SearchView searchView;
 
-    String url2 = Common.preUrl + "ThucDon/all";
     LoaiTD loaiTD;
+
+    static RecyclerView.Adapter adaptersp;
+    ImageView img_NoPro;
+    static String id;
+    static String url2;
+    SearchView editText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,37 +71,36 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
         //Hide action bar
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        img_NoPro = findViewById(R.id.img_NoProduct);
+        adaptersp = new ProductAdapter(this, data, this);
+        data  = new ArrayList<>();
 
-
-
-        data = new ArrayList<>();
-
-//        ArrayList<DALThucDon> loaiTDArrayList = new ArrayList<>();
-//        DALThucDon da = new DALThucDon("001","Trà", "1000", "Cốc","cb4.jpg","Hahahha", "01");
-//        loaiTDArrayList.add(da);
-//        loaiTDArrayList.add(da);
-//        loaiTDArrayList.add(da);
-//        loaiTDArrayList.add(da);
-//        getThucDonData(loaiTDArrayList);
+        id = Common.loaidachon.getMALOAITD();
+        if(id == "01"){
+            url2 =  "ThucDon/all";
+        }
+        else {
+            url2 = "ThucDon/get/category/" + id;
+        }
         try {
             data = LayDanhMucSP();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         getThucDonData(data);
+        checkDataInRecycle();
+
+        //Xu ly search
+        editText = findViewById(R.id.search_view);
+        editText.setFocusable(false);
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+            }
+        });
     }
-//    private void  getThucDonData(List<DALThucDon> dalThucDonList){
-//
-//        listView = findViewById(R.id.listView);
-//        arrayList = new ArrayList<>();
-//        productAdapter = new ProductAdapter(this, dalThucDonList);
-//        listView.setAdapter(productAdapter);
-////        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-////        recommendedRecyclerView.setLayoutManager(layoutManager);
-////        recommendedRecyclerView.setAdapter(recommendedAdapter);
-//
-//    }
+
 
     public static ArrayList<DALThucDon> LayDanhMucSP() throws JSONException {
         _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
@@ -102,7 +110,7 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
             @Override
             public void run() {
                 ParseJson parseJson = new ParseJson();
-                String p = parseJson.readStringFileContent(Common.preUrl + url);
+                String p = parseJson.readStringFileContent(Common.preUrl + url2);
                 JSONArray response = null;
                 try {
                     response = new JSONArray(p);
@@ -117,6 +125,7 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
                         e.printStackTrace();
                     }
                 }
+                adaptersp.notifyDataSetChanged();
             }
         }).start();
         return data;
@@ -131,7 +140,22 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
         recyclerView.setAdapter(productAdapter);
 
     }
+    private void checkDataInRecycle()
+    {
+        if (data.size() <0)
+        {
+            adaptersp.notifyDataSetChanged();
+            img_NoPro.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            adaptersp.notifyDataSetChanged();
+            img_NoPro.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
 
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -149,36 +173,6 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
         Common.thucDon = dalThucDon;
         startActivity(intent);
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_search,menu);
-////        getMenuInflater().inflate(R.menu.menu_cart,menu);
-//
-//
-//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//        searchView.setMaxWidth(Integer.MAX_VALUE);
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                productAdapter.getFilter().filter(query);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                productAdapter.getFilter().filter(newText);
-//                return false;
-//            }
-//        });
-//        return true;
-//    }
-
-
-
 }
 
 

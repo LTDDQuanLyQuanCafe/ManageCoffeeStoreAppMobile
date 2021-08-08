@@ -23,7 +23,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         /// <value>
         /// The ten khach hang.
         /// </value>
-        [Required]
         public string TenKhachHang { get; set; }
 
         /// <summary>
@@ -32,7 +31,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         /// <value>
         /// The ngay sinh.
         /// </value>
-        [Required]
         public DateTime? NgaySinh { get; set; }
 
         /// <summary>

@@ -16,7 +16,15 @@ namespace MVC_WebQuanLyQuanCafe.Service
         public IEnumerable<LOAITHUCDON> GetLoaiThucDons() {
             try
             {
-                return db.LOAITHUCDONs.ToList();
+                var loaiThucDons = new List<LOAITHUCDON>();
+                loaiThucDons.Add(new LOAITHUCDON()
+                {
+                    MALOAITD = "ALL",
+                    TENLOAITD = "TẤT CẢ THỰC ĐƠN",
+                    HinhAnh = "menu.png"
+                });
+                loaiThucDons.AddRange(db.LOAITHUCDONs.ToList());
+                return loaiThucDons;
             }
             catch
             {

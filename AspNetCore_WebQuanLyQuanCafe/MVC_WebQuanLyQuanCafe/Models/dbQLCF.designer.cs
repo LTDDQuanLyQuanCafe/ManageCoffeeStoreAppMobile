@@ -42,12 +42,12 @@ namespace MVC_WebQuanLyQuanCafe.Models
     partial void InsertKHACHHANG(KHACHHANG instance);
     partial void UpdateKHACHHANG(KHACHHANG instance);
     partial void DeleteKHACHHANG(KHACHHANG instance);
-    partial void InsertLOAITHUCDON(LOAITHUCDON instance);
-    partial void UpdateLOAITHUCDON(LOAITHUCDON instance);
-    partial void DeleteLOAITHUCDON(LOAITHUCDON instance);
     partial void InsertNHANVIEN(NHANVIEN instance);
     partial void UpdateNHANVIEN(NHANVIEN instance);
     partial void DeleteNHANVIEN(NHANVIEN instance);
+    partial void InsertLOAITHUCDON(LOAITHUCDON instance);
+    partial void UpdateLOAITHUCDON(LOAITHUCDON instance);
+    partial void DeleteLOAITHUCDON(LOAITHUCDON instance);
     #endregion
 		
 		public dbQLCFDataContext() : 
@@ -112,19 +112,19 @@ namespace MVC_WebQuanLyQuanCafe.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<LOAITHUCDON> LOAITHUCDONs
-		{
-			get
-			{
-				return this.GetTable<LOAITHUCDON>();
-			}
-		}
-		
 		public System.Data.Linq.Table<NHANVIEN> NHANVIENs
 		{
 			get
 			{
 				return this.GetTable<NHANVIEN>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LOAITHUCDON> LOAITHUCDONs
+		{
+			get
+			{
+				return this.GetTable<LOAITHUCDON>();
 			}
 		}
 	}
@@ -364,6 +364,8 @@ namespace MVC_WebQuanLyQuanCafe.Models
 		private string _MOTA;
 		
 		private string _MALOAITD;
+
+		public int _STT;
 		
 		private System.Nullable<double> _TILECHON;
 		
@@ -1338,144 +1340,6 @@ namespace MVC_WebQuanLyQuanCafe.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LOAITHUCDON")]
-	public partial class LOAITHUCDON : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _MALOAITD;
-		
-		private string _TENLOAITD;
-		
-		private System.Nullable<byte> _SOLUONGMON;
-		
-		private EntitySet<THUCDON> _THUCDONs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMALOAITDChanging(string value);
-    partial void OnMALOAITDChanged();
-    partial void OnTENLOAITDChanging(string value);
-    partial void OnTENLOAITDChanged();
-    partial void OnSOLUONGMONChanging(System.Nullable<byte> value);
-    partial void OnSOLUONGMONChanged();
-    #endregion
-		
-		public LOAITHUCDON()
-		{
-			this._THUCDONs = new EntitySet<THUCDON>(new Action<THUCDON>(this.attach_THUCDONs), new Action<THUCDON>(this.detach_THUCDONs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MALOAITD", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MALOAITD
-		{
-			get
-			{
-				return this._MALOAITD;
-			}
-			set
-			{
-				if ((this._MALOAITD != value))
-				{
-					this.OnMALOAITDChanging(value);
-					this.SendPropertyChanging();
-					this._MALOAITD = value;
-					this.SendPropertyChanged("MALOAITD");
-					this.OnMALOAITDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENLOAITD", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string TENLOAITD
-		{
-			get
-			{
-				return this._TENLOAITD;
-			}
-			set
-			{
-				if ((this._TENLOAITD != value))
-				{
-					this.OnTENLOAITDChanging(value);
-					this.SendPropertyChanging();
-					this._TENLOAITD = value;
-					this.SendPropertyChanged("TENLOAITD");
-					this.OnTENLOAITDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SOLUONGMON", DbType="TinyInt")]
-		public System.Nullable<byte> SOLUONGMON
-		{
-			get
-			{
-				return this._SOLUONGMON;
-			}
-			set
-			{
-				if ((this._SOLUONGMON != value))
-				{
-					this.OnSOLUONGMONChanging(value);
-					this.SendPropertyChanging();
-					this._SOLUONGMON = value;
-					this.SendPropertyChanged("SOLUONGMON");
-					this.OnSOLUONGMONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAITHUCDON_THUCDON", Storage="_THUCDONs", ThisKey="MALOAITD", OtherKey="MALOAITD")]
-		public EntitySet<THUCDON> THUCDONs
-		{
-			get
-			{
-				return this._THUCDONs;
-			}
-			set
-			{
-				this._THUCDONs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_THUCDONs(THUCDON entity)
-		{
-			this.SendPropertyChanging();
-			entity.LOAITHUCDON = this;
-		}
-		
-		private void detach_THUCDONs(THUCDON entity)
-		{
-			this.SendPropertyChanging();
-			entity.LOAITHUCDON = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NHANVIEN")]
 	public partial class NHANVIEN : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1851,6 +1715,144 @@ namespace MVC_WebQuanLyQuanCafe.Models
 		{
 			this.SendPropertyChanging();
 			entity.NHANVIEN = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LOAITHUCDON")]
+	public partial class LOAITHUCDON : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _MALOAITD;
+		
+		private string _TENLOAITD;
+		
+		private string _HinhAnh;
+		
+		private EntitySet<THUCDON> _THUCDONs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMALOAITDChanging(string value);
+    partial void OnMALOAITDChanged();
+    partial void OnTENLOAITDChanging(string value);
+    partial void OnTENLOAITDChanged();
+    partial void OnHinhAnhChanging(string value);
+    partial void OnHinhAnhChanged();
+    #endregion
+		
+		public LOAITHUCDON()
+		{
+			this._THUCDONs = new EntitySet<THUCDON>(new Action<THUCDON>(this.attach_THUCDONs), new Action<THUCDON>(this.detach_THUCDONs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MALOAITD", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MALOAITD
+		{
+			get
+			{
+				return this._MALOAITD;
+			}
+			set
+			{
+				if ((this._MALOAITD != value))
+				{
+					this.OnMALOAITDChanging(value);
+					this.SendPropertyChanging();
+					this._MALOAITD = value;
+					this.SendPropertyChanged("MALOAITD");
+					this.OnMALOAITDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENLOAITD", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string TENLOAITD
+		{
+			get
+			{
+				return this._TENLOAITD;
+			}
+			set
+			{
+				if ((this._TENLOAITD != value))
+				{
+					this.OnTENLOAITDChanging(value);
+					this.SendPropertyChanging();
+					this._TENLOAITD = value;
+					this.SendPropertyChanged("TENLOAITD");
+					this.OnTENLOAITDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HinhAnh", DbType="VarChar(100)")]
+		public string HinhAnh
+		{
+			get
+			{
+				return this._HinhAnh;
+			}
+			set
+			{
+				if ((this._HinhAnh != value))
+				{
+					this.OnHinhAnhChanging(value);
+					this.SendPropertyChanging();
+					this._HinhAnh = value;
+					this.SendPropertyChanged("HinhAnh");
+					this.OnHinhAnhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAITHUCDON_THUCDON", Storage="_THUCDONs", ThisKey="MALOAITD", OtherKey="MALOAITD")]
+		public EntitySet<THUCDON> THUCDONs
+		{
+			get
+			{
+				return this._THUCDONs;
+			}
+			set
+			{
+				this._THUCDONs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_THUCDONs(THUCDON entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAITHUCDON = this;
+		}
+		
+		private void detach_THUCDONs(THUCDON entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAITHUCDON = null;
 		}
 	}
 }

@@ -56,14 +56,6 @@
       <Association Name="KHACHHANG_DONGIAOHANG" Member="DONGIAOHANGs" ThisKey="MAKHACHHANG" OtherKey="MAKHACHHANG" Type="DONGIAOHANG" />
     </Type>
   </Table>
-  <Table Name="dbo.LOAITHUCDON" Member="LOAITHUCDONs">
-    <Type Name="LOAITHUCDON">
-      <Column Name="MALOAITD" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TENLOAITD" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="SOLUONGMON" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Association Name="LOAITHUCDON_THUCDON" Member="THUCDONs" ThisKey="MALOAITD" OtherKey="MALOAITD" Type="THUCDON" />
-    </Type>
-  </Table>
   <Table Name="dbo.NHANVIEN" Member="NHANVIENs">
     <Type Name="NHANVIEN">
       <Column Name="MANHANVIEN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -80,6 +72,14 @@
       <Column Name="TENTAIKHOAN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="NGAYTAO" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="NHANVIEN_DONGIAOHANG" Member="DONGIAOHANGs" ThisKey="MANHANVIEN" OtherKey="MANHANVIEN" Type="DONGIAOHANG" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOAITHUCDON" Member="LOAITHUCDONs">
+    <Type Name="LOAITHUCDON">
+      <Column Name="MALOAITD" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENLOAITD" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="HinhAnh" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="LOAITHUCDON_THUCDON" Member="THUCDONs" ThisKey="MALOAITD" OtherKey="MALOAITD" Type="THUCDON" />
     </Type>
   </Table>
 </Database>

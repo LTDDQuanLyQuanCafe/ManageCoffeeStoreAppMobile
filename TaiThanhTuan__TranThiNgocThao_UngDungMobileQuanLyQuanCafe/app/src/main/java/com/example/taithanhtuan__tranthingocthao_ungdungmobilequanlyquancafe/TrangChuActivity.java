@@ -1,13 +1,14 @@
 package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
@@ -19,19 +20,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.GioHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.LoaiTDAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.TinTucAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.LoaiTD;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.TinTuc;
-import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.LoaiTDAdapter;
-import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.TinTucAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnClickListenerLoaiTD;
 import com.google.android.material.navigation.NavigationView;
@@ -39,12 +31,10 @@ import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
+
+import retrofit2.http.HEAD;
 
 public class TrangChuActivity extends AppCompatActivity implements OnClickListenerLoaiTD, NavigationView.OnNavigationItemSelectedListener {
     //
@@ -75,6 +65,10 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 
     Animation ani;
     ImageView icon;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Menu menu;
+    MenuItem mnuLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,18 +82,48 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 //        Type loaispType = Type.newParameterized
         icon = findViewById(R.id.imageView_logo);
 
+        navigationLeft = findViewById(R.id.nagivationviewLeft);
 
-        // Khởi tạo RecyclerView.
+        MenuItem mnuLogin = navigationLeft.getMenu().getItem(0);
+        sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         //animation
         ani = AnimationUtils.loadAnimation(this, R.anim.rotate_logo_home);
         icon.startAnimation(ani);
 
+        if(mnuLogin != null) {
+            if (loadPreferences("my_email") != null) {
+                mnuLogin.setTitle("Đăng xuất");
+            } else {
+                mnuLogin.setTitle("Đăng nhập");
+            }
+        }
 
+        navigationLeft.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.mnu_login:
+                        MenuItem mnuLogin = menu.findItem(R.id.mnu_login);
+                        if(mnuLogin.getTitle().toString().equals("Đăng nhập")){
+                            Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.TrangChuActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            editor.clear();
+                            editor.commit();
+                        }
+                        return true;
 
+                }
+                return false;
+            }
+        });
+
+        // Khởi tạo RecyclerView.
         drawerLayout = findViewById(R.id.drawerlayout);
         toolbar = findViewById(R.id.toolbar);
-        navigationLeft = findViewById(R.id.nagivationviewLeft);
 
         loadViewFlipper();
 
@@ -135,6 +159,38 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         tinTucArrayList.add(new TinTuc("xZ6tZS6","Combo sáng ưu đãi giá 39k", "Nạp căng miếng năng lượng cùng combo NĂNG LƯỢNG SÁNG 39k ngay thôi. Với cà phê sữa đá đậm đầ kết hợp 2 bánh mì que thơm ngậy, combo Năng lượng của Nhà sẽ cùng bạn:"));
         setTinTucRecycler(tinTucArrayList);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_navigation, menu);
+        this.menu = menu;
+//        updateMenuTitles();
+        return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        invalidateOptionsMenu();
+//        updateMenuTitles();
+    }
+
+//    private void updateMenuTitles() {
+//        mnuLogin = menu.findItem(R.id.mnu_login);
+//        sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+//        editor = sharedPreferences.edit();
+//        String t =loadPreferences("my_email");
+//
+//        if(mnuLogin != null) {
+//            if (loadPreferences("my_email") != null) {
+//                mnuLogin.setTitle("Đăng xuất");
+//            } else {
+//                mnuLogin.setTitle("Đăng nhập");
+//            }
+//        }
+//    }
+
+
     private void setLoaiTDRecycler(ArrayList<LoaiTD> loaiTDArrayList) {
         recyclerView = findViewById(R.id.recycleView_option);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
@@ -184,6 +240,12 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         }
         if (mSelectedId == R.id.mnu_cart) {
             intent = new Intent(this, GioHangActivity.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+
+        if (mSelectedId == R.id.mnu_login) {
+            intent = new Intent(TrangChuActivity.this, LoginActivity.class);
             startActivity(intent);
 
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -274,5 +336,10 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 
 
 
+
+    public String loadPreferences(String key){
+        SharedPreferences p = getSharedPreferences("data", Context.MODE_PRIVATE);
+        return p.getString(key,null);
+    }
 
 }

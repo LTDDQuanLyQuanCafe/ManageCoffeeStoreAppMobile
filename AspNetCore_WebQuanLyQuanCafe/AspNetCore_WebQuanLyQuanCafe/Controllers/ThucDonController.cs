@@ -45,6 +45,5 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             var listThucDon = _thucDonServices.GetThucDonDetail(id);
             return Ok(listThucDon.Result);
         }
-
     }
 }

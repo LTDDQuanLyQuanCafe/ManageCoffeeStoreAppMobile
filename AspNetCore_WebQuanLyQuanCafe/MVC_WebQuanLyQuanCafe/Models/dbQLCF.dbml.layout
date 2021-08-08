@@ -26,26 +26,20 @@
         <elementListCompartment Id="b2faf655-a17c-4f76-9cfa-552c52d817a7" absoluteBounds="0.765, 1.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="985f08e5-fea7-49f5-9e67-58a1fdad39cb" absoluteBounds="0.75, 9.75, 2, 1.3862939453124987">
-      <DataClassMoniker Name="/dbQLCFDataContext/LOAITHUCDON" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6acbafa5-f508-4963-a0ff-22d4faa5b687" absoluteBounds="0.765, 10.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="13161769-f237-4829-9432-e807d3dfca58" absoluteBounds="0.75, 4.75, 2, 3.3093082682291666">
       <DataClassMoniker Name="/dbQLCFDataContext/NHANVIEN" />
       <nestedChildShapes>
         <elementListCompartment Id="cb7161b0-c3f0-478c-99ed-5fc326d5f605" absoluteBounds="0.765, 5.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 10.4239005533854); (7.25 : 10.4239005533854); (7.25 : 3.20359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 10.4239005533854); (7.25 : 10.4239005533854); (7.25 : 3.20359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbQLCFDataContext/THUCDON/THUCDON_CHITIETGIAOHANG" />
       <nodes>
         <classShapeMoniker Id="cce92460-5db6-497a-8d59-139d97ecb1db" />
         <classShapeMoniker Id="9c35943a-6e2b-450d-86d6-85e60fc44a50" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 2.41429768880208); (6.25 : 2.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 2.41429768880208); (6.25 : 2.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbQLCFDataContext/DONGIAOHANG/DONGIAOHANG_CHITIETGIAOHANG" />
       <nodes>
         <classShapeMoniker Id="3166b7ac-ac3f-4aae-b889-9051fec12875" />
@@ -59,18 +53,24 @@
         <classShapeMoniker Id="3166b7ac-ac3f-4aae-b889-9051fec12875" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 10.4431469726562); (3.5 : 10.4431469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/dbQLCFDataContext/LOAITHUCDON/LOAITHUCDON_THUCDON" />
-      <nodes>
-        <classShapeMoniker Id="985f08e5-fea7-49f5-9e67-58a1fdad39cb" />
-        <classShapeMoniker Id="cce92460-5db6-497a-8d59-139d97ecb1db" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.40465413411458); (4.5 : 6.40465413411458); (4.5 : 3.6651025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 6.40465413411458); (4.5 : 6.40465413411458); (4.5 : 3.6651025390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbQLCFDataContext/NHANVIEN/NHANVIEN_DONGIAOHANG" />
       <nodes>
         <classShapeMoniker Id="13161769-f237-4829-9432-e807d3dfca58" />
         <classShapeMoniker Id="3166b7ac-ac3f-4aae-b889-9051fec12875" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4a0c8b4e-82da-4c77-bc73-c82597e8b02c" absoluteBounds="1, 9.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/dbQLCFDataContext/LOAITHUCDON" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d272baec-4e92-48fc-b88e-9bf03c80eaf1" absoluteBounds="1.0150000000000001, 9.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3 : 9.94314697265625); (3.5 : 9.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dbQLCFDataContext/LOAITHUCDON/LOAITHUCDON_THUCDON" />
+      <nodes>
+        <classShapeMoniker Id="4a0c8b4e-82da-4c77-bc73-c82597e8b02c" />
+        <classShapeMoniker Id="cce92460-5db6-497a-8d59-139d97ecb1db" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

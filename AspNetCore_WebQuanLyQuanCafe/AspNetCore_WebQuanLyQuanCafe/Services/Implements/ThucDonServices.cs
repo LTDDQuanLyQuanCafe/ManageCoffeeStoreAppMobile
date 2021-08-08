@@ -134,7 +134,5 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 return null;
             }
         }
-
-
     }
 }

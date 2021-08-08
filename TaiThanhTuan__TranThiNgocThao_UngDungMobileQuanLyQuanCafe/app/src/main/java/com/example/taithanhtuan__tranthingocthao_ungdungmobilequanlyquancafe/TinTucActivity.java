@@ -46,9 +46,9 @@ public class TinTucActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tin_tuc);
 
         ArrayList<TinTuc> tinTucArrayList = new ArrayList<>();
-        tinTucArrayList.add(new TinTuc("xZ6tZS6","(*) Giảm 40% cho thành viên thân thiết", "Nhập mã DONGHANH khi order món ngon qua app, Nhà mời liền 40% (tối đa 50.000đ), áp dụng cho đơn từ 4 món đó nha."));
-        tinTucArrayList.add(new TinTuc("tNyqGb4","Mua 1 tặng 1 tinh dầu", "Nhập mã TINHDAU, bạn sẽ được tặng ngay 1 ly Trà sữa hoặc Mochi mát lạnh tùy bạn chọn đó nha."));
-        tinTucArrayList.add(new TinTuc("xZ6tZS6","Combo sáng ưu đãi giá 39k", "Nạp căng miếng năng lượng cùng combo NĂNG LƯỢNG SÁNG 39k ngay thôi. Với cà phê sữa đá đậm đầ kết hợp 2 bánh mì que thơm ngậy, combo Năng lượng của Nhà sẽ cùng bạn:"));
+        tinTucArrayList.add(new TinTuc("","", ""));
+        tinTucArrayList.add(new TinTuc("","", ""));
+        tinTucArrayList.add(new TinTuc("","", ""));
         setTinTucRecycler(tinTucArrayList);
 
     }

@@ -26,7 +26,5 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
         /// <param name="maThucDon"></param>
         /// <returns></returns>
         Task<ThucDon> GetThucDonDetail(string maThucDon);
-
-
     }
 }

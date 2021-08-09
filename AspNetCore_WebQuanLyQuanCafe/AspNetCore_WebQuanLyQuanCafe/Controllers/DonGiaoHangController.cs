@@ -17,13 +17,22 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             _donGiaoHangServices = donGiaoHangServices;
         }
 
-        // GET: api/khach-hang/id
+        // GET: get/email
         [HttpGet]
         [Route("get/{email}")]
         public IActionResult GetBillFollowUser(string email)
         {
             var listBills = _donGiaoHangServices.GetAllDonGiaoHangFollowUser(email);
             return Ok(listBills.Result);
+        }
+
+        // GET: details/idBill
+        [HttpGet]
+        [Route("details/{idBill}")]
+        public IActionResult GetBillDetails(int idBill)
+        {
+            var listBill = _donGiaoHangServices.GetDonGiaoHangDetails(idBill);
+            return Ok(listBill.Result);
         }
     }
 }

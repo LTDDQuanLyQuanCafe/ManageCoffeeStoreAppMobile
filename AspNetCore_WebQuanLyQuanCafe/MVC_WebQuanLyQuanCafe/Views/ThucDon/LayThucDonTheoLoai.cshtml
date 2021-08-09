@@ -3,11 +3,71 @@
     ViewBag.Title = "LayThucDonTheoLoai";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    b {
+        font-size: 1.25rem
+    }
+</style>
 
-<div class="container">
+@using PagedList.Mvc;
+@model PagedList.IPagedList<MVC_WebQuanLyQuanCafe.Models.THUCDON>
+
+<div class="tab-empty">
+
     <table>
         <thead>
-
+            <tr>
+                <th class="col-sm-1">
+                    <b>STT</b>
+                </th>
+                <th class="col-sm-2">
+                    <b>Mã thực đơn</b>
+                </th>
+                <th class="col-sm-2">
+                    <b>Tên thực đơn</b>
+                </th>
+                <th class="col-sm-2">
+                    <b>Đơn giá</b>
+                </th>
+                <th class="col-sm-2">
+                    <b>Đơn vị tính</b>
+                </th>
+                <th class="col-sm-3">
+                    <b>Mô tả</b>
+                </th>
+            </tr>
         </thead>
+        <tbody>
+            @foreach (var thucDon in Model)
+            {
+                <tr>
+                    <td>
+                        @thucDon._STT
+                    </td>
+                    <td>
+                        @thucDon.MATHUCDON
+                    </td>
+                    <td>
+                        @thucDon.TENMON
+                    </td>
+                    <td>
+                        @thucDon.DONGIA
+                    </td>
+                    <td>
+                        @thucDon.DVT
+                    </td>
+                    <td>
+                        @thucDon.MOTA
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
+</div>
+<div class="tab-loading">
+    <div style="width:100%">
+        <center style="font-size:1.5rem">
+            @Html.PagedListPager(Model, i => Url.Action("LayThucDonTheoLoai", "ThucDon", new { @idCategory = "", i }))
+        </center>
+    </div>
 </div>

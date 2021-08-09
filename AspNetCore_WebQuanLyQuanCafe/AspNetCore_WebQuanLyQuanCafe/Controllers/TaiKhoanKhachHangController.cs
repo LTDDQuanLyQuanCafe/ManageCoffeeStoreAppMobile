@@ -45,5 +45,12 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             var checkLogin = _taiKhoanKhachHangServices.KiemTraEmailTonTai(email).Result;
             return Ok(checkLogin);
         }
+
+        [HttpGet("get-email/{sdt}")]
+        public IActionResult GetEmail(string sdt)
+        {
+            var checkLogin = _taiKhoanKhachHangServices.GetEmail(sdt).Result;
+            return Ok(checkLogin);
+        }
     }
 }

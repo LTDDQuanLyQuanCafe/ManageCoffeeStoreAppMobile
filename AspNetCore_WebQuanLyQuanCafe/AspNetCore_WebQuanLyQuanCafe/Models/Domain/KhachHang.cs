@@ -14,7 +14,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         /// <value>
         /// The ma khach hang.
         /// </value>
-        [Required]
         public string MaKhachHang { get; set; }
 
         /// <summary>
@@ -47,7 +46,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         /// <value>
         /// The email.
         /// </value>
-        [Required]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -57,19 +55,9 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         /// <value>
         /// The dien thoai.
         /// </value>
-        [Required]
         [Phone]
         [MaxLength(10), MinLength(10)]
         public string DienThoai { get; set; }
-
-        /// <summary>
-        /// Gets or sets the ma loai kh.
-        /// </summary>
-        /// <value>
-        /// The ma loai kh.
-        /// </value>
-        [Required]
-        public string MaLoaiKH { get; set; }
 
         /// <summary>
         /// Gets or sets the dia chi.
@@ -77,7 +65,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         /// <value>
         /// The dia chi.
         /// </value>
-        [Required]
         [MaxLength(200)]
         public string DiaChi { get; set; }
 
@@ -103,7 +90,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         /// <value>
         /// The mat khau.
         /// </value>
-        [Required]
         [MaxLength(30), MinLength(6)]
         public string MatKhau { get; set; }
 

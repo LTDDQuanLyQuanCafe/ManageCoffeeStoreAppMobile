@@ -20,17 +20,17 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
         /// <summary>
         /// Kiem tra dang nhap.
         /// </summary>
-        /// <param name="tenTaiKhoan">The ten tai khoan.</param>
+        /// <param name="sdt">The ten tai khoan.</param>
         /// <param name="matKhau">The mat khau.</param>
         /// <returns></returns>
-        public async Task<bool> KiemTraDangNhap(string tenTaiKhoan, string matKhau)
+        public async Task<bool> KiemTraDangNhap(string sdt, string matKhau)
         {
             try
             {
                 await _sqlConnectDB.OpenAsync();
 
                 var queryTaiKhoanKhachHangs = "select * from KhachHang "
-                                        + "where email = '" + tenTaiKhoan + "' and matkhau='" + matKhau + "'";
+                                        + "where DienThoai = '" + sdt + "' and matkhau='" + matKhau + "'";
                 SqlCommand cmdTaiKhoanKhachHang = new SqlCommand(queryTaiKhoanKhachHangs, _sqlConnectDB.sqlConnection);
                 SqlDataReader rdTaiKhoanKhachHang = cmdTaiKhoanKhachHang.ExecuteReader();
 
@@ -75,6 +75,36 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
             catch
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Get email 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public async Task<string> GetEmail(string sdt)
+        {
+            try
+            {
+                await _sqlConnectDB.OpenAsync();
+
+                var queryTaiKhoanKhachHangs = String.Format("select * from khachhang"
+                                                + " where dienthoai = '{0}'", sdt);
+                SqlCommand cmdTaiKhoanKhachHang = new SqlCommand(queryTaiKhoanKhachHangs, _sqlConnectDB.sqlConnection);
+                SqlDataReader rdTaiKhoanKhachHang = cmdTaiKhoanKhachHang.ExecuteReader();
+
+                while (rdTaiKhoanKhachHang.Read())
+                {
+                    return rdTaiKhoanKhachHang["email"].ToString();
+                }
+
+                await _sqlConnectDB.CloseAsync();
+                return null;
+            }
+            catch
+            {
+                return null;
             }
         }
     }

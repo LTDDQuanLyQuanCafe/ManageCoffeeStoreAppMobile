@@ -49,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
     ParseJson parseJson = new ParseJson();
     Bundle param;
     SharedPreferences sharedPreferences;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,8 +141,10 @@ public class LoginActivity extends AppCompatActivity {
                             String p = parseJson.readStringFileContent(url);
                             if (Boolean.valueOf(p) == true) {
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("my_email", edtName.getText().toString());
+                                url = String.format((Common.preUrl + "TaiKhoanKhachHang/get-email/%s"), userName);
+                                editor.putString("my_email", parseJson.readStringFileContent(url));
                                 editor.commit();
+                                String t = parseJson.readStringFileContent(url);
                                 Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, TrangChuActivity.class);
                                 startActivity(intent);
                             } else {
@@ -157,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                    }).start();
+                    });
                 }
             }
         });
@@ -166,18 +167,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d(TAG, "======Facebook login success======");
-                Toast.makeText(LoginActivity.this, "Login Facebook success.", Toast.LENGTH_SHORT).show();
-
+//                Toast.makeText(LoginActivity.this, "Login Facebook success.", Toast.LENGTH_SHORT).show();
                 getFbInfomation();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-
+                        String r = _taiKhoan.getEmail();
                         _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
-                        String url = String.format(Common.preUrl+"TaiKhoanKhachHang/check/email/%s",_taiKhoan.getEmail());
+                        String url = String.format(Common.preUrl+"taikhoankhachhang/check/email/%s", _taiKhoan.getEmail());
                         String p = parseJson.readStringFileContent(url);
                         if(p.equals("true")){
                             Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, TrangChuActivity.class);
+                             SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            editor.putString("my_email", _taiKhoan.getEmail());
+                            editor.commit();
                             startActivity(intent);
                         }
                         else
@@ -186,6 +190,10 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra("Name",_taiKhoan.getHoTen());
                             intent.putExtra("Id",_taiKhoan.getTenTaiKhoan());
                             intent.putExtra("Email",_taiKhoan.getEmail());
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("my_email", _taiKhoan.getEmail());
+
+                            editor.commit();
                             startActivityForResult(intent,0);
                         }
                     }

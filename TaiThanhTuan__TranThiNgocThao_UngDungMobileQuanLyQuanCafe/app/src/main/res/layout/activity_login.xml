@@ -62,7 +62,7 @@
         android:layout_marginTop="42dp"
         android:layout_marginEnd="36dp"
         android:ems="10"
-        android:hint="Tài khoản"
+        android:hint="Số điện thoại"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

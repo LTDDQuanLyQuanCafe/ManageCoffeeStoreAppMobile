@@ -70,18 +70,18 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
         }
 
         /// <summary>Gets the tai khoan khach hang information.</summary>
-        /// <param name="MaKH">The ma kh.</param>
+        /// <param name="email">The email kh.</param>
         /// <returns>
         ///   <br />
         /// </returns>
-        public async Task<KhachHang> GetTaiKhoanKhachHangInfo(int MaKH)
+        public async Task<KhachHang> GetTaiKhoanKhachHangInfo(string email)
         {
             try
             {
                 var open = await _sqlConnectDB.OpenAsync();
 
                 var queryKhachHang = "select * from KhachHang "
-                                                + "Where maKhachHang = " + MaKH;
+                                                + "Where email = '" + email+"'";
                 SqlCommand cmdKhachHang = new SqlCommand(queryKhachHang, _sqlConnectDB.sqlConnection);
                 SqlDataReader rdKhachHang = cmdKhachHang.ExecuteReader();
 
@@ -92,7 +92,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                     {
                         MaKhachHang = rdKhachHang[0].ToString(),
                         TenKhachHang = rdKhachHang[1].ToString(),
-                        NgaySinh = DateTime.Parse(rdKhachHang[2].ToString()),
                         GioiTinh = rdKhachHang[3].ToString(),
                         Email = rdKhachHang[4].ToString(),
                         DienThoai = rdKhachHang[5].ToString(),
@@ -102,12 +101,15 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                         MatKhau = rdKhachHang[9].ToString(),
                         NgayTao = DateTime.Parse(rdKhachHang[10].ToString())
                     };
+                    if (DateTime.TryParse(rdKhachHang[10].ToString(), out DateTime dt1))
+                    {
+                        result.NgayTao = dt1;
+                    }
                 }
-
                 await _sqlConnectDB.CloseAsync();
                 return result;
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }
@@ -201,18 +203,46 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
-        public async Task<bool> UpdateInfoCustomer(KhachHang kh)
+        public async Task<bool> UpdateInfoCustomer(KhachHang _kh)
         {
             try
             {
+                KhachHang kh = await GetTaiKhoanKhachHangInfo(_kh.Email);
+                
                 await _sqlConnectDB.OpenAsync();
 
+                if (kh == null) {
+                    return false;
+                }
+
+                if (!String.IsNullOrEmpty(_kh.TenKhachHang) && !kh.TenKhachHang.Equals(_kh.TenKhachHang)) {
+                    kh.TenKhachHang = _kh.TenKhachHang;
+                }
+                if (_kh.NgaySinh.HasValue && !kh.NgaySinh.Equals(_kh.NgaySinh))
+                {
+                    kh.NgaySinh = _kh.NgaySinh;
+                }
+                if (!String.IsNullOrEmpty(_kh.GioiTinh) && !kh.GioiTinh.Equals(_kh.GioiTinh))
+                {
+                    kh.GioiTinh = _kh.GioiTinh;
+                }
+                if (!String.IsNullOrEmpty(_kh.DienThoai) && !kh.DienThoai.Equals(_kh.DienThoai))
+                {
+                    if (!await CheckInfomationExist(_kh.Email, _kh.DienThoai)) {
+                        kh.DienThoai = _kh.DienThoai;
+                    }
+                }
+                if (!String.IsNullOrEmpty(_kh.DiaChi) && kh.DiaChi.Equals(_kh.DiaChi))
+                {
+                    kh.DiaChi = _kh.DiaChi;
+                }
+
                 var queryKhachHang = String.Format("Update KhachHang " +
-                                        "set HoTen = '{0}', " +
+                                        "set HoTen = N'{0}', " +
                                         "NgaySinh = '{1}', " +
-                                        "GioiTinh = '{2}', " +
+                                        "GioiTinh = N'{2}', " +
                                         "DienThoai = '{3}', " +
-                                        "DiaChi = '{4}'," +
+                                        "DiaChi = N'{4}'," +
                                         "HinhAnh = '{5}' " +
                                         "Where Email ='{6}'", kh.TenKhachHang, kh.NgaySinh, kh.GioiTinh,
                                             kh.DienThoai, kh.DiaChi, kh.HinhAnh, kh.Email);
@@ -224,7 +254,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
 
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }

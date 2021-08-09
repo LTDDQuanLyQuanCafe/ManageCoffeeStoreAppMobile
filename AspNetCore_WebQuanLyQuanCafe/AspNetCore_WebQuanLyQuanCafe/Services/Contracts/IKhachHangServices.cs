@@ -15,11 +15,11 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
         Task<IList<KhachHang>> GetAllTaiKhoanKhachHang();
 
         /// <summary>Gets the tai khoan khach hang information.</summary>
-        /// <param name="MaKH">The ma kh.</param>
+        /// <param name="email">The email kh.</param>
         /// <returns>
         ///   <br />
         /// </returns>
-        Task<KhachHang> GetTaiKhoanKhachHangInfo(int MaKH);
+        Task<KhachHang> GetTaiKhoanKhachHangInfo(string email);
 
         /// <summary>
         /// Check account information be exist

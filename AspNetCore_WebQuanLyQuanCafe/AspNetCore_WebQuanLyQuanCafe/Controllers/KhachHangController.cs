@@ -33,10 +33,10 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
         }
 
         // GET api/<KhachHangController>/5
-        [HttpGet("get/{id}")]
-        public IActionResult GetKhachHang(int id)
+        [HttpGet("get/{email}")]
+        public IActionResult GetKhachHang(string email)
         {
-            var khachHang = _khachHangServices.GetTaiKhoanKhachHangInfo(id);
+            var khachHang = _khachHangServices.GetTaiKhoanKhachHangInfo(email);
             return Ok(khachHang.Result);
         }
 
@@ -50,6 +50,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
 
         // POST api/<KhachHangController>
         [HttpPost]
+        [Route("create")]
         public IActionResult CreateKhachHang([FromBody] CreateRegisterRequest kh)
         {
             var khachHang = _khachHangServices.InsertTaiKhoanKhachHangInfo(kh);

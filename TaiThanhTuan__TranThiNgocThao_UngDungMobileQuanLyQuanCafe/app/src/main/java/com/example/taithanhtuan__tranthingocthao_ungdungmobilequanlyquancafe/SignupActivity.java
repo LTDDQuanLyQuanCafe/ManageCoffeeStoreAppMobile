@@ -28,7 +28,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private static final String TAG = SignupActivity.class.getSimpleName();
     TextView linkReLI;
-    EditText edtHoTen,edtPhone,edtMK,edtReMK;
+    EditText edtHoTen,edtPhone,edtMK,edtReMK,edtEmail;
     TaiKhoanKhachHang _taiKhoan;
     Button btnRegister;
     ParseJson parseJson ;
@@ -42,6 +42,7 @@ public class SignupActivity extends AppCompatActivity {
         edtHoTen = findViewById(R.id.edtHoTen);
         edtHoTen.findFocus();
         edtPhone = findViewById(R.id.edtPhone);
+        edtEmail =findViewById(R.id.edtEmail);
         edtMK = findViewById(R.id.edtPass);
         edtReMK = findViewById(R.id.edtRePass);
         btnRegister = findViewById(R.id.btnRegister);
@@ -49,10 +50,14 @@ public class SignupActivity extends AppCompatActivity {
         parseJson = new ParseJson();
         try {
             Bundle extras = getIntent().getExtras();
-            if (extras != null)
+            if (extras != null) {
+                String t =extras.getString("Name");
                 edtHoTen.setText(extras.getString("Name"));
                 _taiKhoan.setEmail(extras.getString("Email"));
+                edtEmail.setEnabled(false);
+                edtEmail.setText(extras.getString("Email"));
                 _taiKhoan.setTenTaiKhoan(extras.getString("Email"));
+            }
         }catch (Exception ex){
             Log.d(TAG,ex.getMessage());
         }
@@ -94,12 +99,12 @@ public class SignupActivity extends AppCompatActivity {
                             } else {
                                 _taiKhoan.setHoTen(fullName);
                                 _taiKhoan.setDienThoai(phoneNumber);
+                                _taiKhoan.setEmail(edtEmail.getText().toString());
                                 url = Common.preUrl + "KhachHang/";
                                 _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
                                 String jsonIns = "{'HoTen': '"+_taiKhoan.getHoTen()+"', 'DienThoai': '"+_taiKhoan.getDienThoai()+"', 'Email': '"+_taiKhoan.getEmail()+"'}";
-                                String checkIns = parseJson.postObjectToDB(url, _taiKhoan,jsonIns);
-                                if (checkIns.equals("true")) {
-
+                                Boolean checkIns = Boolean.valueOf(parseJson.postObjectToDB(url+"create", _taiKhoan,jsonIns));
+                                if (checkIns.equals(true)) {
                                     //Get new KhachHangID
                                     url = String.format(Common.preUrl + "KhachHang/get-id/%s",_taiKhoan.getDienThoai());
                                     String maKH = parseJson.readStringFileContent(url);
@@ -107,7 +112,7 @@ public class SignupActivity extends AppCompatActivity {
                                     _taiKhoan.setMaKH(maKH);
                                     _taiKhoan.setMatKhau(mk);
                                     _taiKhoan.setNgayTao(ngayTao);
-                                    url = Common.preUrl +"TaiKhoanKhachHang/";
+                                    url = Common.preUrl +"KhachHang/update/";
                                     String jsonQuery = String.format("{'MaKH': '%s', 'TenTaiKhoan': '%s', 'matKhau': '%s', 'ngayTao' : '%s'}",_taiKhoan.getMaKH(),_taiKhoan.getTenTaiKhoan(),_taiKhoan.getMatKhau(),_taiKhoan.getNgayTao());
                                     parseJson.postObjectToDB(url, _taiKhoan,jsonQuery);
 
@@ -119,7 +124,7 @@ public class SignupActivity extends AppCompatActivity {
                                             toast.show();
                                         }
                                     });
-                                    Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.SignupActivity.this, TrangChuActivity.class);
+                                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                                     startActivity(intent);
                                 }
                             }

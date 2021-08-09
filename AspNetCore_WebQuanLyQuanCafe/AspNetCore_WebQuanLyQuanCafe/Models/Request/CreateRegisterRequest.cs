@@ -14,8 +14,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Request
         [MaxLength(10)]
         [MinLength(10)]
         public string DienThoai { get; set; }
-
-        [Required]
         public string Email { get; set; }
     }
 }

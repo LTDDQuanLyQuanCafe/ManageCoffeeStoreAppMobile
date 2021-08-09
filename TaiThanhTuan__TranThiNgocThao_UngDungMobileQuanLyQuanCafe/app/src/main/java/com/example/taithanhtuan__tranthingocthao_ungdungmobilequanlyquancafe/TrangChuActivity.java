@@ -1,6 +1,7 @@
 package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -94,14 +96,16 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         icon = findViewById(R.id.imageView_logo);
 
         navigationLeft = findViewById(R.id.nagivationviewLeft);
+        mnuLogin = navigationLeft.findViewById(R.id.mnu_login);
 
-        MenuItem mnuLogin = navigationLeft.getMenu().getItem(0);
+        mnuLogin = navigationLeft.getMenu().getItem(8);
         sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
         //animation
         ani = AnimationUtils.loadAnimation(this, R.anim.rotate_logo_home);
         icon.startAnimation(ani);
+        invalidateOptionsMenu();
 
         if(mnuLogin != null) {
             if (loadPreferences("my_email") != null) {
@@ -109,6 +113,38 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
             } else {
                 mnuLogin.setTitle("Đăng nhập");
             }
+            mnuLogin.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    if (mnuLogin.getTitle().toString().equals("Đăng nhập")) {
+                        Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.TrangChuActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    } else {
+//                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                switch (which) {
+//                                    case DialogInterface.BUTTON_POSITIVE:
+                                        editor.clear();
+                                        editor.commit();
+                                        Intent intent = new Intent(TrangChuActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+//                                        break;
+
+//                                    case DialogInterface.BUTTON_NEGATIVE:
+//                                        break;
+//                                }
+//                            }
+//                        };
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+//                        builder.setMessage("Bạn muốn đăng xuất?").setPositiveButton("Đồng ý", dialogClickListener)
+//                                .setNegativeButton("Hủy", dialogClickListener).show();
+                        return true;
+
+                    }
+                    return false;
+                }
+            });
         }
 
         navigationLeft.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -116,14 +152,31 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.mnu_login:
-                        MenuItem mnuLogin = menu.findItem(R.id.mnu_login);
+                        MenuItem mnuLogin = navigationLeft.getMenu().getItem(8);
                         if(mnuLogin.getTitle().toString().equals("Đăng nhập")){
                             Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.TrangChuActivity.this, LoginActivity.class);
                             startActivity(intent);
                         }
                         else{
-                            editor.clear();
-                            editor.commit();
+                            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    switch (which){
+                                        case DialogInterface.BUTTON_POSITIVE:
+                                            editor.clear();
+                                            editor.commit();
+                                            Intent intent = new Intent(TrangChuActivity.this,LoginActivity.class);
+                                            startActivity(intent);
+                                            break;
+
+                                        case DialogInterface.BUTTON_NEGATIVE:
+                                            break;
+                                    }
+                                }
+                            };
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                            builder.setMessage("Bạn muốn đăng xuất?").setPositiveButton("Đồng ý", dialogClickListener)
+                                    .setNegativeButton("Hủy", dialogClickListener).show();
                         }
                         return true;
 
@@ -179,18 +232,19 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 
     }
 
+    // Override this method to do what you want when the menu is recreated
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_navigation, menu);
-        this.menu = menu;
-//        updateMenuTitles();
-        return true;
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+//        menu.findItem(R.id.mnu_login).setVisible(false);
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        invalidateOptionsMenu();
+//        invalidateOptionsMenu();
 //        updateMenuTitles();
     }
 

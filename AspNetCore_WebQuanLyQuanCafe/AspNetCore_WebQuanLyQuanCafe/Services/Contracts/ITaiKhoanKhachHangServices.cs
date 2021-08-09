@@ -22,6 +22,12 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
         /// <param name="email"></param>
         /// <returns></returns>
         Task<bool> KiemTraEmailTonTai(string email);
-        
+
+        /// <summary>
+        /// Get email 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        Task<string> GetEmail(string sdt);
     }
 }

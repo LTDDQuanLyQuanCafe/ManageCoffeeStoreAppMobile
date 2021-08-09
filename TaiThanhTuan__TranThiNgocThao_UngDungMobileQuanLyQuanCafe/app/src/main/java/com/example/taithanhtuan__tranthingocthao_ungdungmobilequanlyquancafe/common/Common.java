@@ -13,6 +13,8 @@ public class Common {
     public static String preUrl = "https://192.168.1.6:5566/api/";
 
     public static TaiKhoanKhachHang USER;
+    //    public static String preUrl = "https://192.168.1.4:5566/api/";
+    //    public static NGUOIDUNG USER;
     public static ArrayList<GioHang> carts = new ArrayList<>();
     public static DALThucDon thucDon;
     public static LoaiTD loaidachon;

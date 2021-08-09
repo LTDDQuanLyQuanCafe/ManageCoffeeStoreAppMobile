@@ -14,10 +14,23 @@ namespace MVC_WebQuanLyQuanCafe.Service
         {
             try
             {
+<<<<<<< HEAD
                 var thucDons = db.THUCDONs.Where(td => td.MALOAITD == idCategory).OrderBy(td=>td.DONGIA).ToList();
                 for(var i = 1; i <= thucDons.Count(); i++)
                 {
                     thucDons[i]._STT = i;
+=======
+                List<THUCDON> thucDons = new List<THUCDON>();
+                if (idCategory == null || idCategory.Equals("All")){
+                    thucDons = db.THUCDONs.OrderBy(td => td.DONGIA).ToList();
+                }
+                else {
+                    thucDons = db.THUCDONs.Where(td => td.MALOAITD == idCategory).OrderBy(td => td.DONGIA).ToList();
+                }
+                for(int i = 0; i < thucDons.Count(); i++)
+                {
+                    thucDons[i]._STT = i+1;
+>>>>>>> main
                 }
                 return thucDons;
             }

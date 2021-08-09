@@ -48,6 +48,7 @@ namespace AspNetCore_WebQuanLyQuanCafe
             services.AddTransient<IThucDonServices, ThucDonServices>();
             services.AddTransient<ILoaiTDServices, LoaiTDServices>();
             services.AddTransient<IDonGiaoHangServices, DonGiaoHangServices>();
+            services.AddTransient<ITinTucServices, TinTucServices>();
             services.AddControllers().AddNewtonsoftJson();
         }
 

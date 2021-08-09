@@ -15,8 +15,6 @@ public class TinTuc {
         this.HINHANH = HINHANH;
     }
 
-    public String HINHANH;
-
     public String getTIEUDE() {
         return TIEUDE;
     }
@@ -36,4 +34,7 @@ public class TinTuc {
     public String TIEUDE;
 
     public String NOIDUNG;
+
+    public String HINHANH;
+
 }

@@ -36,24 +36,25 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 var result = new List<KhachHang>();
                 while (rdKhachHang.Read())
                 {
-                    KhachHang kh= new KhachHang()
+                    KhachHang kh = new KhachHang()
                     {
                         MaKhachHang = rdKhachHang[0].ToString(),
                         TenKhachHang = rdKhachHang[1].ToString(),
                         GioiTinh = rdKhachHang[3].ToString(),
                         Email = rdKhachHang[4].ToString(),
                         DienThoai = rdKhachHang[5].ToString(),
-                        MaLoaiKH = rdKhachHang[6].ToString(),
-                        DiaChi = rdKhachHang[7].ToString(),
-                        DiemTichLuy = int.Parse(rdKhachHang[8].ToString()),
-                        HinhAnh = rdKhachHang[9].ToString(),
-                        MatKhau = rdKhachHang[10].ToString(),
+                        DiaChi = rdKhachHang[6].ToString(),
+                        DiemTichLuy = int.Parse(rdKhachHang[7].ToString()),
+                        HinhAnh = rdKhachHang[8].ToString(),
+                        MatKhau = rdKhachHang[9].ToString(),
                     };
 
-                    if (DateTime.TryParse(rdKhachHang[11].ToString(), out DateTime dt1)) {
+                    if (DateTime.TryParse(rdKhachHang[10].ToString(), out DateTime dt1))
+                    {
                         kh.NgayTao = dt1;
                     }
-                    if (DateTime.TryParse(rdKhachHang[2].ToString(), out DateTime dt2)) { 
+                    if (DateTime.TryParse(rdKhachHang[2].ToString(), out DateTime dt2))
+                    {
                         kh.NgaySinh = dt2;
                     }
                     result.Add(kh);
@@ -62,7 +63,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 await _sqlConnectDB.CloseAsync();
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -95,12 +96,11 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                         GioiTinh = rdKhachHang[3].ToString(),
                         Email = rdKhachHang[4].ToString(),
                         DienThoai = rdKhachHang[5].ToString(),
-                        MaLoaiKH = rdKhachHang[6].ToString(),
-                        DiaChi = rdKhachHang[7].ToString(),
-                        DiemTichLuy = int.Parse(rdKhachHang[8].ToString()),
-                        HinhAnh = rdKhachHang[9].ToString(),
-                        MatKhau = rdKhachHang[10].ToString(),
-                        NgayTao = DateTime.Parse(rdKhachHang[11].ToString())
+                        DiaChi = rdKhachHang[6].ToString(),
+                        DiemTichLuy = int.Parse(rdKhachHang[7].ToString()),
+                        HinhAnh = rdKhachHang[8].ToString(),
+                        MatKhau = rdKhachHang[9].ToString(),
+                        NgayTao = DateTime.Parse(rdKhachHang[10].ToString())
                     };
                 }
 
@@ -146,7 +146,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
-        public async Task<bool> InsertTaiKhoanKhachHangInfo(CreateKhachHangRequest kh)
+        public async Task<bool> InsertTaiKhoanKhachHangInfo(CreateRegisterRequest kh)
         {
             try
             {
@@ -193,6 +193,40 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
             catch
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Update information customer
+        /// </summary>
+        /// <param name="kh"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateInfoCustomer(KhachHang kh)
+        {
+            try
+            {
+                await _sqlConnectDB.OpenAsync();
+
+                var queryKhachHang = String.Format("Update KhachHang " +
+                                        "set HoTen = '{0}', " +
+                                        "NgaySinh = '{1}', " +
+                                        "GioiTinh = '{2}', " +
+                                        "DienThoai = '{3}', " +
+                                        "DiaChi = '{4}'," +
+                                        "HinhAnh = '{5}' " +
+                                        "Where Email ='{6}'", kh.TenKhachHang, kh.NgaySinh, kh.GioiTinh,
+                                            kh.DienThoai, kh.DiaChi, kh.HinhAnh, kh.Email);
+
+                SqlCommand cmdKhachHang = new SqlCommand(queryKhachHang, _sqlConnectDB.sqlConnection);
+                cmdKhachHang.ExecuteNonQuery();
+
+                await _sqlConnectDB.CloseAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 

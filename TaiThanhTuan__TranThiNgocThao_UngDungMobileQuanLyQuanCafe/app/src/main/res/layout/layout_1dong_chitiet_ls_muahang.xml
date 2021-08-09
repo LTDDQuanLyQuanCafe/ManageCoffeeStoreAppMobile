@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/img_Hinh"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="16dp"
+        fresco:placeholderImage="@drawable/user_picture_placeholder"
+        fresco:roundAsCircle="true"
+        tools:background="@drawable/user_picture_placeholder" />
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/img_Hinh"
+        android:layout_toRightOf="@id/img_Hinh"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Trà sữa chân trâu đường đen hahaha" />
+
+    <TextView
+        android:id="@+id/txt_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_name"
+        android:layout_below="@id/txt_name"
+        android:fontFamily="@font/open_sans_bold"
+        android:layout_marginTop="4dp"
+        android:text="50000" />
+    <TextView
+        android:id="@+id/txt_TextVND"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/txt_price"
+        android:layout_below="@id/txt_name"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:fontFamily="@font/open_sans"
+        android:text="VND" />
+    <TextView
+        android:id="@+id/txt_TextSL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/txt_TextVND"
+        android:layout_below="@id/txt_name"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="170dp"
+        android:text="Số lượng: "
+        android:fontFamily="@font/open_sans"/>
+    <TextView
+        android:id="@+id/txt_SL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/txt_TextSL"
+        android:layout_below="@id/txt_name"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:text="10"
+        android:fontFamily="@font/open_sans_bold"
+        android:textStyle="bold"/>
+    <View
+        android:background="#e3e8e8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignLeft="@id/txt_price"
+        android:layout_below="@id/txt_price"
+        android:layout_marginTop="8dp"/>
+
+</RelativeLayout>

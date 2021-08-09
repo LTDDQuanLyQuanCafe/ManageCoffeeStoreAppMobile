@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.31424.327
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore_WebQuanLyQuanCafe", "AspNetCore_WebQuanLyQuanCafe\AspNetCore_WebQuanLyQuanCafe.csproj", "{D7974A20-714E-4557-A133-23A53AAC755B}"
 EndProject

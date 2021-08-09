@@ -50,7 +50,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
 
         // POST api/<KhachHangController>
         [HttpPost]
-        public IActionResult CreateKhachHang([FromBody] CreateKhachHangRequest kh)
+        public IActionResult CreateKhachHang([FromBody] CreateRegisterRequest kh)
         {
             var khachHang = _khachHangServices.InsertTaiKhoanKhachHangInfo(kh);
             return Ok(khachHang.Result);
@@ -64,10 +64,13 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             return Ok(khachHang.Result);
         }
 
-        // DELETE api/<KhachHangController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // POST api/<KhachHangController>
+        [HttpPost]
+        [Route("update")]
+        public IActionResult UpdateKhachHang([FromBody] KhachHang kh)
         {
+            var khachHang = _khachHangServices.UpdateInfoCustomer(kh);
+            return Ok(khachHang.Result);
         }
     }
 }

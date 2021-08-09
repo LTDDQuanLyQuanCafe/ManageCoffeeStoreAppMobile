@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
 {
-    public interface IDonGiaoHangServices 
+    public interface ITinTucServices
     {
         /// <summary>
-        /// Get all don giao hang follow user login
+        /// Get all tin tucs
         /// </summary>
         /// <returns></returns>
-        Task<List<DonGiaoHang>> GetAllDonGiaoHangFollowUser(string email);
+        Task<List<TinTuc>> GetAllTinTucs();
 
         /// <summary>
-        /// Get don giao hang details
+        /// Get tin tuc details
         /// </summary>
-        /// <param name="maDGH"></param>
         /// <returns></returns>
-        Task<DonGiaoHang> GetDonGiaoHangDetails(int maDGH);
+        Task<TinTuc> GetTinTucDetails(int idNew);
     }
 }

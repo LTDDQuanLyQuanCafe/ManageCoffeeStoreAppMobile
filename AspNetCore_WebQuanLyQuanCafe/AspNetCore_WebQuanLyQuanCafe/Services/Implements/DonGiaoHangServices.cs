@@ -62,5 +62,44 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
             }
         }
 
+        /// <summary>
+        /// Get don giao hang details
+        /// </summary>
+        /// <param name="maDGH"></param>
+        /// <returns></returns>
+        public async Task<DonGiaoHang> GetDonGiaoHangDetails(int maDGH)
+        {
+            try
+            {
+                var donGiaoHang = new DonGiaoHang();
+                await _sqlConnectDB.OpenAsync();
+                var queryDonGiaoHangs = "Select * from DONGIAOHANG " +
+                                        "where maGiaoHang = " + maDGH;
+                SqlCommand cmdDonGiaoHang = new SqlCommand(queryDonGiaoHangs, _sqlConnectDB.sqlConnection);
+                SqlDataReader rdDonGiaoHang = cmdDonGiaoHang.ExecuteReader();
+                while (rdDonGiaoHang.Read())
+                {
+                    donGiaoHang = new DonGiaoHang()
+                    {
+                        MaGiaoHang = maDGH,
+                        MaKhachHang = int.Parse(rdDonGiaoHang[1].ToString()),
+                        MaNhanVien = int.Parse(rdDonGiaoHang[2].ToString()),
+                        NgayGiao = DateTime.Parse(rdDonGiaoHang[3].ToString()),
+                        DiaChiGiao = rdDonGiaoHang[4].ToString(),
+                        TongTien = double.Parse(rdDonGiaoHang[5].ToString()),
+                        TrangThai = bool.Parse(rdDonGiaoHang[6].ToString()),
+                        GhiChu = rdDonGiaoHang[7].ToString()
+                    };
+                }
+
+                await _sqlConnectDB.CloseAsync();
+                return donGiaoHang;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }

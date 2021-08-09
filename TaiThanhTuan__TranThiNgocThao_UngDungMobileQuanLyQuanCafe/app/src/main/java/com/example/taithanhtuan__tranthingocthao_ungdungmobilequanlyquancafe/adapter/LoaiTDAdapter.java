@@ -76,7 +76,6 @@ public class LoaiTDAdapter extends RecyclerView.Adapter<LoaiTDAdapter.UserItemVi
                 }
             });
 
-
         }
 
 

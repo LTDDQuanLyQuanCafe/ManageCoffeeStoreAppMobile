@@ -64,6 +64,7 @@
         android:ems="10"
         android:hint="Số điện thoại"
         android:inputType="textPersonName"
+        android:text="0978154394"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -90,6 +91,7 @@
         android:ems="10"
         android:hint="Mật khẩu"
         android:inputType="textPassword"
+        android:text="123"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextUserName" />

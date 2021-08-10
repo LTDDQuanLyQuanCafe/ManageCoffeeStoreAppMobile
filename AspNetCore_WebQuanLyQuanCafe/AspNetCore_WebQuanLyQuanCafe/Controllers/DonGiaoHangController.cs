@@ -19,10 +19,10 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
 
         // GET: get/email
         [HttpGet]
-        [Route("get/{email}")]
-        public IActionResult GetBillFollowUser(string email)
+        [Route("get/{pSDT}")]
+        public IActionResult GetBillFollowUser(string pSDT)
         {
-            var listBills = _donGiaoHangServices.GetAllDonGiaoHangFollowUser(email);
+            var listBills = _donGiaoHangServices.GetAllDonGiaoHangFollowUser(pSDT);
             return Ok(listBills.Result);
         }
 
@@ -33,6 +33,16 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
         {
             var listBill = _donGiaoHangServices.GetDonGiaoHangDetails(idBill);
             return Ok(listBill.Result);
+        }
+
+
+        // GET: get/email
+        [HttpGet]
+        [Route("getCTGH/{pSDT}")]
+        public IActionResult GetCTGiaoHang(string pSDT)
+        {
+            var listBills = _donGiaoHangServices.GetCTGiaoHang(pSDT);
+            return Ok(listBills.Result);
         }
     }
 }

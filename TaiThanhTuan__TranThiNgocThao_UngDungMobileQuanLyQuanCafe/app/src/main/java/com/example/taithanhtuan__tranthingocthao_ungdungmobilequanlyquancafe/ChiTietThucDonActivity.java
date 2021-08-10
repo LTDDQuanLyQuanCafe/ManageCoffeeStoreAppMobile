@@ -35,7 +35,6 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
     TextView tvName, tvPrice, tvDesc, tvPrNumb;
     ImageView imgHinhAnh, imgAddNumb, imgMinusNumb, imgFavorite, imgBack, imgCart;
     int numb=1;
-    private static final String SELECTED_ITEM_ID = "selected"; //nguoi dung da select item
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,18 +114,21 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
                         if(Common.carts.get(i).getIdsp().equals(Common.thucDon.getMaThucDon()))//OK so sánh String phải dùng equal
                         {
                             Common.carts.get(i).setSoluong(Common.carts.get(i).getSoluong()+ Integer.parseInt(String.valueOf(tvPrNumb.getText())));
+                            GioHangActivity.xuLyThanhTien();
                             exist =true;
                         }
                     }
                     if(exist == false)
                     {
                         Common.carts.add(new GioHang(Common.thucDon.getMaThucDon(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(),Integer.parseInt(String.valueOf(tvPrNumb.getText()))));
+                        GioHangActivity.xuLyThanhTien();
                     }
                 }
                 //Cart null
                 else
                 {
                     Common.carts.add(new GioHang(Common.thucDon.getMaThucDon(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(), Integer.parseInt(String.valueOf(tvPrNumb.getText()))));
+                    GioHangActivity.xuLyThanhTien();
                 }
 
                 Intent intent1 = new Intent(getApplicationContext(),GioHangActivity.class);

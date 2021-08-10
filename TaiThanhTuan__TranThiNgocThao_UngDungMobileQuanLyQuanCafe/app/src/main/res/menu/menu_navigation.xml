@@ -1,45 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <group android:checkableBehavior="single">
 
-        <item
-            android:id="@+id/mnu_user"
-            android:icon="@drawable/username"
-            android:title="Thông tin người dùng"
-            android:visible="false"/>
-        <item
-            android:id="@+id/mnu_cart"
-            android:icon="@drawable/ic_cart_black"
-            android:title="Giỏ hàng" />
-        <item
-            android:id="@+id/mnu_dssp"
-            android:icon="@drawable/ic__1"
-            android:title="Danh sách sản phẩm" />
-        <item
-            android:id="@+id/mnu_notification"
-            android:icon="@drawable/ic_baseline_notifications_24"
-            android:title="Thông báo" />
-        <item
-            android:id="@+id/mnu_new"
-            android:icon="@drawable/ic_baseline_message_24"
-            android:title="Tin tức" />
-        <item
-            android:id="@+id/mnu_aboutus"
-            android:icon="@drawable/ic_arrow_back_black_24dp"
-            android:title="Về chúng tôi" />
-        <item
-            android:id="@+id/mnu_contact"
-            android:icon="@drawable/ic_baseline_contacts_24"
-            android:title="Liên hệ" />
-        <item
-            android:id="@+id/mnu_address"
-            android:icon="@drawable/ic_location"
-            android:title="Địa chỉ" />
-        <item
-            android:id="@+id/mnu_login"
-            android:icon="@drawable/ic_location"
-            android:title="Đăng nhập" />
-    </group>
+
+    <item android:title="Chức năng">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/mnu_cart"
+                    android:icon="@drawable/ic_cart_black"
+                    android:title="Giỏ hàng" />
+                <item
+                    android:id="@+id/mnu_dssp"
+                    android:icon="@drawable/ic__1"
+                    android:title="Danh sách sản phẩm" />
+                <item
+                    android:id="@+id/mnu_history"
+                    android:icon="@drawable/ic_baseline_notifications_24"
+                    android:title="Lịch sử mua hàng" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Thông tin cá nhân">
+        <menu>
+            <item
+                android:id="@+id/mnu_user"
+                android:icon="@drawable/username"
+                android:title="Thông tin người dùng"
+                android:visible="false" />
+            <item
+                android:id="@+id/mnu_login"
+                android:icon="@drawable/ic_location"
+                android:title="Đăng nhập" />
+        </menu>
+    </item>
+
+    <item android:title="Cửa hàng">
+        <menu>
+            <item
+                android:id="@+id/mnu_new"
+                android:icon="@drawable/ic_baseline_message_24"
+                android:title="Tin tức" />
+            <item
+                android:id="@+id/mnu_aboutus"
+                android:icon="@drawable/ic_arrow_back_black_24dp"
+                android:title="Về chúng tôi" />
+            <item
+                android:id="@+id/mnu_contact"
+                android:icon="@drawable/ic_baseline_contacts_24"
+                android:title="Liên hệ" />
+            <item
+                android:id="@+id/mnu_address"
+                android:icon="@drawable/ic_location"
+                android:title="Địa chỉ" />
+        </menu>
+    </item>
+
 
 </menu>

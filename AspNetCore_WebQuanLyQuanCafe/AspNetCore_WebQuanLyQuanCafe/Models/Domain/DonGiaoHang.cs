@@ -28,5 +28,23 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
 
         [MaxLength(500)]
         public string? GhiChu { get; set; }
+
+
+        [Required]
+        public int MATHUCDON { get; set; }
+        public int SOLUONGGIAO { get; set; }
+
+        public double THANHTIEN { get; set; }
+
+        public string? HINHANH { get; set; }
+
+        public string TENMON { get; set; }
+
+        public int DONGIA { get; set; }
+
+        public string HOTEN { get; set; }
+
+        public string DIENTHOAI { get; set; }
+
     }
 }

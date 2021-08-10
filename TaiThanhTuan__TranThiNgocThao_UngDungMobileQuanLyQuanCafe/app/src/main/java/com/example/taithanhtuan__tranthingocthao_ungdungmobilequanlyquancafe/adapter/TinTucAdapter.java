@@ -14,14 +14,14 @@ import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Mod
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class TinTucAdapter extends RecyclerView.Adapter<TinTucAdapter.UserItemViewHolder> {
-    List<TinTuc> tinTucList;
+    ArrayList<TinTuc> tinTucList;
     Context context;
     String url = "https://imgur.com/";
 
-    public TinTucAdapter(List<TinTuc> users, Context context) {
+    public TinTucAdapter(ArrayList<TinTuc> users, Context context) {
         this.tinTucList = users;
         this.context = context;
     }

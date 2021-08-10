@@ -28,12 +28,6 @@ public class GioHangAdapter extends BaseAdapter {
     ArrayList<GioHang> gioHangs;
     OnDeleteCart onDeleteCart;
 
-    public GioHangAdapter(Context context, ArrayList<GioHang> gioHangs)
-    {
-        this.context = context;
-        this.gioHangs = gioHangs;
-    }
-
     public GioHangAdapter(Context context, ArrayList<GioHang> carts, OnDeleteCart onDeleteCart)
     {
         this.context = context;
@@ -151,7 +145,7 @@ public class GioHangAdapter extends BaseAdapter {
                     {
                         ((GioHangActivity)(context)).tvNull.setVisibility(View.VISIBLE);
                     }
-                    if ((Common.carts.size()>=0))
+                    if ((Common.carts.size()>0))
                     {
 //                        DEPRESS.carts.remove(carts.get(position));
 //                        synchronized(carts){

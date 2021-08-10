@@ -1,27 +1,28 @@
 package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 
-import androidx.annotation.Nullable;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.widget.SearchView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
-import android.widget.SearchView;
-
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.DonGiaoHang;
-import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.LoaiTD;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.LSMuaHangAdapter;
-import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.ProductAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnClickListenerLS;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson.ParseJson;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson._HttpsTrustManager;
+import com.facebook.login.Login;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,18 +32,13 @@ import java.util.ArrayList;
 
 public class LichSuMuaHangActivity extends AppCompatActivity implements OnClickListenerLS {
 
-    static ArrayList<DonGiaoHang> data  ;
+    ArrayList<DonGiaoHang> data  ;
     RecyclerView recyclerView;
     LSMuaHangAdapter productAdapter;
-    static String url = "ThucDon/all";
     SearchView searchView;
 
-    LoaiTD loaiTD;
-
-    static RecyclerView.Adapter adaptersp;
-    ImageView img_NoPro;
-    static String id;
-    static String url2;
+    RecyclerView.Adapter adaptersp;
+    String url2;
     SearchView editText;
 
 
@@ -50,36 +46,47 @@ public class LichSuMuaHangActivity extends AppCompatActivity implements OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lich_su_mua_hang);
-        //Hide action bar
+
+        //Action Bar
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-        img_NoPro = findViewById(R.id.img_NoProduct);
+        //thanh tro ve home
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        //doi mau thanh action bar
+        ColorDrawable colorDrawable
+                = new ColorDrawable(Color.parseColor("#EA8734"));
+        // Set BackgroundDrawable
+        actionBar.setBackgroundDrawable(colorDrawable);
+
+        actionBar.setTitle("Lịch sử mua hàng"); //Thiết lập tiêu đề
+        //Doi mau
+        Spannable text = new SpannableString(actionBar.getTitle());
+        text.setSpan(new ForegroundColorSpan(Color.WHITE), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        actionBar.setTitle(text);
+
+
         adaptersp = new LSMuaHangAdapter(this, data, this);
         data  = new ArrayList<>();
 
-        id = Common.loaidachon.getMALOAITD();
-        url2 =  "ThucDon/all";
-        try {
-            data = LayDanhMucSP();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        getThucDonData(data);
-        checkDataInRecycle();
+        if(Common.USER.getDienThoai()==null){
+            Toast.makeText(LichSuMuaHangActivity.this, "Bạn vui lòng đăng nhập trước", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LichSuMuaHangActivity.this, LoginActivity.class);
+            startActivity(intent);
+            return;
+        }else {
+            url2 =  "DonGiaoHang/get/" + Common.USER.getDienThoai();
 
-        //Xu ly search
-        editText = findViewById(R.id.search_view);
-        editText.setFocusable(false);
-        editText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+            try {
+                data = LayDanhMucSP();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        });
+            getThucDonData(data);
+        }
     }
 
 
-    public static ArrayList<DonGiaoHang> LayDanhMucSP() throws JSONException {
+    public ArrayList<DonGiaoHang> LayDanhMucSP() throws JSONException {
         _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
 
         new Thread(new Runnable() {
@@ -97,7 +104,7 @@ public class LichSuMuaHangActivity extends AppCompatActivity implements OnClickL
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
-//                        data.add(new DonGiaoHang(jsonObject.getString("maThucDon"), jsonObject.getString("tenMon"), jsonObject.getString("donGia"), jsonObject.getString("dvt"), jsonObject.getString("hinhAnh"), jsonObject.getString("moTa").trim(), jsonObject.getString("maLoaiTD")));
+                        data.add(new DonGiaoHang(Integer.parseInt(jsonObject.getString("maGiaoHang")) ,Integer.parseInt( jsonObject.getString("maKhachHang")),Integer.parseInt( jsonObject.getString("maNhanVien")),  jsonObject.getString("ngayGiao"), jsonObject.getString("diaChiGiao").trim(), jsonObject.getString("tongTien"),jsonObject.getString("trangThai"), jsonObject.getString("ghiChu"), Integer.parseInt(jsonObject.getString("mathucdon")), Integer.parseInt(jsonObject.getString("soluonggiao")), jsonObject.getString("thanhtien"), jsonObject.getString("hinhanh"), jsonObject.getString("tenmon" ),  Integer.parseInt(jsonObject.getString("dongia")),  jsonObject.getString("hoten"),jsonObject.getString("dienthoai")));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -117,38 +124,12 @@ public class LichSuMuaHangActivity extends AppCompatActivity implements OnClickL
         recyclerView.setAdapter(productAdapter);
 
     }
-    private void checkDataInRecycle()
-    {
-        if (data.size() <0)
-        {
-            adaptersp.notifyDataSetChanged();
-            img_NoPro.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.INVISIBLE);
-        }
-        else
-        {
-            adaptersp.notifyDataSetChanged();
-            img_NoPro.setVisibility(View.INVISIBLE);
-            recyclerView.setVisibility(View.VISIBLE);
-        }
 
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-    }
-
-    public void hideSoftKeyboard(View view) {
-        InputMethodManager imm
-                = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
 
     @Override
     public void ItemClick(DonGiaoHang donGiaoHang) {
-        Intent intent = new Intent(this,ChiTietThucDonActivity.class);
-//        Common.USER = donGiaoHang;
+        Intent intent = new Intent(this,ChiTietLSMuaHangActivity.class);
+        Common.donGiaoHang = donGiaoHang;
         startActivity(intent);
     }
 }

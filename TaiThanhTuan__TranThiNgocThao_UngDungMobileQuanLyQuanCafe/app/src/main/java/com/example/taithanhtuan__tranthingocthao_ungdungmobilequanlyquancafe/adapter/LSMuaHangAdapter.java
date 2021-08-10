@@ -23,13 +23,20 @@ import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class LSMuaHangAdapter  extends RecyclerView.Adapter<LSMuaHangAdapter.PopularViewHolder>  {
+
+
     private Context context;
     private ArrayList<DonGiaoHang> popularList;
     private OnClickListenerLS listener;
 
+    public LSMuaHangAdapter(Context context, ArrayList<DonGiaoHang> popularList) {
+        this.context = context;
+        this.popularList = popularList;
+    }
 
     public LSMuaHangAdapter(Context context, ArrayList<DonGiaoHang> popularList, OnClickListenerLS listener) {
         this.context = context;
@@ -50,7 +57,7 @@ public class LSMuaHangAdapter  extends RecyclerView.Adapter<LSMuaHangAdapter.Pop
         holder.lbNgay.setText(dalThucDon.getNGAYGIAO());
         holder.lbTongTien.setText(dalThucDon.getTRANGTHAI());
         holder.lbDiaChi.setText(dalThucDon.getDIACHIGIAO());
-        if(dalThucDon.getTRANGTHAI() == 1){
+        if(dalThucDon.getTRANGTHAI() == "true"){
             holder.lbTrangThai.setText("Đã giao hàng");
         }else {
             holder.lbTrangThai.setText("Chưa hoàn thành");
@@ -87,6 +94,5 @@ public class LSMuaHangAdapter  extends RecyclerView.Adapter<LSMuaHangAdapter.Pop
             });
         }
     }
-
 }
 

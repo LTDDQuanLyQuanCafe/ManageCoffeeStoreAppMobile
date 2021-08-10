@@ -14,6 +14,8 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
         /// <returns></returns>
         Task<List<DonGiaoHang>> GetAllDonGiaoHangFollowUser(string email);
 
+        Task<List<DonGiaoHang>> GetCTGiaoHang(string email);
+
         /// <summary>
         /// Get don giao hang details
         /// </summary>

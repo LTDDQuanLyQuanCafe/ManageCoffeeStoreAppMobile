@@ -145,6 +145,8 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString("my_email", parseJson.readStringFileContent(url));
                                 editor.commit();
                                 String t = parseJson.readStringFileContent(url);
+                                Common.USER = new TaiKhoanKhachHang();
+                                Common.USER.setDienThoai(userName);
                                 Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, TrangChuActivity.class);
                                 startActivity(intent);
                             } else {
@@ -191,7 +193,8 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra("Email",_taiKhoan.getEmail());
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString("my_email", _taiKhoan.getEmail());
-
+                            Common.USER = new TaiKhoanKhachHang();
+                            Common.USER.setDienThoai(_taiKhoan.getDienThoai());
                             editor.commit();
                             startActivityForResult(intent,0);
                         }

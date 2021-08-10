@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,6 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.LSMuaHangAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.LoaiTDAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.ProductAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.SPTrangChuAdapter;
@@ -98,7 +101,7 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         navigationLeft = findViewById(R.id.nagivationviewLeft);
         mnuLogin = navigationLeft.findViewById(R.id.mnu_login);
 
-        mnuLogin = navigationLeft.getMenu().getItem(8);
+        mnuLogin = navigationLeft.getMenu().getItem(1);
         sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
@@ -186,8 +189,14 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         });
 
         // Khởi tạo RecyclerView.
-        drawerLayout = findViewById(R.id.drawerlayout);
+        drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationLeft.bringToFront();
 
         url2 = "ThucDon/get/category/L06";
 
@@ -205,8 +214,6 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         loaiTDArrayList.add(new LoaiTD("L05","MATCHA - SÔCÔLA", 0, R.drawable.ic__5));
         loaiTDArrayList.add(new LoaiTD("L06","BÁNH & SNACK", 0, R.drawable.ic__6));
 
-
-//        Common.carts.add(new GioHang("102", "cafe-sua.jpg", "CÀ PHÊ SỮA", "32000", 1));
 
         //Luu su kien tu acvivity da chon
         navigationLeft.setNavigationItemSelectedListener(this);
@@ -306,8 +313,7 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
     private void navigation(int mSelectedId) {
         Intent intent = null;
         if (mSelectedId == R.id.mnu_dssp) {
-            intent = new Intent(this, DSThucDonActivity.class);
-            startActivity(intent);
+            ItemClick(loaiTDArrayList.get(0));
 
             drawerLayout.closeDrawer(GravityCompat.START);
         }
@@ -316,11 +322,33 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
             startActivity(intent);
             drawerLayout.closeDrawer(GravityCompat.START);
         }
-
+        if (mSelectedId == R.id.mnu_history) {
+            intent = new Intent(this, LichSuMuaHangActivity.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
         if (mSelectedId == R.id.mnu_login) {
             intent = new Intent(TrangChuActivity.this, LoginActivity.class);
             startActivity(intent);
 
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        if(mSelectedId == R.id.mnu_contact)
+        {
+            intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:0978154394"));
+            startActivity(intent);
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        if(mSelectedId == R.id.mnu_aboutus)
+        {
+            intent = new Intent(this,SupportChatActivity.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        if(mSelectedId == R.id.mnu_new)
+        {
+            intent = new Intent(this,TinTucActivity.class);
+            startActivity(intent);
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
@@ -343,6 +371,7 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
         {
+
             drawerLayout.closeDrawer(GravityCompat.START);
         }
         else
@@ -367,39 +396,6 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         return true;
     }
 
-//    @Override
-//    public void onPointerCaptureChanged(boolean hasCapture) {
-//
-//    }
-
-//    public void layLoaiThucDon() {
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//
-//        Response.Listener<JSONArray> thanhcong = new Response.Listener<JSONArray>() {
-//            @Override
-//            public void onResponse(JSONArray response) {
-//                for (int i = 0; i < response.length(); i++) {
-//                    try {
-//                        JSONObject jsonObject = response.getJSONObject(i);
-//                        loaiTDArrayList.add(new LoaiTD(jsonObject.getString("maloaitd"), jsonObject.getString("tenloaitd"), jsonObject.getString("soluongmon"),jsonObject.getString("hinhanh")));
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                loaiTDAdapter.notifyDataSetChanged();
-//            }
-//        };
-//
-//        Response.ErrorListener thatbai = new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        };
-//
-//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlLoai, thanhcong, thatbai);
-//        requestQueue.add(jsonArrayRequest);
-//    }
 
     public ArrayList<DALThucDon> LayDanhMucSP() throws JSONException {
         _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
@@ -437,12 +433,6 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         Common.thucDon = dalThucDon;
         startActivity(intent);
     }
-
-
-
-
-
-
 
     public String loadPreferences(String key){
         SharedPreferences p = getSharedPreferences("data", Context.MODE_PRIVATE);

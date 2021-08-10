@@ -11,20 +11,39 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.widget.SearchView;
 
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.DonGiaoHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.TinTuc;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.LSMuaHangAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.SPTrangChuAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.TinTucAdapter;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal.DALThucDon;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson.ParseJson;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson._HttpsTrustManager;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class TinTucActivity extends AppCompatActivity {
 
+
+    ArrayList<TinTuc> data  ;
+
+    RecyclerView.Adapter adaptersp;
+    String url2;
+
     TinTucAdapter tinTucAdapter;
     RecyclerView recyclerView_TinTuc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tin_tuc);
+
         //Action Bar
         ActionBar actionBar = getSupportActionBar();
         //thanh tro ve home
@@ -35,21 +54,30 @@ public class TinTucActivity extends AppCompatActivity {
                 = new ColorDrawable(Color.parseColor("#EA8734"));
         // Set BackgroundDrawable
         actionBar.setBackgroundDrawable(colorDrawable);
-        actionBar.setTitle("Trang tin tức THE COFFEE HOUSE"); //Thiết lập tiêu đề
+        actionBar.setTitle("Trang tin tức"); //Thiết lập tiêu đề
         //Doi mau
         Spannable text = new SpannableString(actionBar.getTitle());
         text.setSpan(new ForegroundColorSpan(Color.WHITE), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         actionBar.setTitle(text);
 
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tin_tuc);
+        adaptersp = new TinTucAdapter(data, this);
+        data  = new ArrayList<>();
 
-        ArrayList<TinTuc> tinTucArrayList = new ArrayList<>();
-        tinTucArrayList.add(new TinTuc("","", ""));
-        tinTucArrayList.add(new TinTuc("","", ""));
-        tinTucArrayList.add(new TinTuc("","", ""));
-        setTinTucRecycler(tinTucArrayList);
+        url2 =  "TinTuc/all/" ;
+
+        try {
+            data = LayDanhMucSP();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        setTinTucRecycler(data);
+
+//        ArrayList<TinTuc> tinTucArrayList = new ArrayList<>();
+//        tinTucArrayList.add(new TinTuc("","", ""));
+//        tinTucArrayList.add(new TinTuc("","", ""));
+//        tinTucArrayList.add(new TinTuc("","", ""));
+//        setTinTucRecycler(tinTucArrayList);
 
     }
 
@@ -58,5 +86,35 @@ public class TinTucActivity extends AppCompatActivity {
         recyclerView_TinTuc.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         tinTucAdapter = new TinTucAdapter(  tinTucArrayList, this);
         recyclerView_TinTuc.setAdapter(tinTucAdapter);
+    }
+
+    public ArrayList<TinTuc> LayDanhMucSP() throws JSONException {
+        _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                ParseJson parseJson = new ParseJson();
+                String p = parseJson.readStringFileContent(Common.preUrl + url2);
+                JSONArray response = null;
+                try {
+                    response = new JSONArray(p);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject jsonObject = response.getJSONObject(i);
+                        data.add(new TinTuc (jsonObject.getString("hinhAnh"), jsonObject.getString("tieuDe"), jsonObject.getString("noiDung")));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                adaptersp.notifyDataSetChanged();
+            }
+        }).start();
+        return data;
     }
 }

@@ -13,22 +13,27 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.CTGiaoHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.DonGiaoHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.R;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnClickListenerLS;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ChiTietLSMuaHangAdapter extends RecyclerView.Adapter<ChiTietLSMuaHangAdapter.PopularViewHolder>  {
     private Context context;
-    private ArrayList<CTGiaoHang> popularList;
+    private ArrayList<DonGiaoHang> popularList;
     private OnClickListenerLS listener;
 
+    public ChiTietLSMuaHangAdapter(Context context, ArrayList<DonGiaoHang> popularList) {
+        this.context = context;
+        this.popularList = popularList;
+    }
 
-    public ChiTietLSMuaHangAdapter(Context context, ArrayList<CTGiaoHang> popularList, OnClickListenerLS listener) {
+    public ChiTietLSMuaHangAdapter(Context context, ArrayList<DonGiaoHang> popularList, OnClickListenerLS listener) {
         this.context = context;
         this.popularList = popularList;
         this.listener = listener;
@@ -42,12 +47,12 @@ public class ChiTietLSMuaHangAdapter extends RecyclerView.Adapter<ChiTietLSMuaHa
 
     @Override
     public void onBindViewHolder(@NonNull ChiTietLSMuaHangAdapter.PopularViewHolder holder, int position) {
-        CTGiaoHang dalThucDon = popularList.get(position);
+        DonGiaoHang dalThucDon = popularList.get(position);
 
    
         holder.lbTen.setText(dalThucDon.getTENMON());
-        holder.lbGia.setText( dalThucDon.getDONGIA());
-        holder.lbSL.setText(dalThucDon.getSOLUONGGIAO());
+        holder.lbGia.setText(Common.formatNumberCurrency(Integer.toString( dalThucDon.getDONGIA())) + " VNĐ");
+        holder.lbSL.setText(Integer.toString( dalThucDon.getSOLUONGGIAO()));
         holder.imgHinh.setImageBitmap(this.converStringToBitmapFromAccess(dalThucDon.getHINHANH()));
         holder.imgHinh.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
@@ -75,7 +80,7 @@ public class ChiTietLSMuaHangAdapter extends RecyclerView.Adapter<ChiTietLSMuaHa
 
     public class PopularViewHolder extends RecyclerView.ViewHolder{
 
-        CTGiaoHang dalThucDon ;
+        DonGiaoHang dalThucDon ;
         public ImageView imgHinh;
         public TextView lbTen, lbGia, lbSL;
         public PopularViewHolder(@NonNull View itemView) {
@@ -87,6 +92,8 @@ public class ChiTietLSMuaHangAdapter extends RecyclerView.Adapter<ChiTietLSMuaHa
             lbSL=itemView.findViewById(R.id.txt_SL);
         }
     }
+
+
 
 }
 

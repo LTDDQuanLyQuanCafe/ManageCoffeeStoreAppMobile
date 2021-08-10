@@ -46,7 +46,7 @@ public class GioHangActivity extends AppCompatActivity {
 
     Button btnPay, btnContinue;
     ListView lvCart;
-    ArrayList<DALThucDon> datasp = new ArrayList<>();
+    static ArrayList<DALThucDon> datasp = new ArrayList<>();
     public ImageView tvNull;
     public static TextView tvThanhtien, tvSL, tvGiasp;
     GioHangAdapter cartAdapter;
@@ -94,7 +94,7 @@ public class GioHangActivity extends AppCompatActivity {
 
         };
 
-        cartAdapter = new GioHangAdapter(GioHangActivity.this, Common.carts);
+        cartAdapter = new GioHangAdapter(GioHangActivity.this, Common.carts, onDeleteCart);
         lvCart.setAdapter(cartAdapter);
         url2 =  "ThucDon/all";
 
@@ -196,7 +196,7 @@ public class GioHangActivity extends AppCompatActivity {
         return datasp;
     }
 
-    public void xuLyThanhTien() {
+    public static void xuLyThanhTien() {
         //Xu ly text view Total
         if(Common.carts.size() <=0)
         {
@@ -214,7 +214,8 @@ public class GioHangActivity extends AppCompatActivity {
                         double giasp = Double.parseDouble(sp.DonGia);
                         int soluongsp = i.soluong;
                         Tongtien += giasp * soluongsp;
-                        tvThanhtien.setText( ""+  Tongtien + "  VND");
+
+                        tvThanhtien.setText( Common.formatNumberCurrency(Tongtien) + " VNĐ");
                         Common.ThanhToan = Tongtien;
                         // hai vong for thi nho break
                         break;

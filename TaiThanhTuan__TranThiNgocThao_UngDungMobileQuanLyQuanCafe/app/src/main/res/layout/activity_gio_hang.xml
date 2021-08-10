@@ -76,6 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
+                    android:text="hahahaha"
                     android:textColor="@color/red_basic"
                     android:textSize="20dp" />
             </LinearLayout>

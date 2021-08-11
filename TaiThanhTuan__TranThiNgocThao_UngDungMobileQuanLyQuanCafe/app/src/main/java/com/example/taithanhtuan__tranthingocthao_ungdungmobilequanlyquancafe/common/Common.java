@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Common {
     //y : 192.168.22.102
     //thao: 192.168.1.4
-    public static String preUrl = "https://192.168.1.7:5566/api/";
+    public static String preUrl = "https://192.168.1.6:5566/api/";
 
     public static TaiKhoanKhachHang USER = new TaiKhoanKhachHang();
     public static DonGiaoHang donGiaoHang;

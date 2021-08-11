@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -36,8 +37,11 @@ import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.com
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnClickListener;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnClickListenerLoaiTD;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal.DALThucDon;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal.TaiKhoanKhachHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson.ParseJson;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson._HttpsTrustManager;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
@@ -85,7 +89,7 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
     SharedPreferences.Editor editor;
     Menu menu;
     MenuItem mnuLogin;
-
+    BottomAppBar bottomAppBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +106,7 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         mnuLogin = navigationLeft.getMenu().getItem(1);
         sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-
+        bottomAppBar = findViewById(R.id.bottomAppBar2);
         //animation
         ani = AnimationUtils.loadAnimation(this, R.anim.rotate_logo_home);
         icon.startAnimation(ani);
@@ -206,6 +210,21 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         }
         setSanPhamRecycler(data);
 
+        bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int id = item.getItemId();
+                navigation(id);
+
+                return true;
+            }
+        });
     }
 
     // Override this method to do what you want when the menu is recreated
@@ -296,6 +315,20 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         if(mSelectedId == R.id.mnu_new)
         {
             intent = new Intent(this,TinTucActivity.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+
+        if(mSelectedId == R.id.account)
+        {
+            intent = new Intent(this, InfoKhachHangActivity.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+
+        if(mSelectedId == R.id.heart)
+        {
+            intent = new Intent(this,LichSuMuaHangActivity.class);
             startActivity(intent);
             drawerLayout.closeDrawer(GravityCompat.START);
         }

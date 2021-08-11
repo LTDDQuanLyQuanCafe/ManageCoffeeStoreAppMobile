@@ -43,14 +43,14 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                     {
                         MaGiaoHang = int.Parse(rdDonGiaoHang[0].ToString()),
                         MaKhachHang = int.Parse(rdDonGiaoHang[1].ToString()),
-                        //MaNhanVien = int.Parse(rdDonGiaoHang[2].ToString()),
+                        MaNhanVien = int.Parse(rdDonGiaoHang[2].ToString()),
                         NgayGiao = DateTime.Parse(rdDonGiaoHang[3].ToString()),
                         DiaChiGiao = rdDonGiaoHang[4].ToString(),
-                        //TongTien = Double.Parse(rdDonGiaoHang[6].ToString()),
-                        //TrangThai = Boolean.Parse(rdDonGiaoHang[7].ToString()),
-                        GhiChu = rdDonGiaoHang[8].ToString(),
-                        HOTEN = rdDonGiaoHang[10].ToString(),
-                        DIENTHOAI = rdDonGiaoHang[14].ToString()
+                        TongTien = Double.Parse(rdDonGiaoHang[5].ToString()),
+                        TrangThai = Boolean.Parse(rdDonGiaoHang[6].ToString()),
+                        GhiChu = rdDonGiaoHang[7].ToString(),
+                        HOTEN = rdDonGiaoHang[9].ToString(),
+                        DIENTHOAI = rdDonGiaoHang[13].ToString()
                     };
                     result.Add(dgh);
                 }
@@ -88,17 +88,17 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                         MaNhanVien = int.Parse(rdDonGiaoHang[2].ToString()),
                         NgayGiao = DateTime.Parse(rdDonGiaoHang[3].ToString()),
                         DiaChiGiao = rdDonGiaoHang[4].ToString(),
-                        TongTien = Double.Parse(rdDonGiaoHang[6].ToString()),
-                        TrangThai = Boolean.Parse(rdDonGiaoHang[7].ToString()),
-                        GhiChu = rdDonGiaoHang[8].ToString(),
-                        MATHUCDON = int.Parse(rdDonGiaoHang[21].ToString()),
-                        SOLUONGGIAO = int.Parse(rdDonGiaoHang[22].ToString()),
-                        THANHTIEN = Double.Parse(rdDonGiaoHang[23].ToString()),
-                        HINHANH = rdDonGiaoHang[28].ToString(),
-                        TENMON = rdDonGiaoHang[25].ToString(),
-                        DONGIA = int.Parse(rdDonGiaoHang[26].ToString()),
-                        HOTEN = rdDonGiaoHang[10].ToString(),
-                        DIENTHOAI = rdDonGiaoHang[14].ToString()
+                        TongTien = Double.Parse(rdDonGiaoHang[5].ToString()),
+                        TrangThai = Boolean.Parse(rdDonGiaoHang[6].ToString()),
+                        GhiChu = rdDonGiaoHang[7].ToString(),
+                        MATHUCDON = int.Parse(rdDonGiaoHang[20].ToString()),
+                        SOLUONGGIAO = int.Parse(rdDonGiaoHang[21].ToString()),
+                        THANHTIEN = Double.Parse(rdDonGiaoHang[22].ToString()),
+                        HINHANH = rdDonGiaoHang[27].ToString(),
+                        TENMON = rdDonGiaoHang[24].ToString(),
+                        DONGIA = int.Parse(rdDonGiaoHang[25].ToString()),
+                        HOTEN = rdDonGiaoHang[9].ToString(),
+                        DIENTHOAI = rdDonGiaoHang[13].ToString()
                     };
                     result.Add(dgh);
                 }

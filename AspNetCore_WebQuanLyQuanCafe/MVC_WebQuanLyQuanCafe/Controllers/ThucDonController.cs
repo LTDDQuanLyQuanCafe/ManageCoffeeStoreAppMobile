@@ -11,23 +11,15 @@ namespace MVC_WebQuanLyQuanCafe.Controllers
     public class ThucDonController : Controller
     {
         ThucDonService thucDonService = new ThucDonService();
-<<<<<<< HEAD
         // GET: ThucDon
         [HttpGet]
         [Route("{controller}/{idCategory}")]
-=======
-        
-
->>>>>>> main
         public ActionResult LayThucDonTheoLoai(string idCategory, int? i)
         {
             int pageSize = 6;
             int pageIndex = 1;
             pageIndex = i.HasValue ? Convert.ToInt32(i) : 1;
-<<<<<<< HEAD
-=======
             ViewBag.CurrentSort = "";
->>>>>>> main
             return View(thucDonService.GetThucDonFollowCate(idCategory).ToPagedList(i ?? pageIndex, pageSize));
         }
     }

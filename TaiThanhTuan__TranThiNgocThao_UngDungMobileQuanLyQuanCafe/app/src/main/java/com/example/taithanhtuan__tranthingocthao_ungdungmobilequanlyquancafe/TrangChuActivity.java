@@ -106,9 +106,9 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         //animation
         ani = AnimationUtils.loadAnimation(this, R.anim.rotate_logo_home);
         icon.startAnimation(ani);
-        invalidateOptionsMenu();
 
         if(mnuLogin != null) {
+            invalidateOptionsMenu();
             if (loadPreferences("my_email") != null) {
                 mnuLogin.setTitle("Đăng xuất");
             } else {
@@ -121,27 +121,11 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
                         Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.TrangChuActivity.this, LoginActivity.class);
                         startActivity(intent);
                     } else {
-//                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                switch (which) {
-//                                    case DialogInterface.BUTTON_POSITIVE:
-                                        editor.clear();
-                                        editor.commit();
-                                        Intent intent = new Intent(TrangChuActivity.this, LoginActivity.class);
-                                        startActivity(intent);
-//                                        break;
-
-//                                    case DialogInterface.BUTTON_NEGATIVE:
-//                                        break;
-//                                }
-//                            }
-//                        };
-//                        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-//                        builder.setMessage("Bạn muốn đăng xuất?").setPositiveButton("Đồng ý", dialogClickListener)
-//                                .setNegativeButton("Hủy", dialogClickListener).show();
+                        editor.clear();
+                        editor.commit();
+                        Intent intent = new Intent(TrangChuActivity.this, LoginActivity.class);
+                        startActivity(intent);
                         return true;
-
                     }
                     return false;
                 }
@@ -222,41 +206,18 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         }
         setSanPhamRecycler(data);
 
-
-
     }
 
     // Override this method to do what you want when the menu is recreated
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-
-//        menu.findItem(R.id.mnu_login).setVisible(false);
-
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-//        invalidateOptionsMenu();
-//        updateMenuTitles();
     }
-
-//    private void updateMenuTitles() {
-//        mnuLogin = menu.findItem(R.id.mnu_login);
-//        sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
-//        editor = sharedPreferences.edit();
-//        String t =loadPreferences("my_email");
-//
-//        if(mnuLogin != null) {
-//            if (loadPreferences("my_email") != null) {
-//                mnuLogin.setTitle("Đăng xuất");
-//            } else {
-//                mnuLogin.setTitle("Đăng nhập");
-//            }
-//        }
-//    }
-
 
     private void setLoaiTDRecycler(ArrayList<LoaiTD> loaiTDArrayList) {
         recyclerView = findViewById(R.id.recycleView_option);

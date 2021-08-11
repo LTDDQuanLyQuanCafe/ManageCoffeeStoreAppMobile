@@ -22,5 +22,20 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
         /// <param name="maDGH"></param>
         /// <returns></returns>
         Task<DonGiaoHang> GetDonGiaoHangDetails(int maDGH);
+
+        /// <summary>
+        /// Create Bill
+        /// </summary>
+        /// <param name="donGiaoHang"></param>
+        /// <returns></returns>
+        Task<string> CreateDonGiaoHang(DonGiaoHang donGiaoHang);
+
+
+        /// <summary>
+        /// Create Bill Detail
+        /// </summary>
+        /// <param name="chiTietGiaoHang"></param>
+        /// <returns></returns>
+        Task<bool> CreateDonGiaoHangDetail(ChiTietGiaoHang chiTietGiaoHang);
     }
 }

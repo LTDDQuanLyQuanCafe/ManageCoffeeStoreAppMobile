@@ -58,7 +58,7 @@ public class ParseJson {
         }
         return StringFileContent;
     }
-    public String postObjectToDB(String urlString, TaiKhoanKhachHang object,String jsonInputString)
+    public String postObjectToDB(String urlString,String jsonInputString)
     {
         StringFileContent = "";
         StringFileIsDownloaded = false;

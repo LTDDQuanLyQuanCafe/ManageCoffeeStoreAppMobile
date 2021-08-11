@@ -40,7 +40,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Currency;
 
 public class GioHangActivity extends AppCompatActivity {
 
@@ -52,7 +55,6 @@ public class GioHangActivity extends AppCompatActivity {
     GioHangAdapter cartAdapter;
     OnDeleteCart onDeleteCart;
     String url2;
-    RecyclerView.Adapter adaptersp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +82,16 @@ public class GioHangActivity extends AppCompatActivity {
         btnPay = findViewById(R.id.btn_Cart_Pay);
         btnContinue = findViewById(R.id.btn_Cart_Continue);
         tvNull = findViewById(R.id.lbl_Cart_notificationcart);
-        lvCart = findViewById(R.id.lst_Cart);
+        lvCart  = findViewById(R.id.lst_Cart);
         tvThanhtien = findViewById(R.id.tv_Cart_Total);
+
+        double tongThanhTien = 0;
+        if(Common.carts!= null && Common.carts.size()>0){
+            for (int i =0 ;i<Common.carts.size();i++){
+                tongThanhTien +=  Common.carts.get(i).getSoluong() * Double.parseDouble(Common.carts.get(i).getGiasp());
+                tvThanhtien.setText(converMoneyToString(tongThanhTien)+"  VND");
+            }
+        }
 
         onDeleteCart = new OnDeleteCart() {
             @Override
@@ -115,7 +125,7 @@ public class GioHangActivity extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(), DSThucDonActivity.class);
+                Intent intent1 = new Intent(getApplicationContext(), TrangChuActivity.class);
                 startActivity(intent1);
 
             }
@@ -128,7 +138,10 @@ public class GioHangActivity extends AppCompatActivity {
                     btnPay.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), "Giỏ hàng bạn chưa có gì để thanh toán", Toast.LENGTH_SHORT).show();
                 }
-
+                else if(Common.carts!=null && Common.carts.size()>0){
+                    Intent intent1 = new Intent(getApplicationContext(),XacNhanDonHangActivity.class);
+                    startActivity(intent1);
+                }
                 else
                 {
                     Intent intent1 = new Intent(getApplicationContext(),DSThucDonActivity.class);
@@ -162,7 +175,8 @@ public class GioHangActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                this.finish();
+                Intent intent = new Intent(GioHangActivity.this,TrangChuActivity.class);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -224,6 +238,13 @@ public class GioHangActivity extends AppCompatActivity {
 
             }
         }
+    }
 
-}
+    private String converMoneyToString(double money)
+    {
+        NumberFormat formatter = new DecimalFormat("#,###");
+        String formattedNumber = formatter.format(money);
+
+        return  formattedNumber;
+    }
 }

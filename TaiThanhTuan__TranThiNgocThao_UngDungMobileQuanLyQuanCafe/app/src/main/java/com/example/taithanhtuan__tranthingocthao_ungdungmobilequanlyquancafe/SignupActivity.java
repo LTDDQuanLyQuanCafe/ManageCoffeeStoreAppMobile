@@ -39,7 +39,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         linkReLI = findViewById(R.id.linkReturnLogIn);
         linkReLI.setTextColor(Color.BLUE);
-        edtHoTen = findViewById(R.id.edtHoTen);
+        edtHoTen = findViewById(R.id.tvHoTen);
         edtHoTen.findFocus();
         edtPhone = findViewById(R.id.edtPhone);
         edtEmail =findViewById(R.id.edtEmail);
@@ -103,7 +103,7 @@ public class SignupActivity extends AppCompatActivity {
                                 url = Common.preUrl + "KhachHang/";
                                 _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
                                 String jsonIns = "{'HoTen': '"+_taiKhoan.getHoTen()+"', 'DienThoai': '"+_taiKhoan.getDienThoai()+"', 'Email': '"+_taiKhoan.getEmail()+"'}";
-                                Boolean checkIns = Boolean.valueOf(parseJson.postObjectToDB(url+"create", _taiKhoan,jsonIns));
+                                Boolean checkIns = Boolean.valueOf(parseJson.postObjectToDB(url+"create",jsonIns));
                                 if (checkIns.equals(true)) {
                                     //Get new KhachHangID
                                     url = String.format(Common.preUrl + "KhachHang/get-id/%s",_taiKhoan.getDienThoai());
@@ -114,7 +114,7 @@ public class SignupActivity extends AppCompatActivity {
                                     _taiKhoan.setNgayTao(ngayTao);
                                     url = Common.preUrl +"KhachHang/update/";
                                     String jsonQuery = String.format("{'MaKH': '%s', 'TenTaiKhoan': '%s', 'matKhau': '%s', 'ngayTao' : '%s'}",_taiKhoan.getMaKH(),_taiKhoan.getTenTaiKhoan(),_taiKhoan.getMatKhau(),_taiKhoan.getNgayTao());
-                                    parseJson.postObjectToDB(url, _taiKhoan,jsonQuery);
+                                    parseJson.postObjectToDB(url,jsonQuery);
 
                                     Log.d(TAG, "Congratulations on your successful account registration");
                                     new Handler(Looper.getMainLooper()).post(new Runnable() {

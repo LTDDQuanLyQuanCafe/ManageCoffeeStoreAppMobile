@@ -43,7 +43,7 @@ public class TinTucAdapter extends RecyclerView.Adapter<TinTucAdapter.UserItemVi
         holder.tvTieuDe.setText(tinTuc.getTIEUDE());
         holder.tvNoiDung.setText(tinTuc.getNOIDUNG());
         Picasso.with(context)
-                .load(url + tinTuc.getHINHANH())
+                .load(url + tinTuc.getHINHANH()+".jpg")
                 .placeholder(R.drawable.login)
                 .into(holder.ivAvatar);
         holder.ivAvatar.setScaleType(ImageView.ScaleType.FIT_XY);

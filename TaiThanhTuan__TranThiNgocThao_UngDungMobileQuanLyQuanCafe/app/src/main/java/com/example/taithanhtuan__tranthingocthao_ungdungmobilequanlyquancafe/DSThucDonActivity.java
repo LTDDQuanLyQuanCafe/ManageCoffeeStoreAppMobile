@@ -84,6 +84,11 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
         }
         try {
             data = LayDanhMucSP();
+            if(data==null){
+                Toast.makeText(DSThucDonActivity.this, "Lỗi", Toast.LENGTH_SHORT);
+                return;
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

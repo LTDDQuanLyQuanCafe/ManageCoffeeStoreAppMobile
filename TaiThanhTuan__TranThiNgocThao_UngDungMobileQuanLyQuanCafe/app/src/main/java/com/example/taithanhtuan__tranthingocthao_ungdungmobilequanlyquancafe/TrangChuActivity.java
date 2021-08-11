@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
@@ -76,7 +77,6 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
     Toolbar toolbar;
 //    RequestQueue mQueue;
     NavigationView navigationLeft;
-
     String urlLoai = Common.preUrl + "get/category" ;
 
     Animation ani;
@@ -85,6 +85,7 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
     SharedPreferences.Editor editor;
     Menu menu;
     MenuItem mnuLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,9 +94,6 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        //Khoi tao moshi
-        Moshi moshi = new Moshi.Builder().build();
-//        Type loaispType = Type.newParameterized
         icon = findViewById(R.id.imageView_logo);
 
         navigationLeft = findViewById(R.id.nagivationviewLeft);
@@ -192,9 +190,9 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawerLayout.addDrawerListener(toggle);
+//        toggle.syncState();
 
         navigationLeft.bringToFront();
 
@@ -202,34 +200,23 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 
         loadViewFlipper();
 
-
-        loaiTDArrayList.add(new LoaiTD("01","TẤT CẢ", 0, R.drawable.ic__10));
-        loaiTDArrayList.add(new LoaiTD("L07","CÀ PHÊ MÁY", 0, R.drawable.ic__7));
-        loaiTDArrayList.add(new LoaiTD("L08","COLD BREW", 0, R.drawable.ic__3));
-        loaiTDArrayList.add(new LoaiTD("L09","CÀ PHÊ GÓI", 0, R.drawable.ic__9));
-        loaiTDArrayList.add(new LoaiTD("L01","CÀ PHÊ VIỆT NAM", 0, R.drawable.ic__2));
-        loaiTDArrayList.add(new LoaiTD("L02","TRÀ TRÁI CÂY", 0, R.drawable.ic__1));
-        loaiTDArrayList.add(new LoaiTD("L03","TRÀ SỮA MACCHIATO", 0, R.drawable.ic__33));
-        loaiTDArrayList.add(new LoaiTD("L04","THỨC UỐNG TRÁI CÂY", 0, R.drawable.ic__4));
-        loaiTDArrayList.add(new LoaiTD("L05","MATCHA - SÔCÔLA", 0, R.drawable.ic__5));
-        loaiTDArrayList.add(new LoaiTD("L06","BÁNH & SNACK", 0, R.drawable.ic__6));
+        loaiTDArrayList = getMockDataLoaiTD();
+        setLoaiTDRecycler(loaiTDArrayList);
 
 
         //Luu su kien tu acvivity da chon
         navigationLeft.setNavigationItemSelectedListener(this);
-
-
         mSelectedId = savedInstanceState == null ? R.id.nagivationviewLeft : savedInstanceState.getInt(SELECTED_ITEM_ID);
         navigation(mSelectedId);
 
-
-
-        setLoaiTDRecycler(loaiTDArrayList);
-        //m4BMked
         data = new ArrayList<>();
         adaptersp = new ProductAdapter(this, data, this);
         try {
             data = LayDanhMucSP();
+            if(data==null){
+                Toast.makeText(TrangChuActivity.this, "Lỗi", Toast.LENGTH_SHORT);
+                return;
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -353,6 +340,20 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         }
     }
 
+    public ArrayList<LoaiTD> getMockDataLoaiTD(){
+        ArrayList<LoaiTD> loaiTDArrayList = new ArrayList<>();
+        loaiTDArrayList.add(new LoaiTD("01","TẤT CẢ", 0, R.drawable.ic__10));
+        loaiTDArrayList.add(new LoaiTD("L07","CÀ PHÊ MÁY", 0, R.drawable.ic__7));
+        loaiTDArrayList.add(new LoaiTD("L08","COLD BREW", 0, R.drawable.ic__3));
+        loaiTDArrayList.add(new LoaiTD("L09","CÀ PHÊ GÓI", 0, R.drawable.ic__9));
+        loaiTDArrayList.add(new LoaiTD("L01","CÀ PHÊ VIỆT NAM", 0, R.drawable.ic__2));
+        loaiTDArrayList.add(new LoaiTD("L02","TRÀ TRÁI CÂY", 0, R.drawable.ic__1));
+        loaiTDArrayList.add(new LoaiTD("L03","TRÀ SỮA MACCHIATO", 0, R.drawable.ic__33));
+        loaiTDArrayList.add(new LoaiTD("L04","THỨC UỐNG TRÁI CÂY", 0, R.drawable.ic__4));
+        loaiTDArrayList.add(new LoaiTD("L05","MATCHA - SÔCÔLA", 0, R.drawable.ic__5));
+        loaiTDArrayList.add(new LoaiTD("L06","BÁNH & SNACK", 0, R.drawable.ic__6));
+        return loaiTDArrayList;
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

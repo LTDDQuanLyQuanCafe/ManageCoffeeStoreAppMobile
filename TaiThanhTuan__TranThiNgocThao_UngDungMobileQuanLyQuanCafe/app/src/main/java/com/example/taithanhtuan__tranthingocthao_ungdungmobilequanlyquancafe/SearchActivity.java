@@ -74,6 +74,10 @@ public class SearchActivity extends AppCompatActivity implements OnClickListener
 
         try {
             arrayList = LayDanhMucSP();
+            if(arrayList==null){
+                Toast.makeText(SearchActivity.this, "Lỗi", Toast.LENGTH_SHORT);
+                return;
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

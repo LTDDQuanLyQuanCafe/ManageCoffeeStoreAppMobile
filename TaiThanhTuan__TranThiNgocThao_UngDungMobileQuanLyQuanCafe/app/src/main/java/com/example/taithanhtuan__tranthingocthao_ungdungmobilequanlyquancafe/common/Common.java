@@ -17,9 +17,6 @@ public class Common {
 
     public static TaiKhoanKhachHang USER = new TaiKhoanKhachHang();
     public static DonGiaoHang donGiaoHang;
-
-    //    public static String preUrl = "https://192.168.1.4:5566/api/";
-    //    public static NGUOIDUNG USER;
     public static ArrayList<GioHang> carts = new ArrayList<>();
     public static DALThucDon thucDon;
     public static LoaiTD loaidachon;

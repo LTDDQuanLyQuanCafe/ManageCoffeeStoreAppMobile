@@ -1,4 +1,5 @@
-﻿using AspNetCore_WebQuanLyQuanCafe.Services.Contracts;
+﻿using AspNetCore_WebQuanLyQuanCafe.Models.Domain;
+using AspNetCore_WebQuanLyQuanCafe.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,24 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
         public IActionResult GetBillDetails(int idBill)
         {
             var listBill = _donGiaoHangServices.GetDonGiaoHangDetails(idBill);
+            return Ok(listBill.Result);
+        }
+
+        // Post: create
+        [HttpPost]
+        [Route("create")]
+        public IActionResult CreateBill([FromBody] DonGiaoHang donGiaoHang)
+        {
+            var listBill = _donGiaoHangServices.CreateDonGiaoHang(donGiaoHang);
+            return Ok(listBill.Result);
+        }
+
+        // Post: create
+        [HttpPost]
+        [Route("create/details/{donGiaoHang.MaGiaoHang}")]
+        public IActionResult CreateBillDetails([FromBody] ChiTietGiaoHang chiTietGiaoHang)
+        {
+            var listBill = _donGiaoHangServices.CreateDonGiaoHangDetail(chiTietGiaoHang);
             return Ok(listBill.Result);
         }
     }

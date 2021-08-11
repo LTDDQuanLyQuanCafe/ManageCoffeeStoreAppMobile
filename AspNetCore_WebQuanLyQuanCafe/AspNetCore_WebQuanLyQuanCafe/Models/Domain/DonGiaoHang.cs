@@ -8,14 +8,12 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
 {
     public class DonGiaoHang
     {
-        [Required]
         public int MaGiaoHang { get; set; }
 
         [Required]
         public int MaKhachHang { get; set; }
 
-        [Required]
-        public int MaNhanVien { get; set; }
+        public int? MaNhanVien { get; set; }
 
         public DateTime? NgayGiao { get; set; } = DateTime.Now.Date;
 
@@ -27,6 +25,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Models.Domain
         public bool TrangThai { get; set; } = false;
 
         [MaxLength(500)]
-        public string? GhiChu { get; set; }
+        public string GhiChu { get; set; }
     }
 }

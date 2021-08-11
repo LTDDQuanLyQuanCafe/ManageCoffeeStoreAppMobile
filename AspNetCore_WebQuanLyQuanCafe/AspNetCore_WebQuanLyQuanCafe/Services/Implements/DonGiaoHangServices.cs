@@ -101,5 +101,78 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
             }
         }
 
+        /// <summary>
+        /// Create Bill
+        /// </summary>
+        /// <param name="donGiaoHang"></param>
+        /// <returns></returns>
+        public async Task<string> CreateDonGiaoHang(DonGiaoHang donGiaoHang)
+        {
+            try
+            {
+                await _sqlConnectDB.OpenAsync();
+                var queryDonGiaoHangs = String.Format("insert into DonGiaoHang values " +
+                                        "({0}, NULL, '{1}', N'{2}', {3}, 0, N'{4}') "
+                                        , donGiaoHang.MaKhachHang, DateTime.Now.Date, donGiaoHang.DiaChiGiao, donGiaoHang.TongTien, donGiaoHang.GhiChu);
+                SqlCommand cmdDonGiaoHang = new SqlCommand(queryDonGiaoHangs, _sqlConnectDB.sqlConnection);
+                cmdDonGiaoHang.ExecuteNonQuery();
+
+                await _sqlConnectDB.CloseAsync();
+                return await GetMaGiaoHangVuaTao();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Create Bill Detail
+        /// </summary>
+        /// <param name="chiTietGiaoHang"></param>
+        /// <returns></returns>
+        public async Task<bool> CreateDonGiaoHangDetail (ChiTietGiaoHang chiTietGiaoHang)
+        {
+            try
+            {
+                await _sqlConnectDB.OpenAsync();
+                var queryDonGiaoHangs = String.Format("insert into ChiTietGiaoHang values " +
+                                        "({0},{1},{2},{3})"
+                                        , chiTietGiaoHang.MaGiaoHang, chiTietGiaoHang.MaThucDon, chiTietGiaoHang.SLGiao, chiTietGiaoHang.ThanhTien);
+                SqlCommand cmdDonGiaoHang = new SqlCommand(queryDonGiaoHangs, _sqlConnectDB.sqlConnection);
+                cmdDonGiaoHang.ExecuteNonQuery();
+
+                await _sqlConnectDB.CloseAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #region Private function
+        private async Task<string> GetMaGiaoHangVuaTao() {
+            try
+            {
+                await _sqlConnectDB.OpenAsync();
+                var queryDonGiaoHangs = "select top 1 maGiaoHang from DonGiaoHang " +
+                                        "Order by MAGIAOHANG desc";
+                SqlCommand cmdDonGiaoHang = new SqlCommand(queryDonGiaoHangs, _sqlConnectDB.sqlConnection);
+                SqlDataReader reader = cmdDonGiaoHang.ExecuteReader();
+                while (reader.Read())
+                {
+                    return reader[0].ToString();   
+                }
+
+                await _sqlConnectDB.CloseAsync();
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        #endregion
     }
 }

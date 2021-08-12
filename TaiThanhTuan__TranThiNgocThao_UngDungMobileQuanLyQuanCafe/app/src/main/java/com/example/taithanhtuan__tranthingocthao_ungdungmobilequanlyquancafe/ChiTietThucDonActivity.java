@@ -59,7 +59,6 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
         actionBar.setTitle(text);
 
         //Gui du lieu tu home qua
-        Intent intent = getIntent();
         if(Common.thucDon != null)
         {
 //            products = (Products) intent.getSerializableExtra("key1");
@@ -71,6 +70,13 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
             tvDesc.setText(Common.thucDon.getMoTa());
         }
 
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         imgAddNumb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,28 +120,27 @@ public class ChiTietThucDonActivity extends AppCompatActivity {
                         if(Common.carts.get(i).getIdsp().equals(Common.thucDon.getMaThucDon()))//OK so sánh String phải dùng equal
                         {
                             Common.carts.get(i).setSoluong(Common.carts.get(i).getSoluong()+ Integer.parseInt(String.valueOf(tvPrNumb.getText())));
-                            GioHangActivity.xuLyThanhTien();
+//                            GioHangActivity.xuLyThanhTien();
                             exist =true;
                         }
                     }
                     if(exist == false)
                     {
                         Common.carts.add(new GioHang(Common.thucDon.getMaThucDon(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(),Integer.parseInt(String.valueOf(tvPrNumb.getText()))));
-                        GioHangActivity.xuLyThanhTien();
+//                        GioHangActivity.xuLyThanhTien();
                     }
                 }
                 //Cart null
                 else
                 {
                     Common.carts.add(new GioHang(Common.thucDon.getMaThucDon(),Common.thucDon.getHinhAnh(), Common.thucDon.getTenMon(), Common.thucDon.getDonGia(), Integer.parseInt(String.valueOf(tvPrNumb.getText()))));
-                    GioHangActivity.xuLyThanhTien();
+//                    GioHangActivity.xuLyThanhTien();
                 }
 
                 Intent intent1 = new Intent(getApplicationContext(),GioHangActivity.class);
                 startActivity(intent1);
             }
         });
-
     }
 
     public Bitmap converStringToBitmapFromAccess(String filename){

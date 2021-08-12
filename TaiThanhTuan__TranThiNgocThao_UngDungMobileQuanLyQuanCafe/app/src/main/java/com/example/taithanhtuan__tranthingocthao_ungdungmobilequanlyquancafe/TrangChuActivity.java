@@ -213,7 +213,8 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(TrangChuActivity.this, GioHangActivity.class);
+                startActivity(intent);
             }
         });
         bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -323,14 +324,12 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         {
             intent = new Intent(this, InfoKhachHangActivity.class);
             startActivity(intent);
-            drawerLayout.closeDrawer(GravityCompat.START);
         }
 
         if(mSelectedId == R.id.heart)
         {
-            intent = new Intent(this,LichSuMuaHangActivity.class);
+            intent = new Intent(this,SPDaXemActivity.class);
             startActivity(intent);
-            drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
 

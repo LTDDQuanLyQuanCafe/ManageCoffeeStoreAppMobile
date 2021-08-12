@@ -4,7 +4,13 @@ package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +26,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,11 +40,13 @@ import com.android.volley.toolbox.Volley;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.LoaiTD;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.LoaiTDAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.ProductAdapter;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.SPDaXemAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnClickListener;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal.DALThucDon;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson.ParseJson;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson._HttpsTrustManager;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
@@ -63,14 +73,33 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
     static String id;
     static String url2;
     SearchView editText;
-
+    SPDaXemAdapter utils;
+    BottomAppBar bottomAppBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        utils = new SPDaXemAdapter(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ds_thuc_don);
-        //Hide action bar
+
+        //Action Bar
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        //thanh tro ve home
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        //doi mau thanh action bar
+        ColorDrawable colorDrawable
+                = new ColorDrawable(Color.parseColor("#EA8734"));
+        // Set BackgroundDrawable
+        actionBar.setBackgroundDrawable(colorDrawable);
+
+        actionBar.setTitle("Danh sách thực đơn"); //Thiết lập tiêu đề
+        //Doi mau
+        Spannable text = new SpannableString(actionBar.getTitle());
+        text.setSpan(new ForegroundColorSpan(Color.WHITE), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        actionBar.setTitle(text);
+
+
+        bottomAppBar = findViewById(R.id.bottomAppBar2);
         img_NoPro = findViewById(R.id.img_NoProduct);
         adaptersp = new ProductAdapter(this, data, this);
         data  = new ArrayList<>();
@@ -104,6 +133,37 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
                 startActivity(new Intent(getApplicationContext(), SearchActivity.class));
             }
         });
+
+        bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DSThucDonActivity.this, GioHangActivity.class);
+                startActivity(intent);
+            }
+        });
+        bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int id = item.getItemId();
+                navigation(id);
+
+                return true;
+            }
+        });
+    }
+    private void navigation(int mSelectedId) {
+        Intent intent = null;
+        if(mSelectedId == R.id.account)
+        {
+            intent = new Intent(this, InfoKhachHangActivity.class);
+            startActivity(intent);
+        }
+
+        if(mSelectedId == R.id.heart)
+        {
+            intent = new Intent(this,SPDaXemActivity.class);
+            startActivity(intent);
+        }
     }
 
 
@@ -176,6 +236,8 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
     public void itemClick(DALThucDon dalThucDon) {
         Intent intent = new Intent(this,ChiTietThucDonActivity.class);
         Common.thucDon = dalThucDon;
+        SPDaXemAdapter.thucDonArrayList_History.add(dalThucDon);
+        SPDaXemAdapter.WriteToFileInternal(SPDaXemAdapter.thucDonArrayList_History);
         startActivity(intent);
     }
 }

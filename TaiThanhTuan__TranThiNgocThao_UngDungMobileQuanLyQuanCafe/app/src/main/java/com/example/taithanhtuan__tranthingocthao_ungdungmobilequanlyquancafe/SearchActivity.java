@@ -3,15 +3,19 @@ package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -21,11 +25,13 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.ProductAdapter;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.SPDaXemAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.OnClickListener;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal.DALThucDon;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson.ParseJson;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson._HttpsTrustManager;
+import com.google.android.material.bottomappbar.BottomAppBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,7 +49,7 @@ import me.gujun.android.taggroup.TagGroup;
 public class SearchActivity extends AppCompatActivity implements OnClickListener {
     TagGroup mTagGroup;
     SearchView searchView;
-
+    BottomAppBar bottomAppBar;
     ArrayList<DALThucDon> arrayList = new ArrayList<>();
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
@@ -57,12 +63,11 @@ public class SearchActivity extends AppCompatActivity implements OnClickListener
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-
+        bottomAppBar = findViewById(R.id.bottomAppBar2);
         mTagGroup = findViewById(R.id.tag_group);
-        img_NoPro = findViewById(R.id.img_NoProduct);
+        img_NoPro = findViewById(R.id.lbl_Cart_notificationcart);
         mTagGroup.setTags(new String[] {"Trà sữa", "Trà", "Bánh", "Cà phê","Matcha", "Trái cây", "Đào", "Bánh mì"});
 
-        img_NoPro = findViewById(R.id.img_NoProduct);
         searchView = findViewById(R.id.searchview);
         searchView.setIconifiedByDefault(true);
         searchView.setFocusable(true);
@@ -85,6 +90,28 @@ public class SearchActivity extends AppCompatActivity implements OnClickListener
         productAdapter = new ProductAdapter(this, arrayList,this);
         recyclerView.setAdapter(productAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchActivity.this, GioHangActivity.class);
+                startActivity(intent);
+            }
+        });
+        bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int id = item.getItemId();
+                navigation(id);
+
+                return true;
+            }
+        });
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -106,10 +133,12 @@ public class SearchActivity extends AppCompatActivity implements OnClickListener
                     productAdapter.getFilter().filter(newText);
                     if(productAdapter.getItemCount() > 0){
                         recyclerView.setVisibility(View.VISIBLE);
+                        img_NoPro.setVisibility(View.GONE);
                     }
                 }
                 if(newText.isEmpty()){
                     recyclerView.setVisibility(View.GONE);
+                    img_NoPro.setVisibility(View.VISIBLE);
                 }
                 return false;
             }
@@ -120,12 +149,11 @@ public class SearchActivity extends AppCompatActivity implements OnClickListener
                 searchView.setQuery(tag,false);
                 if(productAdapter.getItemCount() > 0){
                     recyclerView.setVisibility(View.VISIBLE);
+                    img_NoPro.setVisibility(View.GONE);
                 }
                 hideSoftKeyboard(searchView);
             }
         });
-
-
     }
 
     public ArrayList<DALThucDon> LayDanhMucSP() throws JSONException {
@@ -155,6 +183,22 @@ public class SearchActivity extends AppCompatActivity implements OnClickListener
             }
         }).start();
         return arrayList;
+    }
+
+    //dieu huong navigation
+    private void navigation(int mSelectedId) {
+        Intent intent = null;
+        if(mSelectedId == R.id.account)
+        {
+            intent = new Intent(this, InfoKhachHangActivity.class);
+            startActivity(intent);
+        }
+
+        if(mSelectedId == R.id.heart)
+        {
+            intent = new Intent(this,SPDaXemActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void getThucDonData(ArrayList<DALThucDon> dalThucDonList) {

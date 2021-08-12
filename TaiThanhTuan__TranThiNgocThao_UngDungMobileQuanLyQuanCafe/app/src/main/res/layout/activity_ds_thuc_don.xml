@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:isScrollContainer="false"
+            android:visibility="gone"
             android:padding="5dp">
 
             <SearchView
@@ -58,6 +59,7 @@
                 android:id="@+id/img_NoProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="90dp"
                 android:src="@drawable/noproduct"
                 android:layout_gravity="center">
 

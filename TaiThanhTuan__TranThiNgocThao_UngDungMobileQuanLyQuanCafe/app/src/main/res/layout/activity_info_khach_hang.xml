@@ -124,12 +124,13 @@
                         android:layout_height="50dp"
                         android:background="@drawable/decorate_text_register"
                         android:drawableLeft="@drawable/ic_phone"
+                        android:layout_marginTop="10dp"
                         android:drawablePadding="10dp"
                         android:hint="Số điện thoại"
                         android:inputType="phone"
                         android:textColor="@color/black"
                         android:textColorHint="@color/hint_txt"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_email"
                         tools:layout_editor_absoluteX="16dp" />
 
                     <EditText
@@ -144,7 +145,7 @@
                         android:layout_height="50dp"
                         android:inputType="textPassword"
                         android:background="@drawable/decorate_text_register"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_phone"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_address"
                         tools:layout_editor_absoluteX="20dp" />
                     <EditText
                         android:id="@+id/txt_repass"
@@ -180,14 +181,13 @@
                         android:id="@+id/txt_nameuser"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginTop="10dp"
                         android:background="@drawable/decorate_text_register"
-                        android:drawableLeft="@drawable/username"
+                        android:drawableLeft="@drawable/ic_baseline_account_circle_24"
                         android:hint="Họ và tên"
                         android:drawablePadding="10dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/hint_txt"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_email"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:layout_editor_absoluteX="20dp" />
 
                     <EditText
@@ -195,7 +195,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="10dp"
-                        android:drawableLeft="@drawable/ic_location"
+                        android:drawableLeft="@drawable/username"
                         android:background="@drawable/decorate_text_register"
                         android:hint="Địa chỉ"
                         android:drawablePadding="10dp"

@@ -69,7 +69,7 @@ public class LichSuMuaHangActivity extends AppCompatActivity implements OnClickL
         data  = new ArrayList<>();
 
         if(Common.USER.getDienThoai()==null){
-            Toast.makeText(LichSuMuaHangActivity.this, "Bạn vui lòng đăng nhập trước", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LichSuMuaHangActivity.this, "Bạn vui lòng đăng nhập để sử dụng tính năng này", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LichSuMuaHangActivity.this, LoginActivity.class);
             startActivity(intent);
             return;

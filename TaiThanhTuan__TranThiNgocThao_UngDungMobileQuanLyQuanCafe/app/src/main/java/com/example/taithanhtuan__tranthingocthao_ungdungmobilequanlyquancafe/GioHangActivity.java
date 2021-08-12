@@ -89,7 +89,7 @@ public class GioHangActivity extends AppCompatActivity {
         if(Common.carts!= null && Common.carts.size()>0){
             for (int i =0 ;i<Common.carts.size();i++){
                 tongThanhTien +=  Common.carts.get(i).getSoluong() * Double.parseDouble(Common.carts.get(i).getGiasp());
-                tvThanhtien.setText(converMoneyToString(tongThanhTien)+"  VND");
+                tvThanhtien.setText(Common.formatNumberCurrency(tongThanhTien)+"  VND");
             }
         }
 
@@ -119,9 +119,11 @@ public class GioHangActivity extends AppCompatActivity {
 
         //Load thanh tien
         xuLyThanhTien();
+    }
 
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,16 +151,14 @@ public class GioHangActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
+
     private void checkData() {
         if(Common.carts.size() <=0)
         {
             cartAdapter.notifyDataSetChanged();
             tvNull.setVisibility(View.VISIBLE);
             lvCart.setVisibility(View.INVISIBLE);
-
         }
         else
         {
@@ -231,9 +231,7 @@ public class GioHangActivity extends AppCompatActivity {
 
                         tvThanhtien.setText( Common.formatNumberCurrency(Tongtien) + " VNĐ");
                         Common.ThanhToan = Tongtien;
-                        // hai vong for thi nho break
                         break;
-
                     }
                 }
 
@@ -241,11 +239,4 @@ public class GioHangActivity extends AppCompatActivity {
         }
     }
 
-    private String converMoneyToString(double money)
-    {
-        NumberFormat formatter = new DecimalFormat("#,###");
-        String formattedNumber = formatter.format(money);
-
-        return  formattedNumber;
-    }
 }

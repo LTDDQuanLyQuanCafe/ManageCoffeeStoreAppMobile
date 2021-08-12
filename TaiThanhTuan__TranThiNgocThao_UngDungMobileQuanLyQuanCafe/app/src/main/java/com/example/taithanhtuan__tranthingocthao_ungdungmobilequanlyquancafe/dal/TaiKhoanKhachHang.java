@@ -4,6 +4,22 @@ public class TaiKhoanKhachHang {
     public  TaiKhoanKhachHang(){
 
     }
+    public TaiKhoanKhachHang(String maKH, String tenTaiKhoan, String matKhau, String ngayTao, String maKhachHang, String hoTen, String ngaySinh, String gioiTinh, String email, String dienThoai, String diaChi, int diemTL, String hinhAnh) {
+        MaKH = maKH;
+        TenTaiKhoan = tenTaiKhoan;
+        MatKhau = matKhau;
+        NgayTao = ngayTao;
+        MaKhachHang = maKhachHang;
+        HoTen = hoTen;
+        NgaySinh = ngaySinh;
+        GioiTinh = gioiTinh;
+        Email = email;
+        DienThoai = dienThoai;
+        DiaChi = diaChi;
+        DiemTL = diemTL;
+        HinhAnh = hinhAnh;
+    }
+
     String MaKH;
     String TenTaiKhoan;
     String MatKhau;
@@ -16,6 +32,7 @@ public class TaiKhoanKhachHang {
     String DienThoai;
     String DiaChi;
     int DiemTL;
+    public String HinhAnh;
 
     public String getMaKH() {
         return MaKH;
@@ -121,5 +138,4 @@ public class TaiKhoanKhachHang {
         HinhAnh = hinhAnh;
     }
 
-    public String HinhAnh;
 }

@@ -190,8 +190,8 @@ public class SearchActivity extends AppCompatActivity implements OnClickListener
         Intent intent = null;
         if(mSelectedId == R.id.account)
         {
-            intent = new Intent(this, InfoKhachHangActivity.class);
-            startActivity(intent);
+//            intent = new Intent(this, InfoKhachHangActivity.class);
+//            startActivity(intent);
         }
 
         if(mSelectedId == R.id.heart)

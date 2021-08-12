@@ -253,6 +253,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(p.equals("true")){
                             Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, TrangChuActivity.class);
                              SharedPreferences.Editor editor = sharedPreferences.edit();
+                            Common.USER.setDienThoai(_taiKhoan.getDienThoai());
 
                             editor.putString("my_email", _taiKhoan.getEmail());
                             editor.commit();

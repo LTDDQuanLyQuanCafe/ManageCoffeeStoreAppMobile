@@ -16,7 +16,7 @@
         android:ems="10"
         android:hint="Nhập lại mật khẩu"
         android:inputType="textPassword"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,33 +46,33 @@
         app:srcCompat="@drawable/signup" />
 
     <EditText
-        android:id="@+id/edtEmailSend"
+        android:id="@+id/edtHT"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="Họ tên"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/edtVerifyMail"
+        android:id="@+id/edtPhoneSend"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:enabled="false"
-        android:hint="Nhập mã xác nhận"
+        android:enabled="true"
+        android:hint="Số điện thoại"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmailSend" />
+        app:layout_constraintTop_toBottomOf="@+id/edtHT" />
 
     <Button
         android:id="@+id/btnSendMail"
@@ -82,9 +82,10 @@
         android:layout_marginBottom="50dp"
         android:backgroundTint="#009688"
         android:drawableLeft="@drawable/check"
-        android:text="GỬI MÃ"
+        android:text="KIỂM TRA"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtReNewPass" />
 
     <Button
         android:id="@+id/btnConfirm"
@@ -93,11 +94,14 @@
         android:layout_marginBottom="50dp"
         android:backgroundTint="#03A9F4"
         android:drawableLeft="@drawable/confirm"
+        android:enabled="true"
         android:text="XÁC NHẬN"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.574"
-        app:layout_constraintStart_toEndOf="@+id/btnSendMail" />
+        app:layout_constraintStart_toEndOf="@+id/btnSendMail"
+        app:layout_constraintTop_toBottomOf="@+id/edtReNewPass" />
 
     <EditText
         android:id="@+id/edtNewPass"
@@ -109,9 +113,9 @@
         android:ems="10"
         android:hint="Mật khẩu mới"
         android:inputType="textPassword"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtVerifyMail" />
+        app:layout_constraintTop_toBottomOf="@+id/edtPhoneSend" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

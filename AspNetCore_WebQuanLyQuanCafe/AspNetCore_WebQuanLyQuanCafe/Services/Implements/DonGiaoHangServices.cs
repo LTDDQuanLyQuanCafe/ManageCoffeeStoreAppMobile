@@ -28,7 +28,8 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
             {
                 await _sqlConnectDB.OpenAsync();
 
-                var queryDonGiaoHangs = "Select * from DONGIAOHANG,KHACHHANG " +
+                var queryDonGiaoHangs = "Select MaGiaoHang,KhachHang.MaKhachHang,MaNhanVien,NgayGiao,DiaChiGiao,TongTien,TrangThai,GhiChu,HoTen,DienThoai" +
+                                        " from DONGIAOHANG,KHACHHANG " +
                                         "where KHACHHANG.MAKHACHHANG = DONGIAOHANG.MAKHACHHANG " +
                                         "and KHACHHANG.DIENTHOAI = '" + pSDT + "' " +
                                         "order by ngaygiao desc";
@@ -43,15 +44,17 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                     {
                         MaGiaoHang = int.Parse(rdDonGiaoHang[0].ToString()),
                         MaKhachHang = int.Parse(rdDonGiaoHang[1].ToString()),
-                        MaNhanVien = int.Parse(rdDonGiaoHang[2].ToString()),
-                        NgayGiao = DateTime.Parse(rdDonGiaoHang[3].ToString()),
+                        //MaNhanVien = int.Parse(rdDonGiaoHang[2].ToString()),
                         DiaChiGiao = rdDonGiaoHang[4].ToString(),
                         TongTien = Double.Parse(rdDonGiaoHang[5].ToString()),
                         TrangThai = Boolean.Parse(rdDonGiaoHang[6].ToString()),
                         GhiChu = rdDonGiaoHang[7].ToString(),
-                        HOTEN = rdDonGiaoHang[9].ToString(),
-                        DIENTHOAI = rdDonGiaoHang[13].ToString()
+                        HOTEN = rdDonGiaoHang[8].ToString(),
+                        DIENTHOAI = rdDonGiaoHang[9].ToString()
                     };
+                    if (DateTime.TryParse(rdDonGiaoHang[3].ToString(), out DateTime dt1)) {
+                        dgh.NgayGiao = dt1;
+                    }
                     result.Add(dgh);
                 }
 

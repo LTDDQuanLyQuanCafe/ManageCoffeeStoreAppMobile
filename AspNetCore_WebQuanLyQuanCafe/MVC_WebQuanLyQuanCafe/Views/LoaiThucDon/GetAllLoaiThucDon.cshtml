@@ -1,0 +1,13 @@
+@using MVC_WebQuanLyQuanCafe.Models
+@model List<MVC_WebQuanLyQuanCafe.Models.LOAITHUCDON>
+
+@foreach (var loaiThucDon in Model)
+{
+<li class="nav-item list-inline">
+    @*<a href="@Url.Content("ThucDon/"+loaiThucDon.MALOAITD)" class="nav-link">
+            <img class="far fa-circle nav-icon" src="~/dist/img/LoaiThucDon/@loaiThucDon.HinhAnh" />
+            <p>@loaiThucDon.TENLOAITD</p>
+        </a>*@
+        @*<img class="far fa-circle nav-icon" src="~/dist/img/LoaiThucDon/@loaiThucDon.HinhAnh" style="height:35px;width:35px;float:left" />*@
+        @Html.ActionLink(loaiThucDon.TENLOAITD, "LayThucDonTheoLoai", "ThucDon", new { @idCategory = loaiThucDon.MALOAITD.Trim() }, new { @class = "nav-link", @style = "float:left" });
+</li>}

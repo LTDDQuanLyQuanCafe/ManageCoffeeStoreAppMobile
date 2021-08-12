@@ -5,7 +5,6 @@ import java.util.Date;
 public class DonGiaoHang {
     public int MAGIAOHANG;
     public int MAKHACHHANG;
-    public int MANHANVIEN;
     public String NGAYGIAO;
     public String DIACHIGIAO;
     public String TONGTIEN;
@@ -21,10 +20,9 @@ public class DonGiaoHang {
     public String HOTEN;
     public String DIENTHOAI;
 
-    public DonGiaoHang(int MAGIAOHANG, int MAKHACHHANG, int MANHANVIEN, String NGAYGIAO, String DIACHIGIAO, String TONGTIEN, String TRANGTHAI, String GHICHU, int MATHUCDON, int SOLUONGGIAO, String THANHTIEN, String HINHANH, String TENMON, int DONGIA, String HOTEN, String DIENTHOAI) {
+    public DonGiaoHang(int MAGIAOHANG, int MAKHACHHANG, String NGAYGIAO, String DIACHIGIAO, String TONGTIEN, String TRANGTHAI, String GHICHU, int MATHUCDON, int SOLUONGGIAO, String THANHTIEN, String HINHANH, String TENMON, int DONGIA, String HOTEN, String DIENTHOAI) {
         this.MAGIAOHANG = MAGIAOHANG;
         this.MAKHACHHANG = MAKHACHHANG;
-        this.MANHANVIEN = MANHANVIEN;
         this.NGAYGIAO = NGAYGIAO;
         this.DIACHIGIAO = DIACHIGIAO;
         this.TONGTIEN = TONGTIEN;
@@ -120,13 +118,7 @@ public class DonGiaoHang {
         this.MAKHACHHANG = MAKHACHHANG;
     }
 
-    public int getMANHANVIEN() {
-        return MANHANVIEN;
-    }
 
-    public void setMANHANVIEN(int MANHANVIEN) {
-        this.MANHANVIEN = MANHANVIEN;
-    }
 
     public String getNGAYGIAO() {
         return NGAYGIAO;

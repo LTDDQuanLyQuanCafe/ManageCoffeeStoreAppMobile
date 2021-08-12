@@ -147,13 +147,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public TaiKhoanKhachHang LayTTKH(String pUrl) throws JSONException {
-        _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
 
         TaiKhoanKhachHang tk = new TaiKhoanKhachHang();
         new Thread(new Runnable() {
-
             @Override
             public void run() {
+                _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
                 ParseJson parseJson = new ParseJson();
                 String p = parseJson.readStringFileContent(pUrl);
                 JSONObject response = null;
@@ -179,7 +178,6 @@ public class LoginActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-
             }
         }).start();
         return tk;
@@ -221,6 +219,11 @@ public class LoginActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                                 Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.LoginActivity.this, TrangChuActivity.class);
+                                try {
+                                    Thread.sleep(1500);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                                 startActivity(intent);
                             } else {
                                 Log.d(TAG, "======Login be not success======");
@@ -256,6 +259,11 @@ public class LoginActivity extends AppCompatActivity {
 
                             editor.putString("my_email", _taiKhoan.getEmail());
                             editor.commit();
+                            try {
+                                Thread.sleep(1500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             startActivity(intent);
                         }
                         else
@@ -269,6 +277,11 @@ public class LoginActivity extends AppCompatActivity {
                             Common.USER = new TaiKhoanKhachHang();
                             Common.USER.setDienThoai(_taiKhoan.getDienThoai());
                             editor.commit();
+                            try {
+                                Thread.sleep(1500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             startActivityForResult(intent,0);
                         }
                     }

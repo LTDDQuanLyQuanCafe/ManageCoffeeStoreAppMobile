@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.PopularViewHolder> implements Filterable {
-    private Context context;
+    private final Context context;
     private ArrayList<DALThucDon> popularList;
     ArrayList<DALThucDon> popularListSearch;
     private OnClickListener listener;

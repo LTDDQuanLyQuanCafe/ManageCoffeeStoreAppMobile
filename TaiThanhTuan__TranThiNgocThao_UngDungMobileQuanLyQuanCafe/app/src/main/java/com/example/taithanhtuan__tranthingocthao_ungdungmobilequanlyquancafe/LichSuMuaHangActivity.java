@@ -1,5 +1,6 @@
 package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -8,9 +9,11 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,7 +43,19 @@ public class LichSuMuaHangActivity extends AppCompatActivity implements OnClickL
     RecyclerView.Adapter adaptersp;
     String url2;
     SearchView editText;
+    SharedPreferences sharedPreferences;
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                Intent intent = new Intent(LichSuMuaHangActivity.this,TrangChuActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +66,7 @@ public class LichSuMuaHangActivity extends AppCompatActivity implements OnClickL
         ActionBar actionBar = getSupportActionBar();
         //thanh tro ve home
         actionBar.setDisplayHomeAsUpEnabled(true);
+        sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
 
         //doi mau thanh action bar
         ColorDrawable colorDrawable
@@ -68,13 +84,13 @@ public class LichSuMuaHangActivity extends AppCompatActivity implements OnClickL
         adaptersp = new LSMuaHangAdapter(this, data, this);
         data  = new ArrayList<>();
 
-        if(Common.USER.getDienThoai()==null){
+        if(loadPreferences("my_email")==null){
             Toast.makeText(LichSuMuaHangActivity.this, "Bạn vui lòng đăng nhập để sử dụng tính năng này", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LichSuMuaHangActivity.this, LoginActivity.class);
             startActivity(intent);
             return;
         }else {
-            url2 =  "DonGiaoHang/get/" + Common.USER.getDienThoai();
+            url2 =  "DonGiaoHang/get/" + loadPreferences("my_email");
 
             try {
                 data = LayDanhMucSP();
@@ -85,14 +101,17 @@ public class LichSuMuaHangActivity extends AppCompatActivity implements OnClickL
         }
     }
 
+    public String loadPreferences(String key) {
+        SharedPreferences p = getSharedPreferences("data", Context.MODE_PRIVATE);
+        return p.getString(key, null);
+    }
 
     public ArrayList<DonGiaoHang> LayDanhMucSP() throws JSONException {
-        _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
 
         new Thread(new Runnable() {
-
             @Override
             public void run() {
+                _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
                 ParseJson parseJson = new ParseJson();
                 String p = parseJson.readStringFileContent(Common.preUrl + url2);
                 JSONArray response = null;
@@ -104,12 +123,17 @@ public class LichSuMuaHangActivity extends AppCompatActivity implements OnClickL
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        data.add(new DonGiaoHang(Integer.parseInt(jsonObject.getString("maGiaoHang")) ,Integer.parseInt( jsonObject.getString("maKhachHang")),Integer.parseInt( jsonObject.getString("maNhanVien")),  jsonObject.getString("ngayGiao"), jsonObject.getString("diaChiGiao").trim(), jsonObject.getString("tongTien"),jsonObject.getString("trangThai"), jsonObject.getString("ghiChu"), Integer.parseInt(jsonObject.getString("mathucdon")), Integer.parseInt(jsonObject.getString("soluonggiao")), jsonObject.getString("thanhtien"), jsonObject.getString("hinhanh"), jsonObject.getString("tenmon" ),  Integer.parseInt(jsonObject.getString("dongia")),  jsonObject.getString("hoten"),jsonObject.getString("dienthoai")));
+                        data.add(new DonGiaoHang(Integer.parseInt(jsonObject.getString("maGiaoHang")) ,Integer.parseInt( jsonObject.getString("maKhachHang")),  jsonObject.getString("ngayGiao"), jsonObject.getString("diaChiGiao").trim(), jsonObject.getString("tongTien"),jsonObject.getString("trangThai"), jsonObject.getString("ghiChu"), Integer.parseInt(jsonObject.getString("mathucdon")), Integer.parseInt(jsonObject.getString("soluonggiao")), jsonObject.getString("thanhtien"), jsonObject.getString("hinhanh"), jsonObject.getString("tenmon" ),  Integer.parseInt(jsonObject.getString("dongia")),  jsonObject.getString("hoten"),jsonObject.getString("dienthoai")));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
                 adaptersp.notifyDataSetChanged();
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }).start();
         return data;

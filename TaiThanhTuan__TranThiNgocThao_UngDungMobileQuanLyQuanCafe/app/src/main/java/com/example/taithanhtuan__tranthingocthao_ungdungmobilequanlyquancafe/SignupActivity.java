@@ -125,6 +125,11 @@ public class SignupActivity extends AppCompatActivity {
                                         }
                                     });
                                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                                    try {
+                                        Thread.sleep(1500);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
                                     startActivity(intent);
                                 }
                             }

@@ -96,7 +96,7 @@ public class GioHangAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Common.carts.get(position).soluong++;
                     cart_qlty.setText(Common.carts.get(position).soluong + "");
-                    ((GioHangActivity)(context)).xuLyThanhTien();
+                    GioHangActivity.xuLyThanhTien();
 
 
                 }
@@ -119,20 +119,20 @@ public class GioHangAdapter extends BaseAdapter {
                         {
 
                             onDeleteCart.onDelete(gioHangs.get(position));
-                            ((GioHangActivity)(context)).xuLyThanhTien();
+                            GioHangActivity.xuLyThanhTien();
                         }
                         else if(Common.carts.size()<=0)
                         {
                             ((GioHangActivity)(context)).tvNull.setVisibility(View.VISIBLE);
 //                        ((CartActivity)(context)).cartAdapter.notify();
-                            ((GioHangActivity)(context)).xuLyThanhTien();
+                            GioHangActivity.xuLyThanhTien();
                         }
                     }
                     else
                     {
                         Common.carts.get(position).soluong--;
                         cart_qlty.setText(Common.carts.get(position).soluong + "");
-                        ((GioHangActivity)(context)).xuLyThanhTien();
+                        GioHangActivity.xuLyThanhTien();
                     }
 
                 }
@@ -152,13 +152,13 @@ public class GioHangAdapter extends BaseAdapter {
 //                        carts.notify();
 //                    }
                         onDeleteCart.onDelete(gioHangs.get(position));
-                        ((GioHangActivity)(context)).xuLyThanhTien();
+                        GioHangActivity.xuLyThanhTien();
                     }
                     else if(Common.carts.size()<=0)
                     {
                         ((GioHangActivity)(context)).tvNull.setVisibility(View.VISIBLE);
 //                        ((CartActivity)(context)).cartAdapter.notify();
-                        ((GioHangActivity)(context)).xuLyThanhTien();
+                        GioHangActivity.xuLyThanhTien();
                     }
                 }
             });

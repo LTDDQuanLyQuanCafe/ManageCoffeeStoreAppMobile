@@ -91,14 +91,11 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
     SharedPreferences.Editor editor;
     Menu menu;
     MenuItem mnuLogin;
-<<<<<<< HEAD
     BottomAppBar bottomAppBar;
     FloatingActionButton floatingActionButton;
     SearchView editText;
-=======
     MenuItem mnuTTCN;
 
->>>>>>> TTTBranch
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -219,7 +216,6 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         }
         setSanPhamRecycler(data);
 
-<<<<<<< HEAD
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -254,7 +250,6 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 //               startActivity(intent);
 //           }
 //       });
-=======
         try {
             Thread.sleep(1500);
         } catch (InterruptedException e) {
@@ -304,7 +299,6 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
             });
         }
         return super.onCreateOptionsMenu(menu);
->>>>>>> TTTBranch
     }
 
     // Override this method to do what you want when the menu is recreated
@@ -403,6 +397,7 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         {
             intent = new Intent(this, InfoKhachHangActivity.class);
             startActivity(intent);
+            drawerLayout.closeDrawer(GravityCompat.START);
         }
 
         if(mSelectedId == R.id.heart)

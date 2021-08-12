@@ -24,8 +24,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ChiTietLSMuaHangAdapter extends RecyclerView.Adapter<ChiTietLSMuaHangAdapter.PopularViewHolder>  {
-    private Context context;
-    private ArrayList<DonGiaoHang> popularList;
+    private final Context context;
+    private final ArrayList<DonGiaoHang> popularList;
     private OnClickListenerLS listener;
 
     public ChiTietLSMuaHangAdapter(Context context, ArrayList<DonGiaoHang> popularList) {

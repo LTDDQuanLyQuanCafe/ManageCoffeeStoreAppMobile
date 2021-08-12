@@ -173,6 +173,11 @@ public class XacNhanDonHangActivity extends AppCompatActivity {
                                         toast.show();
                                         // Show lich su mua hang
                                         Intent intent = new Intent(XacNhanDonHangActivity.this, Order_SuccessfulActivity.class);
+                                        try {
+                                            Thread.sleep(1500);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                         startActivity(intent);
                                     }
                                 });

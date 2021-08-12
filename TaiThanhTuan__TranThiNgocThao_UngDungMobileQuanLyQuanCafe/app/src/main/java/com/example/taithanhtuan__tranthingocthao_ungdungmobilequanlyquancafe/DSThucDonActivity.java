@@ -230,6 +230,18 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                Intent intent = new Intent(DSThucDonActivity.this,TrangChuActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public void hideSoftKeyboard(View view) {
         InputMethodManager imm
                 = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

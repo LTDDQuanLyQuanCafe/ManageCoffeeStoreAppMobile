@@ -1,6 +1,5 @@
 package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 
-<<<<<<< HEAD
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -8,21 +7,20 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
-=======
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
@@ -31,15 +29,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Helper;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.dal.TaiKhoanKhachHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson.ParseJson;
@@ -50,7 +43,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
->>>>>>> TTTBranch
+
+import retrofit2.http.HEAD;
 
 public class InfoKhachHangActivity extends AppCompatActivity {
     private static final String TAG = InfoKhachHangActivity.class.getSimpleName();
@@ -66,7 +60,7 @@ public class InfoKhachHangActivity extends AppCompatActivity {
     EditText edtNgaySinh;
     SharedPreferences sharedPreferences;
 
-    EditText edtHoTen, edtDiaChi, edtMK, edtNhapLaiMK, editEmail, edtSDT;
+    EditText edtHoTen, edtNhapLaiMK, editEmail;
     Button btnDangXuat, btnLuu;
     TextView txtTen, txtSDT, txtDC, txtThayDoi;
     ImageView img_Hinh;
@@ -74,7 +68,6 @@ public class InfoKhachHangActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_khach_hang);
-<<<<<<< HEAD
 
         //Action Bar
         ActionBar actionBar = getSupportActionBar();
@@ -125,7 +118,6 @@ public class InfoKhachHangActivity extends AppCompatActivity {
         editEmail = findViewById(R.id.txt_email);
         edtSDT = findViewById(R.id.txt_phone);
 
-        btnDangXuat = findViewById(R.id.btn_User_LogOut);
         btnLuu = findViewById(R.id.btn_User_Save);
 
         txtTen = findViewById(R.id.lblNameUser);
@@ -134,10 +126,9 @@ public class InfoKhachHangActivity extends AppCompatActivity {
         txtThayDoi = findViewById(R.id.btnChangeImage);
 
         img_Hinh = findViewById(R.id.imageView2);
-=======
         callbackManager = CallbackManager.Factory.create();
         _taiKhoan = new TaiKhoanKhachHang();
-        spinnerGT = (Spinner) findViewById(R.id.spinner);
+        spinnerGT = findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(InfoKhachHangActivity.this,
                 android.R.layout.simple_spinner_item, gts);
 
@@ -170,8 +161,8 @@ public class InfoKhachHangActivity extends AppCompatActivity {
 
         edtNgaySinh.addTextChangedListener(new TextWatcher() {
             private String current = "";
-            private String ddmmyyyy = "YYYYMMDD";
-            private Calendar cal = Calendar.getInstance();
+            private final String ddmmyyyy = "YYYYMMDD";
+            private final Calendar cal = Calendar.getInstance();
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -279,7 +270,7 @@ public class InfoKhachHangActivity extends AppCompatActivity {
                                 JSONObject response;
                                 try {
                                     response = new JSONObject(r);
-                                    _taiKhoan.setMaKH(response.getString("MaKhachHang").toString());
+                                    _taiKhoan.setMaKH(response.getString("MaKhachHang"));
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -403,6 +394,16 @@ public class InfoKhachHangActivity extends AppCompatActivity {
             return false;
         }
         return true;
->>>>>>> TTTBranch
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                Intent intent = new Intent(InfoKhachHangActivity.this, TrangChuActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

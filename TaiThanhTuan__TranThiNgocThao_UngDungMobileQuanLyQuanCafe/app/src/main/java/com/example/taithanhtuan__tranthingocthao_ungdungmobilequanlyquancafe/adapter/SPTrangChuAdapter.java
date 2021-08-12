@@ -24,8 +24,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class SPTrangChuAdapter extends RecyclerView.Adapter<SPTrangChuAdapter.PopularViewHolder>  {
-    private Context context;
-    private ArrayList<DALThucDon> popularList;
+    private final Context context;
+    private final ArrayList<DALThucDon> popularList;
     ArrayList<DALThucDon> popularListSearch;
     private OnClickListener listener;
 

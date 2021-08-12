@@ -36,16 +36,16 @@ public class SPDaXemAdapter extends RecyclerView.Adapter<SPDaXemAdapter.PopularV
 
 
     public SPDaXemAdapter(Context context, ArrayList<DALThucDon> popularList) {
-        this.context = context;
+        SPDaXemAdapter.context = context;
         this.popularList = popularList;
     }
     public SPDaXemAdapter(Context context) {
-        this.context = context;
+        SPDaXemAdapter.context = context;
     }
     public SPDaXemAdapter(Context context, ArrayList<DALThucDon> popularList, OnClickListener listener) {
-        this.context = context;
+        SPDaXemAdapter.context = context;
         this.popularList = popularList;
-        this.thucDonArrayList_History = popularList;
+        thucDonArrayList_History = popularList;
         this.listener = listener;
     }
 
@@ -114,12 +114,12 @@ public class SPDaXemAdapter extends RecyclerView.Adapter<SPDaXemAdapter.PopularV
 
     public void addFurintureHistorry(DALThucDon furniture) {
         if (thucDonArrayList_History.indexOf(furniture) > 0) {
-            this.thucDonArrayList_History.add(0, furniture);
+            thucDonArrayList_History.add(0, furniture);
         }
     }
 
     public ArrayList<DALThucDon> getFurnitureHistory() {
-        return this.thucDonArrayList_History;
+        return thucDonArrayList_History;
     }
 
     public static void WriteToFileInternal(ArrayList<DALThucDon> arrayList) {

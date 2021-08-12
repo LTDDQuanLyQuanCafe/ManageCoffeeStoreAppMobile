@@ -30,7 +30,8 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
 
                 var queryDonGiaoHangs = "Select * from DONGIAOHANG,KHACHHANG " +
                                         "where KHACHHANG.MAKHACHHANG = DONGIAOHANG.MAKHACHHANG " +
-                                        "and KHACHHANG.DIENTHOAI = '" + pSDT + "' " +
+                                        "and (KHACHHANG.DIENTHOAI = '" + pSDT + "' " +
+                                        "or KhachHang.Email='" + pSDT + "')" +
                                         "order by ngaygiao desc";
                 SqlCommand cmdDonGiaoHang = new SqlCommand(queryDonGiaoHangs, _sqlConnectDB.sqlConnection);
                 SqlDataReader rdDonGiaoHang = cmdDonGiaoHang.ExecuteReader();
@@ -43,7 +44,6 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                     {
                         MaGiaoHang = int.Parse(rdDonGiaoHang[0].ToString()),
                         MaKhachHang = int.Parse(rdDonGiaoHang[1].ToString()),
-                        MaNhanVien = int.Parse(rdDonGiaoHang[2].ToString()),
                         NgayGiao = DateTime.Parse(rdDonGiaoHang[3].ToString()),
                         DiaChiGiao = rdDonGiaoHang[4].ToString(),
                         TongTien = Double.Parse(rdDonGiaoHang[5].ToString()),
@@ -183,7 +183,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
         /// </summary>
         /// <param name="chiTietGiaoHang"></param>
         /// <returns></returns>
-        public async Task<bool> CreateDonGiaoHangDetail (ChiTietGiaoHang chiTietGiaoHang)
+        public async Task<bool> CreateDonGiaoHangDetail(ChiTietGiaoHang chiTietGiaoHang)
         {
             try
             {
@@ -204,7 +204,8 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
         }
 
         #region Private function
-        private async Task<string> GetMaGiaoHangVuaTao() {
+        private async Task<string> GetMaGiaoHangVuaTao()
+        {
             try
             {
                 await _sqlConnectDB.OpenAsync();
@@ -214,7 +215,7 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 SqlDataReader reader = cmdDonGiaoHang.ExecuteReader();
                 while (reader.Read())
                 {
-                    return reader[0].ToString();   
+                    return reader[0].ToString();
                 }
 
                 await _sqlConnectDB.CloseAsync();

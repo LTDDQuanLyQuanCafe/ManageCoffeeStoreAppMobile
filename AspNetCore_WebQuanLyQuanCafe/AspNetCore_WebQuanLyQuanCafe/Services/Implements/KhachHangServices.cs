@@ -97,12 +97,11 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                         Email = rdKhachHang[4].ToString(),
                         DienThoai = rdKhachHang[5].ToString(),
                         DiaChi = rdKhachHang[6].ToString(),
-                        DiemTichLuy = int.Parse(rdKhachHang[7].ToString()),
-                        HinhAnh = rdKhachHang[8].ToString(),
-                        MatKhau = rdKhachHang[9].ToString(),
-                        //NgayTao = DateTime.Parse(rdKhachHang[10].ToString())
+                        HinhAnh = rdKhachHang[7].ToString(),
+                        MatKhau = rdKhachHang[8].ToString(),
+                        //NgayTao = DateTime.Parse(rdKhachHang[9].ToString())
                     };
-                    if (DateTime.TryParse(rdKhachHang[10].ToString(), out DateTime dt1))
+                    if (DateTime.TryParse(rdKhachHang[9].ToString(), out DateTime dt1))
                     {
                         result.NgayTao = dt1;
                     }

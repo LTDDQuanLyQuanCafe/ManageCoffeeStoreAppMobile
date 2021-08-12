@@ -66,7 +66,7 @@ public class SearchActivity extends AppCompatActivity implements OnClickListener
         bottomAppBar = findViewById(R.id.bottomAppBar2);
         mTagGroup = findViewById(R.id.tag_group);
         img_NoPro = findViewById(R.id.lbl_Cart_notificationcart);
-        mTagGroup.setTags(new String[] {"Trà sữa", "Trà", "Bánh", "Cà phê","Matcha", "Trái cây", "Đào", "Bánh mì"});
+        mTagGroup.setTags("Trà sữa", "Trà", "Bánh", "Cà phê","Matcha", "Trái cây", "Đào", "Bánh mì");
 
         searchView = findViewById(R.id.searchview);
         searchView.setIconifiedByDefault(true);

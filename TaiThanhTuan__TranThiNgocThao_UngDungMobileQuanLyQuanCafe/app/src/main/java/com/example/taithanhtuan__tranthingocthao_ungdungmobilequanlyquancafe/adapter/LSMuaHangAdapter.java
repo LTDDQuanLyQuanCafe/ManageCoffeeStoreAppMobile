@@ -29,8 +29,8 @@ import java.util.ArrayList;
 public class LSMuaHangAdapter  extends RecyclerView.Adapter<LSMuaHangAdapter.PopularViewHolder>  {
 
 
-    private Context context;
-    private ArrayList<DonGiaoHang> popularList;
+    private final Context context;
+    private final ArrayList<DonGiaoHang> popularList;
     private OnClickListenerLS listener;
 
     public LSMuaHangAdapter(Context context, ArrayList<DonGiaoHang> popularList) {

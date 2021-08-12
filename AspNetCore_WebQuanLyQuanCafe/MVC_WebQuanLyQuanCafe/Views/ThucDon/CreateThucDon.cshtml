@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "CreateThucDon";
+    Layout = null;
+}
+@model MVC_WebQuanLyQuanCafe.Models.THUCDON
+
+
+@Html.ValidationSummary(true)
+
+<div class="form-group">
+    <div style="color:black">
+        Hình ảnh thực đơn:
+        <img src="~/dist/img/default-placeholder.png" height="150px" width="150px" id="img">
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model.HINHANH, new { @class = "form-control", @type = "file", @accept = ".jpg,.png", @id = "HinhAnh" } )
+        <b style="color:red">@ViewBag.LoiTen</b>
+    </div>
+</div>
+
+<div class="form-group">
+    <div style="color:black">Tên thực đơn: </div>
+    <div>
+        @Html.TextBoxFor(model => model.TENMON, new { @class = "form-control", @id = "tenMon" } )
+        <b style="color:red">@ViewBag.LoiTen</b>
+    </div>
+</div>
+
+<div class="form-group">
+    <div style="color:black">Loại thực đơn: </div>
+    <div>
+        @Html.DropDownListFor(model => model.MALOAITD, ViewBag.MALOAITD as SelectList, "Chọn loại thực đơn", new { @class = "form-control", @id = "LoaiTD" })
+        <b style="color:red">@ViewBag.LoiTen</b>
+    </div>
+</div>
+
+<div class="form-group">
+    <div style="color:black">Đơn vị tính: </div>
+    <div>
+        @Html.DropDownListFor(model => model.DVT, new List<SelectListItem>
+        {
+            new SelectListItem{Text="Chọn đơn vị tính",Value="",Selected=true},
+            new SelectListItem{Text="Ly",Value="Ly",Selected=false},
+            new SelectListItem{Text="Chai",Value="Chai",Selected=false},
+            new SelectListItem{Text="Hộp",Value="Hộp",Selected=false},
+            new SelectListItem{Text="Gói",Value="Gói",Selected=false},
+            new SelectListItem{Text="Bịt",Value="Bịt",Selected=false},
+            new SelectListItem{Text="Lon",Value="Lon",Selected=false},
+            new SelectListItem{Text="Dĩa",Value="Dĩa",Selected=false},
+            new SelectListItem{Text="Cốc",Value="Cốc",Selected=false}
+        }, new { @class = "form-control", @id = "dvt" })
+        <b style="color:red">@ViewBag.LoiDVT</b>
+    </div>
+</div>
+
+<div class="form-group">
+    <div style="color:black">Đơn giá: </div>
+    <div>
+        @Html.TextBoxFor(model => model.DONGIA, new { @class = "form-control", @id = "donGia", @type = "number", @pattern = "(^\\d+(\\.|\\,)\\d{2}$)" })
+        <b style="color:red">@ViewBag.LoiDG</b>
+    </div>
+</div>
+
+<div class="form-group">
+    <div style="color:black">Mô tả: </div>
+    <div>
+        @Html.TextBoxFor(model => model.MOTA, new { @class = "form-control", @id = "moTa" } )
+    </div>
+</div>
+
+<div class="form-group">
+    <div>
+        <button type="submit" value="Save" id="btnCreate" class="btn btn-info " style="width:100px">Thêm món</button> &nbsp;
+        <button type="button" class="btn btn-default" data-dismiss="modal">Quay lại</button>
+    </div>
+</div>

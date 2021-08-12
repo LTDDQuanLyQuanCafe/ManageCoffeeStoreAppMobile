@@ -1,9 +1,5 @@
 ﻿
-<<<<<<< HEAD
-@{ Layout = null; }
-=======
 @{ Layout = null;}
->>>>>>> main
 @model MVC_WebQuanLyQuanCafe.Models.NHANVIEN
 
 <!DOCTYPE html>
@@ -22,15 +18,6 @@
             margin: auto;
         }
 
-<<<<<<< HEAD
-        .card:hover{
-            transition:0.5s;
-            margin-top:-8px
-        }
-
-        center > #btn-submit:hover {
-            background-color:cadetblue
-=======
         .card:hover {
             transition: 0.5s;
             margin-top: -8px
@@ -38,7 +25,6 @@
 
         center > #btn-submit:hover {
             background-color: cadetblue
->>>>>>> main
         }
     </style>
 </head>
@@ -66,20 +52,7 @@
                                 @Html.TextBoxFor(m => m.TENTAIKHOAN, "", new { @class = "form-control", @placeholder = "Tên tài khoản", @name = "TenTaiKhoan" })
                                 <b style="color:red"> @ViewBag.LoiTen</b>
                             </div>
-<<<<<<< HEAD
-                                            <div class="form-group">
-                                                <b id="field">@Html.DisplayName("Mật khẩu:")</b>
-                                                @Html.PasswordFor(m => m.MATKHAU, new { @class = "form-control", @placeholder = "Mật khẩu", @name = "MatKhau" })
-                                                <b style="color:red">@ViewBag.LoiMK</b>
-                                            </div>
-                                                            <div class="form-group">
-                                                                <center style="margin-top:50px">
-                                                                    <input type="submit" name="submit" id="btn-submit" class="btn btn-xs " value="Đăng Nhập"
-                                                                           style="background: linear-gradient(to right, rgb(6, 190, 182), rgb(72, 177, 191));" /><br />
-                                                                    <b style="color:red">@ViewBag.LoiTK</b>
-                                                                </center>
-                                                            </div>}
-=======
+
                             <div class="form-group">
                                 <b id="field">@Html.DisplayName("Mật khẩu:")</b>
                                 @Html.PasswordFor(m => m.MATKHAU, new { @class = "form-control", @placeholder = "Mật khẩu", @name = "MatKhau" })
@@ -92,7 +65,6 @@
                                     <b style="color:red">@ViewBag.LoiTK</b>
                                 </center>
                             </div>}
->>>>>>> main
                     </div>
                 </div>
             </div>

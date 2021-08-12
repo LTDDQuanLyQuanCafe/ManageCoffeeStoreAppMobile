@@ -10,27 +10,9 @@ namespace MVC_WebQuanLyQuanCafe.Service
     {
         dbQLCFDataContext db = new dbQLCFDataContext();
 
-        public List<THUCDON> GetThucDonFollowCate(String idCategory)
-        {
-            try
-            {
-                List<THUCDON> thucDons = new List<THUCDON>();
-                if (idCategory == null || idCategory.Equals("All")){
-                    thucDons = db.THUCDONs.OrderBy(td => td.DONGIA).ToList();
-                }
-                else {
-                    thucDons = db.THUCDONs.Where(td => td.MALOAITD == idCategory).OrderBy(td => td.DONGIA).ToList();
-                }
-                for(int i = 0; i < thucDons.Count(); i++)
-                {
-                    thucDons[i]._STT = i+1;
-                }
-                return thucDons;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
+        //public List<THUCDON> GetThucDonFollowCate(String idCategory)    
+        //{
+            
+        //}
     }
 }

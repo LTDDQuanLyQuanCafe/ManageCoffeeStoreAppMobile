@@ -13,7 +13,9 @@ namespace MVC_WebQuanLyQuanCafe.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            if (Session["TaiKhoanAdmin"] != null)
+                return View();
+            return RedirectToAction("DangNhap","NhanVien");
         }
     }
 }

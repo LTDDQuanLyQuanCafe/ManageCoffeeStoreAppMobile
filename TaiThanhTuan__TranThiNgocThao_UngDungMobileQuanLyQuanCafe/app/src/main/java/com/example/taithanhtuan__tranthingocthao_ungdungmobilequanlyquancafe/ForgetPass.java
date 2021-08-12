@@ -1,79 +1,132 @@
 package com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.se.omapi.Session;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.send_gmail.GMail;
-import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.send_gmail.SendMailTask;
-import com.facebook.appevents.ml.Utils;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.Console;
-import java.net.PasswordAuthentication;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
-import android.content.Context;
-import android.os.AsyncTask;
-import android.widget.TextView;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Helper;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson.ParseJson;
+import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson._HttpsTrustManager;
 
-import java.util.Properties;
 public class ForgetPass extends AppCompatActivity {
+    private static final String TAG = ForgetPass.class.getSimpleName();
 
-    EditText edtEmail,edtVerify,edtNewPass,edtReNewPass;
-    Button btnSend,btnConfirm;
+    EditText edtHT, edtPhoneSend, edtNewPass, edtReNewPass;
+    Button btnSend, btnConfirm;
     SharedPreferences sharedPreferences;
+    ParseJson parseJson = new ParseJson();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_pass);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        edtEmail = findViewById(R.id.edtEmailSend);
-        edtVerify = findViewById(R.id.edtVerifyMail);
+        edtHT = findViewById(R.id.edtHT);
+        edtPhoneSend = findViewById(R.id.edtPhoneSend);
         btnConfirm = findViewById(R.id.btnConfirm);
         btnSend = findViewById(R.id.btnSendMail);
         edtNewPass = findViewById(R.id.edtNewPass);
         edtReNewPass = findViewById(R.id.edtReNewPass);
-
+        final String[] p = {""};
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("Gửi yêu cầu xác nhận thông tin", "Quên mật khẩu.");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String ht = edtHT.getText().toString();
+                        String phone = edtPhoneSend.getText().toString();
+                        _HttpsTrustManager.HttpsTrustManager.allowAllSSL();
+                        String url = String.format(Common.preUrl + "KhachHang/check/forgot/%s/%s", ht, phone);
+                        p[0] = parseJson.readStringFileContent(url);
+                    }
+                }).start();
+                if (p[0] == null && p[0].equals("")) {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ForgetPass.this, "Thông tin không tồn tại!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    btnConfirm.setVisibility(View.VISIBLE);
+                    btnSend.setVisibility(View.GONE);
+                    edtNewPass.setVisibility(View.VISIBLE);
+                    edtReNewPass.setVisibility(View.VISIBLE);
+                    edtHT.setVisibility(View.GONE);
+                    edtPhoneSend.setVisibility(View.GONE);
+                }
 
-                Log.i("SendMailActivity", "Send Button Clicked.");
-
-                String fromEmail = ("tttuan2703@gmail.com");
-                String fromPassword = ("0129885916");
-                String toEmails = edtEmail.getText().toString();
-                List<String> toEmailList = Arrays.asList(toEmails
-                        .split("\\s*,\\s*"));
-                Log.i("SendMailActivity", "To List: " + toEmailList);
-                String emailSubject = "Gửi mã xác nhận";
-                String emailBody = "Cửa hàng Coffee Store gửi mã nhận quên mật khẩu tới email của bạn.";
-                new SendMailTask(ForgetPass.this).execute(fromEmail,
-                        fromPassword, toEmailList, emailSubject, emailBody);
-
-                // TODO - prompts email client only
-                sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-//                editor.putString("code_verify", codeVerify);
-                editor.commit();
-
-//                startActivity(sendEmail);
-                edtVerify.setEnabled(true);
             }
         });
 
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (p[0] != null) {
+                    Log.i("Xác nhận yêu cầu hợp lệ!", "Quên mật khẩu.");
+                    String mk = edtNewPass.getText().toString();
+                    String reMK = edtReNewPass.getText().toString();
+                    if (!Helper.isPassword(mk)) {
+                        Log.d(TAG, "======Password invalid======");
+                        Log.e(TAG, String.format("Password %s is not valid. Password include characters: aA->zZ, special characters, number and minimum length is 8.", mk));
+//                toast = Toast.makeText(SignupActivity.this, "Password invalid.", Toast.LENGTH_SHORT);
+//                toast.show();
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast toast = Toast.makeText(ForgetPass.this, "Password invalid.", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
+                        });
+                        return;
+                    }
+                    if (!mk.equals(reMK)) {
+                        Log.d(TAG, "======RePassword not match======");
+                        Log.e(TAG, "RePassword unlike does not match the password you just entered.");
+
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast toast = Toast.makeText(ForgetPass.this, "RePassword not match.", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
+                        });
+                        return;
+                    }
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String url = String.format(Common.preUrl + "KhachHang/update/pass/%s/%s", p[0], mk);
+                            Boolean b = Boolean.valueOf(parseJson.postObjectToDB(url, " "));
+                            if (b == true) {
+                                Intent intent = new Intent(ForgetPass.this, LoginActivity.class);
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast toast = Toast.makeText(ForgetPass.this, "Mật khẩu cập nhật thay đổi thành công. Mời bạn qua đăng nhập lại.", Toast.LENGTH_SHORT);
+                                        toast.show();
+                                    }
+                                });
+                                startActivity(intent);
+                            }
+                        }
+                    }).start();
+                }
+            }
+        });
 
     }
 

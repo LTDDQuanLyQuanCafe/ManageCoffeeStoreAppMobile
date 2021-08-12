@@ -1,34 +1,48 @@
 ﻿
-@{
-    ViewBag.Title = "LayThucDonTheoLoai";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<<<<<<< HEAD
-
-<div class="container">
-    <table>
-        <thead>
-
-        </thead>
-    </table>
-=======
+@{ ViewBag.Title = "LayThucDonTheoLoai";
+    Layout = null; }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <style>
     b {
         font-size: 1.25rem
     }
+
+    .pagination > li {
+        list-style-type: none;
+        display: inline;
+    }
+
+    .pagination li {
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 15px;
+        background-color: #17a2b8;
+        padding: 2px
+    }
+
+        .pagination li a {
+            color: #fff;
+            text-decoration: none;
+        }
 </style>
 
 @using PagedList.Mvc;
 @model PagedList.IPagedList<MVC_WebQuanLyQuanCafe.Models.THUCDON>
 
+<br />
 <div class="tab-empty">
+    <center><h1 style="font-weight:bold;color:red">@Model.First().LOAITHUCDON.TENLOAITD</h1></center>
+    <br />
+    <button style="float:right" type="button" data-toggle="modal" id="btnC" class="btn btn-info" data-target="#modalCreate">THÊM MÓN MỚI</button> &nbsp;
 
-    <table>
-        <thead>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
             <tr>
-                <th class="col-sm-1">
-                    <b>STT</b>
-                </th>
                 <th class="col-sm-2">
                     <b>Mã thực đơn</b>
                 </th>
@@ -44,15 +58,15 @@
                 <th class="col-sm-3">
                     <b>Mô tả</b>
                 </th>
+                <th>
+
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var thucDon in Model)
             {
                 <tr>
-                    <td>
-                        @thucDon._STT
-                    </td>
                     <td>
                         @thucDon.MATHUCDON
                     </td>
@@ -68,16 +82,80 @@
                     <td>
                         @thucDon.MOTA
                     </td>
+                    <td>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-<div class="tab-loading">
-    <div style="width:100%">
-        <center style="font-size:1.5rem">
-            @Html.PagedListPager(Model, i => Url.Action("LayThucDonTheoLoai", "ThucDon", new { @idCategory = "", i }))
-        </center>
+<center style="font-size:1.5rem" class="mx-auto">
+    @Html.PagedListPager(Model, i => Url.Action("LayThucDonTheoLoai", "ThucDon", new { @idCategory = "", i }))
+</center>
+
+<div class="modal fade " id="modalCreate" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Bạn có muốn thêm thực đơn mới?</h4>
+            </div>
+            <div class="modal-body">
+                <form id="CreateMenu" method="post" action="https://localhost:44380/ThucDon/CreateThucDon">
+                    @Html.Action("CreateThucDon")
+                </form>
+            </div>
+        </div>
     </div>
->>>>>>> main
 </div>
+
+<script>
+    function kiemTraHinh() {
+        var img = document.getElementById("HinhAnh");
+        console.log(img)
+        if (img != undefined) {
+            if (img.files[0].size > 83886080) {
+                alert("File is too big! Just receive file < 80MB!");
+                img.value = "";
+            }
+        }
+    }
+
+    $(function () {
+        $('#HinhAnh').change(function () {
+            var input = this;
+            var url = $(this).val();
+            var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+            if (input.files && input.files[0] && (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+            else {
+                $('#img').attr('src', '/dist/img/default-placeholder.png');
+            }
+        });
+        $("#btnCreate").click(function () {
+            $.ajax({
+                type: 'POST',
+                contentType: "application/x-www-form-urlencoded",
+                dataType: "html",
+                url: "https://localhost:44380/ThucDon/CreateThucDon",
+                timeout: 5000,
+                success: function (data, textStatus) {
+                    console.log(data);
+                    if (data != null)
+                        alert('request successful');
+                    else
+                        alert('request failed');
+                },
+                fail: function (xhr, textStatus, errorThrown) {
+                    alert('request failed');
+                }
+            })
+        });
+    });
+    //$("#modalCreate").modal({ "backdrop": "static" });
+</script>

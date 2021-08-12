@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "GetDsDGH";
+    Layout = null;
+}
+@using PagedList.Mvc;
+@model PagedList.IPagedList<MVC_WebQuanLyQuanCafe.Models.DONGIAOHANG>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<script src="https://kit.fontawesome.com/218edafa57.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="JS/slider.js"></script>
+
+<style>
+    b {
+        font-size: 1.25rem
+    }
+
+    .pagination > li {
+        list-style-type: none;
+        display: inline;
+    }
+
+    .pagination li {
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 15px;
+        background-color: #17a2b8;
+        padding: 2px
+    }
+
+        .pagination li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+    th a {
+        color: #fff;
+    }
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<br />
+<br />
+<center class="form-inline mx-auto" style="width:500px">
+    @using (Html.BeginForm("GetDsDGH", "DonGiaoHang", FormMethod.Get))
+    {
+        <input class="form-control" style="width:400px" type="text" name="search" placeholder="Tìm kiếm đơn giao hàng ..." />
+        <input class="form-control" style="float:right" type="submit" name="submit" value="Search" />
+    }
+</center>
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.ActionLink("Mã giao hàng", "GetDsDGH", new { sortOrder = "MaGiaoHang", CurrentSort = ViewBag.CurrentSort })
+            </th>
+            <th>
+                @Html.ActionLink("Tên khách hàng", "GetDsDGH", new { sortOrder = "MaKhachHang", CurrentSort = ViewBag.CurrentSort })
+            </th>
+            <th>
+                @Html.ActionLink("Ngày giao", "GetDsDGH", new { sortOrder = "NgàyGiao", CurrentSort = ViewBag.CurrentSort })
+            </th>
+            <th>
+                @Html.ActionLink("Địa chỉ giao", "GetDsDGH", new { sortOrder = "DiaChiGiao", CurrentSort = ViewBag.CurrentSort })
+            </th>
+            <th>
+                @Html.ActionLink("Tổng tiền", "GetDsDGH", new { sortOrder = "TongTien", CurrentSort = ViewBag.CurrentSort })
+            </th>
+            <th>
+                @Html.ActionLink("Trạng thái", "GetDsDGH", new { sortOrder = "TrangThai", CurrentSort = ViewBag.CurrentSort })
+            </th>
+            <th>
+                @Html.ActionLink("Ghi chú", "GetDsDGH", new { sortOrder = "GhiChu", CurrentSort = ViewBag.CurrentSort })
+            </th>
+            <th>Control</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="@item.MAGIAOHANG">
+                <td>
+                    @Html.DisplayFor(modelItem => item.MAGIAOHANG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KHACHHANG.HOTEN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYGIAO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIACHIGIAO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TONGTIEN)
+                </td>
+                <td>
+                    @*@Html.DropDownListFor(modelItem => item.statusflag, ViewBag.statusFlag as SelectList, new { @class = "statusFlag" })*@
+                    @*@Html.DisplayTextFor(modelItem => item.statusflag)*@
+                    @if (item.TRANGTHAI == true)
+                    {
+                        <i class="fas fa-check-circle" style="color:green;font-size:40px"></i>}
+                    @if (item.TRANGTHAI == false)
+                    {
+                        <i class="fas fa-times-circle" style="color:red;font-size:40px"></i>}
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GHICHU)
+                </td>
+                <td>
+
+                    @*<a data-ajax="true" data-ajax-url="/Employee/EditEmp/@item.Id" data-ajax-update="#@item.Id" href="" class="btn btn-info">Edit Directly</a> &nbsp;
+
+                        <button type="button" data-toggle="modal" onclick="" id="btnUpdate" class="btn btn-info" data-target="#modal">Edit Modal</button> &nbsp;
+                        @Ajax.ActionLink("Xóa", "DeleteEmployeeConfirm", new { Id = item.Id }, new AjaxOptions { Confirm = "Bạn Muốn Xóa Không?", OnComplete = "$('#" + @item.Id + "').remove()", HttpMethod = "DELETE" }, new { @class = "btn btn-info" })*@
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<center style="font-size:1.5rem" class="mx-auto">
+    @Html.PagedListPager(Model, i => Url.Action("GetDsDGH", "DonGiaoHang", new { i }))
+</center>

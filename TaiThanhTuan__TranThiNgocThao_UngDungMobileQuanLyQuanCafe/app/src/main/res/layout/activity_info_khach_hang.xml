@@ -5,9 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InfoKhachHangActivity">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -108,19 +105,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="370dp"
+                android:layout_marginTop="20dp"
                 android:background="#FFB74D"
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-                    <EditText
-                        android:id="@+id/txt_phone"
+                    <LinearLayout
                         android:layout_width="match_parent"
+<<<<<<< HEAD
                         android:layout_height="50dp"
                         android:background="@drawable/decorate_text_register"
                         android:drawableLeft="@drawable/ic_phone"
@@ -203,9 +200,120 @@
                         android:textColorHint="@color/hint_txt"
                         app:layout_constraintTop_toBottomOf="@+id/txt_nameuser"
                         tools:layout_editor_absoluteX="24dp" />
+=======
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <EditText
+                            android:id="@+id/txt_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/decorate_text_register"
+                            android:drawableLeft="@drawable/ic_phone"
+                            android:drawablePadding="10dp"
+                            android:hint="Số điện thoại"
+                            android:inputType="phone"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_txt"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:layout_editor_absoluteX="16dp" />
+
+                        <EditText
+                            android:id="@+id/txt_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/decorate_text_register"
+                            android:drawableLeft="@drawable/password"
+                            android:drawablePadding="10dp"
+                            android:hint="Mật khẩu"
+                            android:inputType="textPassword"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_txt"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_phone"
+                            tools:layout_editor_absoluteX="20dp" />
+
+                        <EditText
+                            android:id="@+id/txt_repass"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/decorate_text_register"
+                            android:drawableLeft="@drawable/password"
+                            android:drawablePadding="10dp"
+                            android:hint="Nhập lại mật khẩu"
+                            android:inputType="textPassword"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_txt"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_password"
+                            tools:layout_editor_absoluteX="20dp" />
+
+                        <EditText
+                            android:id="@+id/txt_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/decorate_text_register"
+                            android:drawableLeft="@drawable/ic_email"
+                            android:drawablePadding="10dp"
+                            android:hint="Email"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_txt"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_repass"
+                            tools:layout_editor_absoluteX="20dp" />
+
+                        <EditText
+                            android:id="@+id/txt_nameuser"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/decorate_text_register"
+                            android:drawableLeft="@drawable/username"
+                            android:drawablePadding="10dp"
+                            android:hint="Họ và tên"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_txt"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_email"
+                            tools:layout_editor_absoluteX="20dp" />
+
+                        <EditText
+                            android:id="@+id/txt_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/decorate_text_register"
+                            android:drawableLeft="@drawable/ic_location"
+                            android:drawablePadding="10dp"
+                            android:hint="Địa chỉ"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_txt"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_nameuser"
+                            tools:layout_editor_absoluteX="24dp" />
+>>>>>>> TTTBranch
+
+
+                        <EditText
+                            android:id="@+id/edtNgaySinh"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/decorate_text_register"
+                            android:ems="10"
+                            android:inputType="date"
+                            android:hint="YYYY/MM/DD"/>
+
+                        <Spinner
+                            android:id="@+id/spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/decorate_text_register"
+                            android:layout_marginBottom="80dp" />
+                    </LinearLayout>
+                </ScrollView>
             </LinearLayout>
+
 
 
             <LinearLayout
@@ -215,31 +323,18 @@
 
                 android:background="#FFB74D"
                 >
-                <Button
-                    android:id="@+id/btn_User_LogOut"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
-                    android:shadowRadius="@integer/google_play_services_version"
-                    android:text="Đăng xuất"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/btn_User_Save"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
                     android:id="@+id/btn_User_Save"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginRight="30dp"
                     android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
                     android:shadowRadius="@integer/google_play_services_version"
                     android:text="Lưu thay đổi"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -249,5 +344,4 @@
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

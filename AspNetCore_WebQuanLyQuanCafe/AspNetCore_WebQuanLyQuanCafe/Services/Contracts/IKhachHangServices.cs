@@ -49,5 +49,21 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Contracts
         /// <param name="kh"></param>
         /// <returns></returns>
         Task<bool> UpdateInfoCustomer(KhachHang kh);
+
+        /// <summary>
+        /// Check infor for forget pass
+        /// </summary>
+        /// <param name="ht"></param>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        Task<string> CheckInfoForgot(string ht, string phone);
+
+        /// <summary>
+        /// Update password account
+        /// </summary>
+        /// <param name="maKH"></param>
+        /// <param name="matKhau"></param>
+        /// <returns></returns>
+        Task<bool> UpdatePass(string maKH, string matKhau);
     }
 }

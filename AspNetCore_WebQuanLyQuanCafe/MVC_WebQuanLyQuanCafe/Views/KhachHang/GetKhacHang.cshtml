@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "GetKhacHang";
+    Layout = null;
+}
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<style>
+    b {
+        font-size: 1.25rem
+    }
+
+    .pagination > li {
+        list-style-type: none;
+        display: inline;
+    }
+
+    .pagination li {
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 15px;
+        background-color: #17a2b8;
+        padding: 2px
+    }
+
+        .pagination li a {
+            color: #fff;
+            text-decoration: none;
+        }
+</style>
+
+@using PagedList.Mvc;
+@model PagedList.IPagedList<MVC_WebQuanLyQuanCafe.Models.KHACHHANG>
+
+<br />
+<div class="tab-empty">
+
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-sm-2">
+                    <b>Mã khách hàng</b>
+                </th>
+                <th class="col-sm-2">
+                    <b>Tên khách hàng</b>
+                </th>
+                <th>
+                    <b>Hình ảnh</b>
+                </th>
+                <th class="col-sm-2">
+                    <b>Ngày sinh</b>
+                </th>
+                <th class="col-sm-2">
+                    <b>Giới tính</b>
+                </th>
+                <th class="col-sm-3">
+                    <b>Email</b>
+                </th>
+                <th>
+                    <b>Điện thoại</b>
+                </th>
+                <th>
+                    <b>Địa chỉ</b>
+                </th>
+                <th>
+                    <b>Ngày tạo</b>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var thucDon in Model)
+            {
+            <tr>
+                <td>
+                    @thucDon.MAKHACHHANG
+                </td>
+                <td>
+                    @thucDon.HOTEN
+                </td>
+                <td>
+                    <img src="~/dist/img/@thucDon.HINHANH " />
+                </td>
+                <td>
+                    @thucDon.NGAYSINH
+                </td>
+                <td>
+                    @thucDon.GIOITINH
+                </td>
+                <td>
+                    @thucDon.EMAIL
+                </td>
+                <td>
+                    @thucDon.DIENTHOAI
+                </td>
+                <td>
+                    @thucDon.DIACHI
+                </td>
+                <td>
+                    @thucDon.ngayTao
+                </td>
+                <td>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<center style="font-size:1.5rem" class="mx-auto">
+    @Html.PagedListPager(Model, i => Url.Action("GetKhacHang", "KhachHang", new { i }))
+</center>

@@ -120,6 +120,11 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
             e.printStackTrace();
         }
         getThucDonData(data);
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         checkDataInRecycle();
 
         //Xu ly search

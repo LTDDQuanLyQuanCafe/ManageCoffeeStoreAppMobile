@@ -12,15 +12,19 @@ namespace MVC_WebQuanLyQuanCafe.Controllers
     {
         dbQLCFDataContext db = new dbQLCFDataContext();
         // GET: KhachHang
-        public ActionResult GetKhacHang(int? i)
+        [HttpGet]
+        public ActionResult GetKhacHang(string search, int? i)
         {
             int pageSize = 4;
             int pageIndex = 1;
             pageIndex = i.HasValue ? Convert.ToInt32(i) : 1;
-            ViewBag.CurrentSort = "";
+            ViewBag.CurrentSort = search;
             List<KHACHHANG> khachHangs = db.KHACHHANGs.OrderByDescending(td => td.MAKHACHHANG).ToList();
-            khachHangs.Where(kh=>kh.HINHANH == null).ToList().ForEach(kh => kh.HINHANH = "man.png");
-            return View(khachHangs.ToPagedList(i ?? pageIndex, pageSize));
+            khachHangs.Where(kh => kh.HINHANH == null).ToList().ForEach(kh => kh.HINHANH = "man.png");
+            return View(khachHangs.Where(
+                            x=> search == null || x.HOTEN.Contains(search) || x.HINHANH.Contains(search)
+                            || x.DIENTHOAI.Contains(search) || x.EMAIL.Contains(search) || x.DIACHI.Contains(search)
+                        ).ToPagedList(i ?? pageIndex, pageSize));
         }
     }
 }

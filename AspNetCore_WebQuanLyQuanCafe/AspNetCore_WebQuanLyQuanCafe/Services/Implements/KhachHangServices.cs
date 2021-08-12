@@ -81,11 +81,8 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 var open = await _sqlConnectDB.OpenAsync();
 
                 var queryKhachHang = "select * from KhachHang "
-<<<<<<< HEAD
-                                                + "Where DienThoai = '" + email+"'";
-=======
-                                                + "Where email = '" + email + "'";
->>>>>>> TTTBranch
+                                                + "Where DienThoai = '" + email+"' or "
+                                                + " email = '" + email + "'";
                 SqlCommand cmdKhachHang = new SqlCommand(queryKhachHang, _sqlConnectDB.sqlConnection);
                 SqlDataReader rdKhachHang = cmdKhachHang.ExecuteReader();
 

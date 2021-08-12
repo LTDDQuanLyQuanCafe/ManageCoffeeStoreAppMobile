@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -42,6 +43,7 @@ import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.pro
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.processJson._HttpsTrustManager;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
@@ -90,6 +92,8 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
     Menu menu;
     MenuItem mnuLogin;
     BottomAppBar bottomAppBar;
+    FloatingActionButton floatingActionButton;
+    SearchView editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -226,6 +230,24 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
                 return true;
             }
         });
+
+        //Xu ly search
+        editText = findViewById(R.id.searchview);
+        editText.setFocusable(false);
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+            }
+        });
+//        floatingActionButton.findViewById(R.id.floatBtn);
+//       floatingActionButton.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View v) {
+//               Intent intent = new Intent(TrangChuActivity.this, LocationActivity.class);
+//               startActivity(intent);
+//           }
+//       });
     }
 
     // Override this method to do what you want when the menu is recreated
@@ -330,6 +352,13 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         {
             intent = new Intent(this,SPDaXemActivity.class);
             startActivity(intent);
+        }
+
+        if(mSelectedId == R.id.mnu_address)
+        {
+            intent = new Intent(this,LocationActivity.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
 

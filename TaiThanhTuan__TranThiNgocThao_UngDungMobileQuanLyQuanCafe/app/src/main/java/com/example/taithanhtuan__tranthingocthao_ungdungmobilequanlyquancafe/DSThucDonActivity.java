@@ -85,13 +85,11 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
         ActionBar actionBar = getSupportActionBar();
         //thanh tro ve home
         actionBar.setDisplayHomeAsUpEnabled(true);
-
         //doi mau thanh action bar
         ColorDrawable colorDrawable
                 = new ColorDrawable(Color.parseColor("#EA8734"));
         // Set BackgroundDrawable
         actionBar.setBackgroundDrawable(colorDrawable);
-
         actionBar.setTitle("Danh sách thực đơn"); //Thiết lập tiêu đề
         //Doi mau
         Spannable text = new SpannableString(actionBar.getTitle());

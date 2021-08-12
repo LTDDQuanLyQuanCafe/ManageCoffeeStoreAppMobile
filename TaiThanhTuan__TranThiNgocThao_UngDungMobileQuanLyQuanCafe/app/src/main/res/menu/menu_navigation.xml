@@ -16,7 +16,7 @@
                     android:title="Danh sách sản phẩm" />
                 <item
                     android:id="@+id/mnu_history"
-                    android:icon="@drawable/ic_baseline_notifications_24"
+                    android:icon="@drawable/ic_baseline_history_24"
                     android:title="Lịch sử mua hàng" />
             </group>
         </menu>
@@ -26,12 +26,12 @@
         <menu>
             <item
                 android:id="@+id/mnu_user"
-                android:icon="@drawable/username"
+                android:icon="@drawable/ic_baseline_perm_contact_calendar_24"
                 android:title="Thông tin người dùng"
                 android:visible="false" />
             <item
                 android:id="@+id/mnu_login"
-                android:icon="@drawable/ic_location"
+                android:icon="@drawable/ic_baseline_group_24"
                 android:title="Đăng nhập" />
         </menu>
     </item>
@@ -40,19 +40,19 @@
         <menu>
             <item
                 android:id="@+id/mnu_new"
-                android:icon="@drawable/ic_baseline_message_24"
+                android:icon="@drawable/ic_baseline_new_releases_24"
                 android:title="Tin tức" />
             <item
                 android:id="@+id/mnu_aboutus"
                 android:icon="@drawable/ic_arrow_back_black_24dp"
-                android:title="Về chúng tôi" />
+                android:title="Hỗ trợ khách hàng" />
             <item
                 android:id="@+id/mnu_contact"
                 android:icon="@drawable/ic_baseline_contacts_24"
                 android:title="Liên hệ" />
             <item
                 android:id="@+id/mnu_address"
-                android:icon="@drawable/ic_location"
+                android:icon="@drawable/ic_baseline_add_location_alt_24"
                 android:title="Địa chỉ" />
         </menu>
     </item>

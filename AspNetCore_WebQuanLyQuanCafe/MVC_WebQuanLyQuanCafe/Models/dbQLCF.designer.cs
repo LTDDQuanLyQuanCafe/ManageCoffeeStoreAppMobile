@@ -850,8 +850,6 @@ namespace MVC_WebQuanLyQuanCafe.Models
 		
 		private string _DIACHI;
 		
-		private System.Nullable<int> _DIEMTICHLUY;
-		
 		private string _HINHANH;
 		
 		private string _matKhau;
@@ -878,8 +876,6 @@ namespace MVC_WebQuanLyQuanCafe.Models
     partial void OnDIENTHOAIChanged();
     partial void OnDIACHIChanging(string value);
     partial void OnDIACHIChanged();
-    partial void OnDIEMTICHLUYChanging(System.Nullable<int> value);
-    partial void OnDIEMTICHLUYChanged();
     partial void OnHINHANHChanging(string value);
     partial void OnHINHANHChanged();
     partial void OnmatKhauChanging(string value);
@@ -1030,26 +1026,6 @@ namespace MVC_WebQuanLyQuanCafe.Models
 					this._DIACHI = value;
 					this.SendPropertyChanged("DIACHI");
 					this.OnDIACHIChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DIEMTICHLUY", DbType="Int")]
-		public System.Nullable<int> DIEMTICHLUY
-		{
-			get
-			{
-				return this._DIEMTICHLUY;
-			}
-			set
-			{
-				if ((this._DIEMTICHLUY != value))
-				{
-					this.OnDIEMTICHLUYChanging(value);
-					this.SendPropertyChanging();
-					this._DIEMTICHLUY = value;
-					this.SendPropertyChanged("DIEMTICHLUY");
-					this.OnDIEMTICHLUYChanged();
 				}
 			}
 		}
@@ -1695,10 +1671,7 @@ namespace MVC_WebQuanLyQuanCafe.Models
 		private string _MOTA;
 		
 		private string _MALOAITD;
-
-		public int _STT;
-
-
+		
 		private System.Nullable<double> _TILECHON;
 		
 		private EntitySet<CHITIETGIAOHANG> _CHITIETGIAOHANGs;

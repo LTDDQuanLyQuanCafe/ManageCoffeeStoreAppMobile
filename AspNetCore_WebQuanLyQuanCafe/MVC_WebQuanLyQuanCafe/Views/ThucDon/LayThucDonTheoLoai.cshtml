@@ -35,6 +35,14 @@
 @model PagedList.IPagedList<MVC_WebQuanLyQuanCafe.Models.THUCDON>
 
 <br />
+<br />
+<center class="form-inline mx-auto" style="width:500px">
+    @using (Html.BeginForm("LayThucDonTheoLoai", "ThucDon", FormMethod.Get))
+    {
+<input class="form-control" style="width:400px" type="text" name="search" placeholder="Tìm kiếm thực đơn ..." />
+                <input class="form-control" style="float:right" type="submit" name="submit" value="Search" />}
+</center>
+<br />
 <div class="tab-empty">
     <center><h1 style="font-weight:bold;color:red">@Model.First().LOAITHUCDON.TENLOAITD</h1></center>
     <br />
@@ -66,26 +74,25 @@
         <tbody>
             @foreach (var thucDon in Model)
             {
-                <tr>
-                    <td>
-                        @thucDon.MATHUCDON
-                    </td>
-                    <td>
-                        @thucDon.TENMON
-                    </td>
-                    <td>
-                        @thucDon.DONGIA
-                    </td>
-                    <td>
-                        @thucDon.DVT
-                    </td>
-                    <td>
-                        @thucDon.MOTA
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            }
+<tr>
+    <td>
+        @thucDon.MATHUCDON
+    </td>
+    <td>
+        @thucDon.TENMON
+    </td>
+    <td>
+        @thucDon.DONGIA
+    </td>
+    <td>
+        @thucDon.DVT
+    </td>
+    <td>
+        @thucDon.MOTA
+    </td>
+    <td>
+    </td>
+</tr>            }
         </tbody>
     </table>
 </div>

@@ -42,7 +42,6 @@
       <Column Name="EMAIL" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="DIENTHOAI" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
       <Column Name="DIACHI" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="DIEMTICHLUY" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="HINHANH" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
       <Column Name="matKhau" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
       <Column Name="ngayTao" Type="System.DateTime" DbType="Date" CanBeNull="true" />

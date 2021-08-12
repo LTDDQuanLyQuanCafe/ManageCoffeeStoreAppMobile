@@ -16,12 +16,12 @@ namespace MVC_WebQuanLyQuanCafe.Controllers
         // GET: ThucDon
         [HttpGet]
         [Route("[{controller}/{action}/{idCategory}]")]
-        public ActionResult LayThucDonTheoLoai(string idCategory, int? i)
+        public ActionResult LayThucDonTheoLoai(string idCategory,string search, int? i)
         {
             int pageSize = 4;
             int pageIndex = 1;
             pageIndex = i.HasValue ? Convert.ToInt32(i) : 1;
-            ViewBag.CurrentSort = "";
+            ViewBag.CurrentSort = search;
             List<THUCDON> thucDons = new List<THUCDON>();
             try
             {
@@ -34,17 +34,15 @@ namespace MVC_WebQuanLyQuanCafe.Controllers
                     thucDons = db.THUCDONs.Where(td => td.MALOAITD.Equals(idCategory)).OrderByDescending(td => td.MATHUCDON).ToList();
                     Session["MaLoai"] = thucDons.First().MALOAITD;
 
-                    for (int ii = 0; ii < thucDons.Count(); ii++)
-                    {
-                        thucDons[ii]._STT = ii + 1;
-                    }
                 }
             }
             catch (Exception ex)
             {
                 return null;
             }
-            return View(thucDons.ToPagedList(i ?? pageIndex, pageSize));
+            return View(thucDons.Where(x => search == null || x.TENMON.Contains(search)
+            || x.HINHANH.Contains(search) || x.MOTA.Contains(search)
+            ).ToPagedList(i ?? pageIndex, pageSize));
         }
 
         public ActionResult CreateThucDon()

@@ -172,7 +172,8 @@ public class XacNhanDonHangActivity extends AppCompatActivity {
                                         Toast toast = Toast.makeText(XacNhanDonHangActivity.this, "Chúc mừng bạn vừa mua hàng thành công.", Toast.LENGTH_SHORT);
                                         toast.show();
                                         // Show lich su mua hang
-
+                                        Intent intent = new Intent(XacNhanDonHangActivity.this, Order_SuccessfulActivity.class);
+                                        startActivity(intent);
                                     }
                                 });
                             }

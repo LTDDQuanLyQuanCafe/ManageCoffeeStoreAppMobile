@@ -73,5 +73,22 @@ namespace AspNetCore_WebQuanLyQuanCafe.Controllers
             var khachHang = _khachHangServices.UpdateInfoCustomer(kh);
             return Ok(khachHang.Result);
         }
+
+        // POST api/<KhachHangController>
+        [HttpGet("check/forgot/{ht}/{dienThoai}")]
+        public IActionResult CheckForgotKhachHang(string ht, string dienThoai)
+        {
+            var khachHang = _khachHangServices.CheckInfoForgot(ht,dienThoai);
+            return Ok(khachHang.Result);
+        }
+
+        // POST api/<KhachHangController>
+        [HttpPost]
+        [Route("update/pass/{maKH}/{mkMoi}")]
+        public IActionResult UpdatePassword(string maKH, string mkMoi)
+        {
+            var khachHang = _khachHangServices.UpdatePass(maKH,mkMoi);
+            return Ok(khachHang.Result);
+        }
     }
 }

@@ -70,18 +70,18 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
         }
 
         /// <summary>Gets the tai khoan khach hang information.</summary>
-        /// <param name="email">The email kh.</param>
+        /// <param name="dienThoai">The email kh.</param>
         /// <returns>
         ///   <br />
         /// </returns>
-        public async Task<KhachHang> GetTaiKhoanKhachHangInfo(string email)
+        public async Task<KhachHang> GetTaiKhoanKhachHangInfo(string dienThoai)
         {
             try
             {
                 var open = await _sqlConnectDB.OpenAsync();
 
                 var queryKhachHang = "select * from KhachHang "
-                                                + "Where DienThoai = '" + email+"'";
+                                                + "Where DienThoai = '" + dienThoai + "'";
                 SqlCommand cmdKhachHang = new SqlCommand(queryKhachHang, _sqlConnectDB.sqlConnection);
                 SqlDataReader rdKhachHang = cmdKhachHang.ExecuteReader();
 
@@ -99,17 +99,21 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                         DiemTichLuy = int.Parse(rdKhachHang[7].ToString()),
                         HinhAnh = rdKhachHang[8].ToString(),
                         MatKhau = rdKhachHang[9].ToString(),
-                        NgayTao = DateTime.Parse(rdKhachHang[10].ToString())
+                        //NgayTao = DateTime.Parse(rdKhachHang[10].ToString())
                     };
                     if (DateTime.TryParse(rdKhachHang[10].ToString(), out DateTime dt1))
                     {
                         result.NgayTao = dt1;
                     }
+                    if (DateTime.TryParse(rdKhachHang[2].ToString(), out DateTime dt2))
+                    {
+                        result.NgaySinh = dt2;
+                    }
                 }
                 await _sqlConnectDB.CloseAsync();
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -140,6 +144,35 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
             catch
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Check infor for forget pass
+        /// </summary>
+        /// <param name="ht"></param>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        public async Task<string> CheckInfoForgot(string ht, string phone)
+        {
+            try
+            {
+                var open = await _sqlConnectDB.OpenAsync();
+
+                var queryExists = "select maKhachHang from KhachHang "
+                                                + "Where hoTen = N'" + ht + "' and DienThoai='" + phone + "'";
+                SqlCommand cmdKhachHang = new SqlCommand(queryExists, _sqlConnectDB.sqlConnection);
+                SqlDataReader rdKhachHang = cmdKhachHang.ExecuteReader();
+                if (rdKhachHang.Read())
+                {
+                    return rdKhachHang[0].ToString();
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
 
@@ -208,14 +241,16 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
             try
             {
                 KhachHang kh = await GetTaiKhoanKhachHangInfo(_kh.Email);
-                
+
                 await _sqlConnectDB.OpenAsync();
 
-                if (kh == null) {
+                if (kh == null)
+                {
                     return false;
                 }
 
-                if (!String.IsNullOrEmpty(_kh.TenKhachHang) && !kh.TenKhachHang.Equals(_kh.TenKhachHang)) {
+                if (!String.IsNullOrEmpty(_kh.TenKhachHang) && !kh.TenKhachHang.Equals(_kh.TenKhachHang))
+                {
                     kh.TenKhachHang = _kh.TenKhachHang;
                 }
                 if (_kh.NgaySinh.HasValue && !kh.NgaySinh.Equals(_kh.NgaySinh))
@@ -228,7 +263,8 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
                 }
                 if (!String.IsNullOrEmpty(_kh.DienThoai) && !kh.DienThoai.Equals(_kh.DienThoai))
                 {
-                    if (!await CheckInfomationExist(_kh.Email, _kh.DienThoai)) {
+                    if (!await CheckInfomationExist(_kh.Email, _kh.DienThoai))
+                    {
                         kh.DienThoai = _kh.DienThoai;
                     }
                 }
@@ -254,11 +290,38 @@ namespace AspNetCore_WebQuanLyQuanCafe.Services.Implements
 
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
         }
 
+        /// <summary>
+        /// Update password account
+        /// </summary>
+        /// <param name="maKH"></param>
+        /// <param name="matKhau"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdatePass(string maKH, string matKhau)
+        {
+            try
+            {
+                await _sqlConnectDB.OpenAsync();
+                var queryKhachHang = String.Format("update KhachHang " +
+                                                    "set matKhau = '{0}' " +
+                                                    "where MAKHACHHANG = {1}", matKhau, maKH);
+
+                SqlCommand cmdKhachHang = new SqlCommand(queryKhachHang, _sqlConnectDB.sqlConnection);
+                cmdKhachHang.ExecuteNonQuery();
+
+                await _sqlConnectDB.CloseAsync();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

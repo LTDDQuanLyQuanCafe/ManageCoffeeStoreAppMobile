@@ -18,7 +18,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.DonGiaoHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.Model.GioHang;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.adapter.GioHangThanhToanAdapter;
 import com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.common.Common;
@@ -158,8 +157,13 @@ public class XacNhanDonHangActivity extends AppCompatActivity {
                                             ,str, dgh.getIdsp(), dgh.getSoluong(),(dgh.getSoluong()*Double.parseDouble(dgh.getGiasp())));
                                     Boolean checkDetail = Boolean.valueOf(parseJson.postObjectToDB(url2, jsonInputDetails));
                                     if(!checkDetail){
-                                        Toast toast = Toast.makeText(XacNhanDonHangActivity.this, "Tạo chi tiết đơn giao hàng thất bại.", Toast.LENGTH_SHORT);
-                                        toast.show();
+                                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast toast = Toast.makeText(XacNhanDonHangActivity.this, "Tạo chi tiết đơn giao hàng thất bại.", Toast.LENGTH_SHORT);
+                                                toast.show();
+                                            }
+                                        });
                                     }
                                 }
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -209,7 +213,6 @@ public class XacNhanDonHangActivity extends AppCompatActivity {
     private String converMoneyToString(double money) {
         NumberFormat formatter = new DecimalFormat("#,###");
         String formattedNumber = formatter.format(money);
-
         return formattedNumber;
     }
 }

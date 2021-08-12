@@ -120,6 +120,11 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
             e.printStackTrace();
         }
         getThucDonData(data);
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         checkDataInRecycle();
 
         //Xu ly search
@@ -153,8 +158,8 @@ public class DSThucDonActivity extends AppCompatActivity implements OnClickListe
         Intent intent = null;
         if(mSelectedId == R.id.account)
         {
-            intent = new Intent(this, InfoKhachHangActivity.class);
-            startActivity(intent);
+//            intent = new Intent(this, InfoKhachHangActivity.class);
+//            startActivity(intent);
         }
 
         if(mSelectedId == R.id.heart)

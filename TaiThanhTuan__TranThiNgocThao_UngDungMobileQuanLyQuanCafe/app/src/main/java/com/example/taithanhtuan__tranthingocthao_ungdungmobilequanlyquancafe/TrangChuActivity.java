@@ -94,6 +94,8 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
     BottomAppBar bottomAppBar;
     FloatingActionButton floatingActionButton;
     SearchView editText;
+    MenuItem mnuTTCN;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +109,7 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
         navigationLeft = findViewById(R.id.nagivationviewLeft);
         mnuLogin = navigationLeft.findViewById(R.id.mnu_login);
 
-        mnuLogin = navigationLeft.getMenu().getItem(1);
+//        mnuLogin = navigationLeft.getMenu().getItem(4);
         sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         bottomAppBar = findViewById(R.id.bottomAppBar2);
@@ -248,6 +250,55 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 //               startActivity(intent);
 //           }
 //       });
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        navigationLeft = findViewById(R.id.nagivationviewLeft);
+        MenuItem mnu_user = navigationLeft.getMenu().getItem(1);
+        mnuLogin = mnu_user.getSubMenu().getItem(1);
+        mnuTTCN = mnu_user.getSubMenu().getItem(0);
+        if(mnuLogin != null) {
+            invalidateOptionsMenu();
+            if (loadPreferences("my_email") != null) {
+                mnuTTCN.setVisible(true);
+                mnuTTCN.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+//                        Intent intent = new Intent(TrangChuActivity.this,InfoKhachHangActivity.class);
+//                        startActivity(intent);
+                        return false;
+                    }
+                });
+                mnuLogin.setTitle("Đăng xuất");
+            } else {
+                mnuLogin.setTitle("Đăng nhập");
+                mnuTTCN.setVisible(false);
+            }
+            mnuLogin.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    if (mnuLogin.getTitle().toString().equals("Đăng nhập")) {
+                        Intent intent = new Intent(com.example.taithanhtuan__tranthingocthao_ungdungmobilequanlyquancafe.TrangChuActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(TrangChuActivity.this,"Đăng xuất thành công!", Toast.LENGTH_SHORT).show();
+                        editor.clear();
+                        editor.commit();
+                        Intent intent = new Intent(TrangChuActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        return true;
+                    }
+                    return false;
+                }
+            });
+        }
+        return super.onCreateOptionsMenu(menu);
     }
 
     // Override this method to do what you want when the menu is recreated
@@ -344,8 +395,8 @@ public class TrangChuActivity extends AppCompatActivity implements OnClickListen
 
         if(mSelectedId == R.id.account)
         {
-            intent = new Intent(this, InfoKhachHangActivity.class);
-            startActivity(intent);
+//            intent = new Intent(this, InfoKhachHangActivity.class);
+//            startActivity(intent);
         }
 
         if(mSelectedId == R.id.heart)
